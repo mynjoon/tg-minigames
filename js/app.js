@@ -235,11 +235,9 @@ function refreshBetPickers() { betPickers.forEach((p) => p.refresh()); }
   renderBonus();
   refreshBetPickers();
 
-  // 텔레그램 계정 연동 표시: 미니앱으로 열리면 계정 이름 + 클라우드 저장 안내
+  // 텔레그램 미니앱으로 열리면 클라우드 저장 안내만 표시 (이름 등 개인정보는 표시하지 않음)
   try {
-    const tgUser = TG && TG.initDataUnsafe ? TG.initDataUnsafe.user : null;
-    if (tgUser && tgUser.first_name) {
-      document.getElementById('user-name').textContent = tgUser.first_name;
+    if (TG && TG.initData) {
       document.getElementById('user-badge').classList.remove('hidden');
     }
   } catch (e) {}
