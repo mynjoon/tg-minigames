@@ -41,9 +41,24 @@ function storageSet(key, val) {
   }
 }
 
+/* ── 테스트 모드 (테스트 서버 = 포인트 무제한) ──
+   URL에 ?test=1 또는 #test 가 붙으면 활성화.
+   실서버 지갑과 완전히 분리된 저장키를 써서 서로 섞이지 않는다. */
+const TEST_MODE = (() => {
+  try {
+    const q = new URLSearchParams(location.search);
+    return q.get('test') === '1' || location.hash.replace('#', '') === 'test';
+  } catch (e) { return false; }
+})();
+const TEST_FLOOR = 1000000;      // 이 밑으로 떨어지면
+const TEST_REFILL = 100000000;   // 자동으로 이만큼 다시 채움 → 사실상 무제한
+
 /* ── 지갑/통계 상태 ── */
-const SAVE_KEY = 'casino_v1';
-const DEFAULT_STATE = { points: 10000, lastBonus: '', rescueAt: 0, stats: { plays: 0, wins: 0, best: 0 } };
+const SAVE_KEY = TEST_MODE ? 'casino_test_v1' : 'casino_v1';
+const DEFAULT_STATE = {
+  points: TEST_MODE ? TEST_REFILL : 10000,
+  lastBonus: '', rescueAt: 0, stats: { plays: 0, wins: 0, best: 0 },
+};
 let S = JSON.parse(JSON.stringify(DEFAULT_STATE));
 let navLock = false; // 라운드 진행 중 화면 이탈 방지
 
@@ -59,6 +74,8 @@ function sleep(ms) { return new Promise((r) => setTimeout(r, ms)); }
 
 function setPoints(delta) {
   S.points = Math.max(0, Math.round(S.points + delta));
+  // 테스트 서버: 잔액이 바닥나면 자동 충전하여 무제한처럼 유지
+  if (TEST_MODE && S.points < TEST_FLOOR) S.points = TEST_REFILL;
   save();
   renderBalance(delta > 0);
   refreshBetPickers();
@@ -230,15 +247,23 @@ function refreshBetPickers() { betPickers.forEach((p) => p.refresh()); }
       S.stats = Object.assign({}, DEFAULT_STATE.stats, parsed.stats || {});
     } catch (e) {}
   }
+  // 테스트 서버: 잔액이 부족하면 즉시 무제한치로 채워 시작
+  if (TEST_MODE && S.points < TEST_FLOOR) S.points = TEST_REFILL;
   renderBalance(false);
   renderStats();
   renderBonus();
   refreshBetPickers();
 
-  // 텔레그램 미니앱으로 열리면 클라우드 저장 안내만 표시 (이름 등 개인정보는 표시하지 않음)
-  try {
-    if (TG && TG.initData) {
-      document.getElementById('user-badge').classList.remove('hidden');
-    }
-  } catch (e) {}
+  // 테스트 모드 배지 표시
+  if (TEST_MODE) {
+    const tb = document.getElementById('test-badge');
+    if (tb) tb.classList.remove('hidden');
+  } else {
+    // 텔레그램 미니앱으로 열리면 클라우드 저장 안내만 표시 (이름 등 개인정보는 표시하지 않음)
+    try {
+      if (TG && TG.initData) {
+        document.getElementById('user-badge').classList.remove('hidden');
+      }
+    } catch (e) {}
+  }
 })();

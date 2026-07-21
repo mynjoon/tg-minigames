@@ -72,6 +72,12 @@ main { flex: 1; padding: 16px 14px 32px; }
 }
 #user-badge span { color: var(--gold); }
 
+#test-badge {
+  margin-bottom: 12px; padding: 9px 14px; border-radius: 999px;
+  background: rgba(52, 199, 123, 0.1); border: 1px solid var(--green);
+  text-align: center; font-size: 12.5px; font-weight: 800; color: #7fe0b0;
+}
+
 .bonus-row { display: flex; flex-direction: column; gap: 8px; margin-bottom: 16px; }
 .bonus-btn {
   width: 100%; padding: 13px; border-radius: var(--radius);
