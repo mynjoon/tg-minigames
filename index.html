@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<meta name="theme-color" content="#0b0e1a">
+<title>🎰 미니 카지노</title>
+<link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🎰</text></svg>">
+<script src="https://telegram.org/js/telegram-web-app.js"></script>
+<link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+<div id="app">
+
+  <header id="topbar">
+    <button id="btn-back" class="icon-btn hidden" aria-label="뒤로">‹</button>
+    <div id="topbar-title">🎰 미니 카지노</div>
+    <div id="balance-chip">💰 <span id="balance-num">…</span>P</div>
+  </header>
+
+  <main>
+
+    <!-- ══════════ 로비 ══════════ -->
+    <section id="screen-lobby" class="screen active">
+      <div class="bonus-row">
+        <button id="btn-daily" class="bonus-btn">🎁 출석 보너스 받기 <b>+5,000P</b></button>
+        <button id="btn-rescue" class="bonus-btn rescue hidden">🆘 구제 칩 받기 <b>+1,000P</b></button>
+      </div>
+
+      <div class="game-grid">
+        <button class="game-card" data-game="slots">
+          <span class="gc-emoji">🎰</span><span class="gc-name">슬롯머신</span><span class="gc-desc">잭팟 최대 ×77</span>
+        </button>
+        <button class="game-card" data-game="blackjack">
+          <span class="gc-emoji">🃏</span><span class="gc-name">블랙잭</span><span class="gc-desc">딜러를 이겨라 · 3:2</span>
+        </button>
+        <button class="game-card" data-game="roulette">
+          <span class="gc-emoji">🎡</span><span class="gc-name">룰렛</span><span class="gc-desc">번호 적중 ×36</span>
+        </button>
+        <button class="game-card" data-game="hilo">
+          <span class="gc-emoji">🔺</span><span class="gc-name">하이로우</span><span class="gc-desc">연승 배율 무한 도전</span>
+        </button>
+      </div>
+
+      <div id="stats-box">
+        <div class="stat"><span class="stat-num" id="stat-plays">0</span><span class="stat-label">플레이</span></div>
+        <div class="stat"><span class="stat-num" id="stat-wins">0</span><span class="stat-label">승리</span></div>
+        <div class="stat"><span class="stat-num" id="stat-best">0</span><span class="stat-label">최대 획득</span></div>
+      </div>
+
+      <p class="disclaimer">본 게임은 재미를 위한 <b>가상 포인트</b> 게임입니다.<br>포인트는 현금 가치가 없으며 충전·환전이 불가능합니다.</p>
+    </section>
+
+    <!-- ══════════ 슬롯머신 ══════════ -->
+    <section id="screen-slots" class="screen">
+      <div class="reels">
+        <div class="reel" id="reel-0">7️⃣</div>
+        <div class="reel" id="reel-1">7️⃣</div>
+        <div class="reel" id="reel-2">7️⃣</div>
+      </div>
+      <div class="game-msg" id="slots-msg">배팅 금액을 고르고 스핀!</div>
+      <div class="bet-picker" id="bet-slots"></div>
+      <button id="slots-spin" class="action-btn">스핀 🎰</button>
+      <details class="paytable">
+        <summary>배당표 보기</summary>
+        <table>
+          <tr><td>7️⃣ 7️⃣ 7️⃣</td><td>×77</td></tr>
+          <tr><td>💎 💎 💎</td><td>×25</td></tr>
+          <tr><td>🔔 🔔 🔔</td><td>×12</td></tr>
+          <tr><td>🍇 🍇 🍇</td><td>×6</td></tr>
+          <tr><td>🍋 🍋 🍋</td><td>×4</td></tr>
+          <tr><td>🍒 🍒 🍒</td><td>×3</td></tr>
+          <tr><td>같은 그림 2개</td><td>×1.5</td></tr>
+        </table>
+      </details>
+    </section>
+
+    <!-- ══════════ 블랙잭 ══════════ -->
+    <section id="screen-blackjack" class="screen">
+      <div class="bj-table">
+        <div class="bj-row">
+          <div class="hand-label">딜러 <span class="hand-val" id="bj-dealer-val"></span></div>
+          <div class="cards" id="bj-dealer-cards"></div>
+        </div>
+        <div class="bj-row">
+          <div class="hand-label">플레이어 <span class="hand-val" id="bj-player-val"></span></div>
+          <div class="cards" id="bj-player-cards"></div>
+        </div>
+      </div>
+      <div class="game-msg" id="bj-msg">배팅하고 딜 시작!</div>
+      <div id="bj-bet-area">
+        <div class="bet-picker" id="bet-bj"></div>
+        <button id="bj-deal" class="action-btn">딜 시작 🃏</button>
+      </div>
+      <div class="btn-row hidden" id="bj-actions">
+        <button id="bj-hit" class="sub-btn">히트</button>
+        <button id="bj-stand" class="sub-btn">스탠드</button>
+        <button id="bj-double" class="sub-btn">더블</button>
+      </div>
+      <p class="mini-note">블랙잭 3:2 지급 · 딜러는 17 이상 스탠드 · 스플릿 없음</p>
+    </section>
+
+    <!-- ══════════ 룰렛 ══════════ -->
+    <section id="screen-roulette" class="screen">
+      <div id="ru-display"><span id="ru-number">🎡</span></div>
+      <div class="game-msg" id="ru-msg">칩을 고르고 원하는 곳에 베팅!</div>
+      <div class="chip-row" id="ru-chips"></div>
+      <div class="ru-board" id="ru-board"></div>
+      <div class="ru-straight">
+        <label for="ru-num-input">번호 직접 베팅 (적중 시 ×36)</label>
+        <div class="ru-straight-row">
+          <input type="number" id="ru-num-input" min="0" max="36" placeholder="0–36">
+          <button id="ru-num-bet" class="sub-btn">번호 베팅</button>
+        </div>
+      </div>
+      <div class="ru-total">총 베팅 <b id="ru-total">0</b>P</div>
+      <div class="btn-row">
+        <button id="ru-clear" class="sub-btn ghost">초기화</button>
+        <button id="ru-spin" class="action-btn">스핀 🎡</button>
+      </div>
+    </section>
+
+    <!-- ══════════ 하이로우 ══════════ -->
+    <section id="screen-hilo" class="screen">
+      <div class="hilo-card" id="hilo-card"><span id="hilo-rank">?</span></div>
+      <div class="game-msg" id="hilo-msg">배팅하고 시작 — 다음 카드가 높을지 낮을지!</div>
+      <div id="hilo-run" class="hidden">배율 <b>×<span id="hilo-mult">1.00</span></b> · 지금 획득 시 <b><span id="hilo-pot">0</span>P</b></div>
+      <div id="hilo-bet-area">
+        <div class="bet-picker" id="bet-hilo"></div>
+        <button id="hilo-start" class="action-btn">시작 🔺</button>
+      </div>
+      <div class="btn-row hidden" id="hilo-actions">
+        <button id="hilo-high" class="sub-btn">▲ 높다 <small id="hilo-high-odds"></small></button>
+        <button id="hilo-low" class="sub-btn">▼ 낮다 <small id="hilo-low-odds"></small></button>
+      </div>
+      <button id="hilo-cashout" class="action-btn gold hidden">💰 획득하기</button>
+      <p class="mini-note">A(1)~K(13) · 같은 숫자는 무승부(다시) · 연속 성공 시 배율 누적</p>
+    </section>
+
+  </main>
+
+  <div id="toast" class="hidden"></div>
+</div>
+
+<script src="js/app.js"></script>
+<script src="js/slots.js"></script>
+<script src="js/blackjack.js"></script>
+<script src="js/roulette.js"></script>
+<script src="js/hilo.js"></script>
+</body>
+</html>

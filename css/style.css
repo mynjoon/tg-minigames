@@ -1,0 +1,265 @@
+/* ═══════════ 미니 카지노 — 다크 카지노 테마 ═══════════ */
+* { margin: 0; padding: 0; box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
+
+:root {
+  --bg: #0b0e1a;
+  --panel: #151b2e;
+  --panel2: #1d2440;
+  --line: #2a3355;
+  --text: #eef1fb;
+  --muted: #8b93b8;
+  --gold: #f6c453;
+  --gold-deep: #d9a52f;
+  --green: #34c77b;
+  --red: #e5484d;
+  --blue: #5b8def;
+  --radius: 16px;
+}
+
+html, body { height: 100%; }
+body {
+  background: var(--bg);
+  color: var(--text);
+  font-family: -apple-system, BlinkMacSystemFont, "Apple SD Gothic Neo", "Pretendard", "Noto Sans KR", sans-serif;
+  overscroll-behavior: none;
+  user-select: none;
+  -webkit-user-select: none;
+}
+
+#app { max-width: 440px; margin: 0 auto; min-height: 100vh; display: flex; flex-direction: column; }
+
+/* ── 상단 바 ── */
+#topbar {
+  position: sticky; top: 0; z-index: 10;
+  display: flex; align-items: center; gap: 10px;
+  padding: 12px 14px;
+  background: rgba(11, 14, 26, 0.92);
+  backdrop-filter: blur(8px);
+  border-bottom: 1px solid var(--line);
+}
+#topbar-title { font-weight: 800; font-size: 17px; flex: 1; white-space: nowrap; overflow: hidden; }
+#balance-chip {
+  background: linear-gradient(135deg, #2a2410, #3a2f12);
+  border: 1px solid var(--gold-deep);
+  color: var(--gold);
+  font-weight: 800; font-size: 14px;
+  padding: 6px 12px; border-radius: 999px;
+  white-space: nowrap;
+}
+#balance-chip.pulse { animation: pulse 0.45s ease; }
+@keyframes pulse { 30% { transform: scale(1.12); } }
+
+.icon-btn {
+  width: 34px; height: 34px; border-radius: 10px;
+  border: 1px solid var(--line); background: var(--panel);
+  color: var(--text); font-size: 22px; line-height: 1; cursor: pointer;
+}
+
+main { flex: 1; padding: 16px 14px 32px; }
+
+/* ── 화면 전환 ── */
+.screen { display: none; animation: fadein 0.25s ease; }
+.screen.active { display: block; }
+@keyframes fadein { from { opacity: 0; transform: translateY(6px); } }
+
+.hidden { display: none !important; }
+
+/* ── 로비 ── */
+.bonus-row { display: flex; flex-direction: column; gap: 8px; margin-bottom: 16px; }
+.bonus-btn {
+  width: 100%; padding: 13px; border-radius: var(--radius);
+  border: 1px dashed var(--gold-deep);
+  background: rgba(246, 196, 83, 0.08);
+  color: var(--gold); font-size: 15px; font-weight: 700; cursor: pointer;
+}
+.bonus-btn:disabled { opacity: 0.45; border-style: solid; cursor: default; }
+.bonus-btn.rescue { border-color: var(--red); color: #ff8a8e; background: rgba(229, 72, 77, 0.08); }
+
+.game-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+.game-card {
+  display: flex; flex-direction: column; align-items: flex-start; gap: 4px;
+  padding: 18px 16px; border-radius: var(--radius);
+  background: linear-gradient(160deg, var(--panel2), var(--panel));
+  border: 1px solid var(--line);
+  color: var(--text); text-align: left; cursor: pointer;
+  transition: transform 0.1s ease;
+}
+.game-card:active { transform: scale(0.96); }
+.gc-emoji { font-size: 34px; }
+.gc-name { font-size: 16px; font-weight: 800; margin-top: 4px; }
+.gc-desc { font-size: 12px; color: var(--muted); }
+
+#stats-box {
+  display: flex; justify-content: space-around;
+  margin-top: 18px; padding: 14px;
+  background: var(--panel); border: 1px solid var(--line); border-radius: var(--radius);
+}
+.stat { display: flex; flex-direction: column; align-items: center; gap: 2px; }
+.stat-num { font-size: 18px; font-weight: 800; color: var(--gold); }
+.stat-label { font-size: 12px; color: var(--muted); }
+
+.disclaimer {
+  margin-top: 18px; text-align: center;
+  font-size: 12px; line-height: 1.7; color: var(--muted);
+}
+
+/* ── 공통 게임 UI ── */
+.game-msg {
+  min-height: 24px; margin: 14px 0 10px; text-align: center;
+  font-size: 15px; font-weight: 600;
+}
+.game-msg .good, .good { color: var(--green); }
+.game-msg .bad, .bad { color: var(--red); }
+
+.bet-picker { display: flex; flex-wrap: wrap; gap: 8px; justify-content: center; margin: 10px 0; }
+.chip {
+  min-width: 58px; padding: 9px 10px; border-radius: 999px;
+  border: 1.5px solid var(--line); background: var(--panel);
+  color: var(--text); font-weight: 800; font-size: 14px; cursor: pointer;
+}
+.chip.sel { border-color: var(--gold); color: var(--gold); background: rgba(246, 196, 83, 0.1); }
+.chip.allin { border-color: var(--red); }
+.chip.allin.sel { color: #ff8a8e; background: rgba(229, 72, 77, 0.1); border-color: var(--red); }
+.chip:disabled { opacity: 0.35; cursor: default; }
+.bet-display { width: 100%; text-align: center; font-size: 13px; color: var(--muted); font-weight: 700; }
+
+.action-btn {
+  display: block; width: 100%; margin: 12px 0 0;
+  padding: 15px; border-radius: var(--radius); border: none;
+  background: linear-gradient(135deg, var(--gold), var(--gold-deep));
+  color: #241a02; font-size: 17px; font-weight: 900; cursor: pointer;
+  box-shadow: 0 6px 18px rgba(246, 196, 83, 0.25);
+  transition: transform 0.1s ease;
+}
+.action-btn:active { transform: scale(0.97); }
+.action-btn:disabled { opacity: 0.5; box-shadow: none; }
+.action-btn.gold { margin-top: 10px; }
+
+.btn-row { display: flex; gap: 8px; margin-top: 12px; }
+.sub-btn {
+  flex: 1; padding: 13px 8px; border-radius: 14px;
+  border: 1px solid var(--line); background: var(--panel2);
+  color: var(--text); font-size: 15px; font-weight: 800; cursor: pointer;
+}
+.sub-btn:active { transform: scale(0.97); }
+.sub-btn:disabled { opacity: 0.4; }
+.sub-btn.ghost { background: transparent; color: var(--muted); flex: 0 0 90px; }
+.sub-btn small { display: block; font-size: 11px; color: var(--muted); font-weight: 600; }
+
+.mini-note { margin-top: 14px; text-align: center; font-size: 11px; color: var(--muted); }
+
+/* ── 슬롯 ── */
+.reels {
+  display: flex; gap: 10px; justify-content: center;
+  padding: 22px 12px;
+  background: linear-gradient(180deg, #191330, #141021);
+  border: 1px solid var(--line); border-radius: var(--radius);
+}
+.reel {
+  width: 92px; height: 104px; display: flex; align-items: center; justify-content: center;
+  font-size: 52px; background: #0d0a18;
+  border: 2px solid var(--line); border-radius: 14px;
+}
+.reel.bump { animation: bump 0.3s ease; border-color: var(--gold); }
+@keyframes bump { 40% { transform: scale(1.15); } }
+
+.paytable { margin-top: 16px; }
+.paytable summary { color: var(--muted); font-size: 13px; cursor: pointer; text-align: center; }
+.paytable table { width: 100%; margin-top: 10px; border-collapse: collapse; }
+.paytable td { padding: 7px 10px; border-bottom: 1px solid var(--line); font-size: 14px; }
+.paytable td:last-child { text-align: right; color: var(--gold); font-weight: 800; }
+
+/* ── 블랙잭 ── */
+.bj-table {
+  padding: 16px 14px;
+  background: radial-gradient(ellipse at 50% 0%, #14503a, #0d3527);
+  border: 1px solid #1d6b4e; border-radius: var(--radius);
+  display: flex; flex-direction: column; gap: 16px;
+}
+.hand-label { font-size: 13px; font-weight: 700; color: #a8d9c3; margin-bottom: 7px; }
+.hand-val { color: #fff; background: rgba(0,0,0,0.3); padding: 2px 8px; border-radius: 8px; margin-left: 4px; }
+.cards { display: flex; flex-wrap: wrap; gap: 7px; min-height: 74px; }
+.card {
+  width: 52px; height: 72px; border-radius: 8px;
+  background: #f7f7f2; color: #16181d;
+  display: flex; flex-direction: column; align-items: center; justify-content: center;
+  font-weight: 900; box-shadow: 0 3px 8px rgba(0,0,0,0.4);
+  animation: dealcard 0.25s ease;
+}
+.card .cr { font-size: 19px; }
+.card .cs { font-size: 17px; line-height: 1; }
+.card.red { color: #d0262c; }
+.card.back {
+  background: repeating-linear-gradient(45deg, #35427a, #35427a 5px, #2b3560 5px, #2b3560 10px);
+  color: transparent;
+}
+@keyframes dealcard { from { transform: translateY(-14px); opacity: 0; } }
+
+/* ── 룰렛 ── */
+#ru-display {
+  height: 96px; display: flex; align-items: center; justify-content: center;
+  background: linear-gradient(180deg, #191330, #141021);
+  border: 1px solid var(--line); border-radius: var(--radius);
+}
+#ru-number {
+  min-width: 68px; text-align: center;
+  font-size: 40px; font-weight: 900;
+  padding: 6px 16px; border-radius: 14px;
+}
+#ru-number.n-red { background: var(--red); color: #fff; }
+#ru-number.n-black { background: #23262f; color: #fff; border: 1px solid #444; }
+#ru-number.n-green { background: #128a4e; color: #fff; }
+
+.chip-row { display: flex; gap: 8px; justify-content: center; margin-bottom: 10px; }
+
+.ru-board { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 8px; }
+.ru-spot {
+  position: relative; padding: 13px 4px 12px; border-radius: 12px;
+  border: 1px solid var(--line); background: var(--panel);
+  color: var(--text); font-size: 13px; font-weight: 800; cursor: pointer;
+}
+.ru-spot:active { transform: scale(0.96); }
+.ru-spot .amt {
+  display: block; margin-top: 3px; font-size: 11px; color: var(--gold); font-weight: 800;
+  min-height: 13px;
+}
+.ru-spot.has-bet { border-color: var(--gold); }
+
+.ru-straight { margin-top: 12px; }
+.ru-straight label { font-size: 12px; color: var(--muted); font-weight: 700; }
+.ru-straight-row { display: flex; gap: 8px; margin-top: 6px; }
+.ru-straight-row input {
+  flex: 1; padding: 12px; border-radius: 12px;
+  border: 1px solid var(--line); background: var(--panel);
+  color: var(--text); font-size: 16px; font-weight: 800; text-align: center;
+}
+.ru-straight-row .sub-btn { flex: 0 0 110px; }
+.ru-total { margin-top: 12px; text-align: center; font-size: 14px; color: var(--muted); }
+.ru-total b { color: var(--gold); }
+
+/* ── 하이로우 ── */
+.hilo-card {
+  width: 120px; height: 164px; margin: 6px auto 0;
+  border-radius: 14px; background: #f7f7f2; color: #16181d;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 56px; font-weight: 900;
+  box-shadow: 0 8px 24px rgba(0,0,0,0.45);
+}
+.hilo-card.flip { animation: flip 0.4s ease; }
+@keyframes flip { 50% { transform: rotateY(90deg); } }
+#hilo-run { text-align: center; font-size: 15px; margin-bottom: 4px; }
+#hilo-run b { color: var(--gold); }
+
+/* ── 토스트 ── */
+#toast {
+  position: fixed; left: 50%; bottom: 28px; transform: translateX(-50%);
+  max-width: 90%; padding: 12px 20px; border-radius: 999px;
+  background: #262e4d; color: var(--text);
+  font-size: 14px; font-weight: 700; white-space: nowrap;
+  box-shadow: 0 8px 24px rgba(0,0,0,0.5);
+  z-index: 100; opacity: 0; pointer-events: none;
+  transition: opacity 0.2s ease;
+}
+#toast.show { opacity: 1; }
+#toast.good { background: #123c2a; color: #7fe0b0; border: 1px solid #1d6b4e; }
+#toast.bad { background: #43181c; color: #ff9a9e; border: 1px solid #7a2a30; }
