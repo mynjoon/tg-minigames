@@ -250,6 +250,95 @@ main { flex: 1; padding: 16px 14px 32px; }
 #hilo-run { text-align: center; font-size: 15px; margin-bottom: 4px; }
 #hilo-run b { color: var(--gold); }
 
+/* ── 사이드 선택 버튼 (바카라/다이스/코인) ── */
+.side.sel { border-color: var(--gold); color: var(--gold); background: rgba(246, 196, 83, 0.1); }
+
+/* ── 바카라 ── */
+.bj-table.baccarat { background: radial-gradient(ellipse at 50% 0%, #4a1430, #2e0d1f); border-color: #6b1d46; }
+.bj-table.baccarat .hand-label { color: #d9a8c3; }
+
+/* ── 럭키휠 ── */
+.wheel-wrap { position: relative; width: 260px; height: 260px; margin: 8px auto 0; }
+.wheel-pointer {
+  position: absolute; top: -12px; left: 50%; transform: translateX(-50%);
+  font-size: 26px; color: var(--gold); z-index: 2;
+  text-shadow: 0 2px 6px rgba(0,0,0,0.6);
+}
+.wheel {
+  width: 100%; height: 100%; border-radius: 50%;
+  border: 6px solid var(--gold-deep);
+  box-shadow: 0 0 0 4px #0d0a18, 0 10px 30px rgba(0,0,0,0.5);
+  position: relative;
+  transition: transform 4s cubic-bezier(0.12, 0.6, 0.08, 1);
+}
+.wheel-label {
+  position: absolute; left: 50%; top: 50%;
+  transform-origin: 0 0;
+  font-size: 13px; font-weight: 900; color: #fff;
+  text-shadow: 0 1px 3px rgba(0,0,0,0.7);
+}
+
+/* ── 다이스 ── */
+.dice-row {
+  display: flex; gap: 12px; align-items: center; justify-content: center;
+  padding: 20px 12px;
+  background: linear-gradient(180deg, #191330, #141021);
+  border: 1px solid var(--line); border-radius: var(--radius);
+}
+.die {
+  font-size: 58px; line-height: 1; color: #fff;
+}
+.die.rolling { animation: shake 0.5s ease infinite; }
+@keyframes shake { 25% { transform: rotate(-14deg); } 75% { transform: rotate(14deg); } }
+.dice-sum { font-size: 17px; font-weight: 900; color: var(--gold); margin-left: 6px; }
+
+/* ── 마인즈 ── */
+.mines-top { display: flex; align-items: center; gap: 10px; margin-bottom: 10px; }
+.mines-label { font-size: 13px; font-weight: 700; color: var(--muted); white-space: nowrap; }
+#mn-counts { margin-top: 0; flex: 1; }
+.mines-grid {
+  display: grid; grid-template-columns: repeat(5, 1fr); gap: 7px;
+  padding: 12px;
+  background: linear-gradient(180deg, #191330, #141021);
+  border: 1px solid var(--line); border-radius: var(--radius);
+}
+.mn-tile {
+  aspect-ratio: 1; border-radius: 10px;
+  border: 1px solid var(--line); background: var(--panel2);
+  font-size: 22px; color: var(--text); cursor: pointer;
+  transition: transform 0.08s ease;
+}
+.mn-tile:active { transform: scale(0.92); }
+.mn-tile:disabled { opacity: 0.55; cursor: default; }
+.mn-tile.safe { background: #123c2a; border-color: #1d6b4e; opacity: 1; }
+.mn-tile.boom { background: #4a1216; border-color: #7a2a30; opacity: 1; }
+#mn-run { text-align: center; font-size: 15px; margin-bottom: 6px; }
+#mn-run b { color: var(--gold); }
+
+/* ── 비디오 포커 ── */
+.poker-cards {
+  justify-content: center; padding: 18px 10px; min-height: 108px;
+  background: radial-gradient(ellipse at 50% 0%, #14503a, #0d3527);
+  border: 1px solid #1d6b4e; border-radius: var(--radius);
+}
+.poker-cards .card { width: 56px; height: 80px; cursor: pointer; position: relative; }
+.poker-cards .card.held { outline: 3px solid var(--gold); transform: translateY(-6px); }
+.poker-cards .card.held::after {
+  content: '홀드'; position: absolute; bottom: -20px; left: 50%; transform: translateX(-50%);
+  font-size: 10px; font-weight: 900; color: var(--gold);
+}
+
+/* ── 코인플립 ── */
+.coin {
+  width: 110px; height: 110px; margin: 10px auto 0;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 56px; border-radius: 50%;
+  background: radial-gradient(circle at 35% 30%, #ffe9a8, var(--gold), var(--gold-deep));
+  box-shadow: 0 8px 24px rgba(246, 196, 83, 0.35);
+}
+.coin.flipping { animation: coinflip 0.9s ease; }
+@keyframes coinflip { 50% { transform: rotateX(540deg) scale(1.1); } 100% { transform: rotateX(1080deg); } }
+
 /* ── 토스트 ── */
 #toast {
   position: fixed; left: 50%; bottom: 28px; transform: translateX(-50%);

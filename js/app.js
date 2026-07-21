@@ -125,7 +125,30 @@ const SCREEN_TITLES = {
   blackjack: '🃏 블랙잭',
   roulette: '🎡 룰렛',
   hilo: '🔺 하이로우',
+  baccarat: '🎴 바카라',
+  wheel: '🍀 럭키휠',
+  dice: '🎲 다이스',
+  mines: '💣 마인즈',
+  poker: '♠️ 비디오 포커',
+  coin: '🪙 코인플립',
 };
+
+/* 사이드 선택 버튼 공용 헬퍼 (바카라/다이스/코인플립) */
+function wireSides(containerIds, onSelect) {
+  const btns = [];
+  containerIds.forEach((cid) => {
+    document.querySelectorAll('#' + cid + ' .side').forEach((b) => btns.push(b));
+  });
+  btns.forEach((b) =>
+    b.addEventListener('click', () => {
+      haptic.tap();
+      btns.forEach((x) => x.classList.remove('sel'));
+      b.classList.add('sel');
+      if (onSelect) onSelect(b.dataset.side);
+    })
+  );
+  return () => btns.find((b) => b.classList.contains('sel')).dataset.side;
+}
 
 function showScreen(id) {
   document.querySelectorAll('.screen').forEach((s) => s.classList.toggle('active', s.id === 'screen-' + id));

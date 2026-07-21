@@ -40,6 +40,24 @@
         <button class="game-card" data-game="hilo">
           <span class="gc-emoji">🔺</span><span class="gc-name">하이로우</span><span class="gc-desc">연승 배율 무한 도전</span>
         </button>
+        <button class="game-card" data-game="baccarat">
+          <span class="gc-emoji">🎴</span><span class="gc-name">바카라</span><span class="gc-desc">플레이어 vs 뱅커 · 타이 ×9</span>
+        </button>
+        <button class="game-card" data-game="wheel">
+          <span class="gc-emoji">🍀</span><span class="gc-name">럭키휠</span><span class="gc-desc">한 방 최대 ×10</span>
+        </button>
+        <button class="game-card" data-game="dice">
+          <span class="gc-emoji">🎲</span><span class="gc-name">다이스</span><span class="gc-desc">대소·홀짝·트리플 ×33</span>
+        </button>
+        <button class="game-card" data-game="mines">
+          <span class="gc-emoji">💣</span><span class="gc-name">마인즈</span><span class="gc-desc">지뢰 피해 연속 획득</span>
+        </button>
+        <button class="game-card" data-game="poker">
+          <span class="gc-emoji">♠️</span><span class="gc-name">비디오 포커</span><span class="gc-desc">로열플러시 ×250</span>
+        </button>
+        <button class="game-card" data-game="coin">
+          <span class="gc-emoji">🪙</span><span class="gc-name">코인플립</span><span class="gc-desc">앞뒤 맞추기 ×1.95</span>
+        </button>
       </div>
 
       <div id="stats-box">
@@ -137,6 +155,122 @@
       <p class="mini-note">A(1)~K(13) · 같은 숫자는 무승부(다시) · 연속 성공 시 배율 누적</p>
     </section>
 
+    <!-- ══════════ 바카라 ══════════ -->
+    <section id="screen-baccarat" class="screen">
+      <div class="bj-table baccarat">
+        <div class="bj-row">
+          <div class="hand-label">뱅커 <span class="hand-val" id="bc-banker-val"></span></div>
+          <div class="cards" id="bc-banker-cards"></div>
+        </div>
+        <div class="bj-row">
+          <div class="hand-label">플레이어 <span class="hand-val" id="bc-player-val"></span></div>
+          <div class="cards" id="bc-player-cards"></div>
+        </div>
+      </div>
+      <div class="game-msg" id="bc-msg">어디에 걸까요?</div>
+      <div class="btn-row" id="bc-sides">
+        <button class="sub-btn side sel" data-side="player">플레이어<small>×2</small></button>
+        <button class="sub-btn side" data-side="banker">뱅커<small>×1.95</small></button>
+        <button class="sub-btn side" data-side="tie">타이<small>×9</small></button>
+      </div>
+      <div class="bet-picker" id="bet-bc"></div>
+      <button id="bc-deal" class="action-btn">딜 시작 🎴</button>
+      <p class="mini-note">정식 드로잉 룰 적용 · 타이 시 플레이어/뱅커 베팅은 반환</p>
+    </section>
+
+    <!-- ══════════ 럭키휠 ══════════ -->
+    <section id="screen-wheel" class="screen">
+      <div class="wheel-wrap">
+        <div class="wheel-pointer">▼</div>
+        <div id="wheel" class="wheel"></div>
+      </div>
+      <div class="game-msg" id="wh-msg">배팅하고 휠을 돌리세요!</div>
+      <div class="bet-picker" id="bet-wheel"></div>
+      <button id="wh-spin" class="action-btn">돌리기 🍀</button>
+      <p class="mini-note">멈춘 칸의 배수만큼 획득 · 최대 ×10</p>
+    </section>
+
+    <!-- ══════════ 다이스 ══════════ -->
+    <section id="screen-dice" class="screen">
+      <div class="dice-row">
+        <div class="die" id="die-0">⚄</div>
+        <div class="die" id="die-1">⚂</div>
+        <div class="die" id="die-2">⚅</div>
+        <div class="dice-sum" id="dice-sum">합 ?</div>
+      </div>
+      <div class="game-msg" id="dc-msg">어디에 걸까요?</div>
+      <div class="btn-row" id="dc-sides-1">
+        <button class="sub-btn side sel" data-side="big">대 11–17<small>×1.95</small></button>
+        <button class="sub-btn side" data-side="small">소 4–10<small>×1.95</small></button>
+      </div>
+      <div class="btn-row" id="dc-sides-2">
+        <button class="sub-btn side" data-side="odd">홀<small>×1.95</small></button>
+        <button class="sub-btn side" data-side="even">짝<small>×1.95</small></button>
+        <button class="sub-btn side" data-side="triple">트리플<small>×33</small></button>
+      </div>
+      <div class="bet-picker" id="bet-dice"></div>
+      <button id="dc-roll" class="action-btn">굴리기 🎲</button>
+      <p class="mini-note">트리플(세 주사위 동일)이 나오면 대/소/홀/짝은 패배</p>
+    </section>
+
+    <!-- ══════════ 마인즈 ══════════ -->
+    <section id="screen-mines" class="screen">
+      <div class="mines-top">
+        <span class="mines-label">지뢰 수</span>
+        <div class="btn-row" id="mn-counts">
+          <button class="sub-btn side sel" data-m="3">3개</button>
+          <button class="sub-btn side" data-m="5">5개</button>
+          <button class="sub-btn side" data-m="7">7개</button>
+        </div>
+      </div>
+      <div class="mines-grid" id="mn-grid"></div>
+      <div class="game-msg" id="mn-msg">지뢰를 피해 타일을 여세요!</div>
+      <div id="mn-run" class="hidden">배율 <b>×<span id="mn-mult">1.00</span></b> · 지금 획득 시 <b><span id="mn-pot">0</span>P</b></div>
+      <div id="mn-bet-area">
+        <div class="bet-picker" id="bet-mines"></div>
+        <button id="mn-start" class="action-btn">시작 💣</button>
+      </div>
+      <button id="mn-cashout" class="action-btn gold hidden">💰 획득하기</button>
+    </section>
+
+    <!-- ══════════ 비디오 포커 ══════════ -->
+    <section id="screen-poker" class="screen">
+      <div class="cards poker-cards" id="pk-cards"></div>
+      <div class="game-msg" id="pk-msg">배팅하고 딜! 카드를 눌러 홀드하세요</div>
+      <div id="pk-bet-area">
+        <div class="bet-picker" id="bet-poker"></div>
+        <button id="pk-deal" class="action-btn">딜 ♠️</button>
+      </div>
+      <button id="pk-draw" class="action-btn hidden">교체하기 🔄</button>
+      <details class="paytable">
+        <summary>배당표 보기</summary>
+        <table>
+          <tr><td>로열 플러시</td><td>×250</td></tr>
+          <tr><td>스트레이트 플러시</td><td>×50</td></tr>
+          <tr><td>포카드</td><td>×25</td></tr>
+          <tr><td>풀하우스</td><td>×9</td></tr>
+          <tr><td>플러시</td><td>×6</td></tr>
+          <tr><td>스트레이트</td><td>×4</td></tr>
+          <tr><td>트리플</td><td>×3</td></tr>
+          <tr><td>투페어</td><td>×2</td></tr>
+          <tr><td>J 이상 원페어</td><td>×1 (환급)</td></tr>
+        </table>
+      </details>
+    </section>
+
+    <!-- ══════════ 코인플립 ══════════ -->
+    <section id="screen-coin" class="screen">
+      <div class="coin" id="coin">👑</div>
+      <div class="game-msg" id="cf-msg">앞면일까 뒷면일까?</div>
+      <div class="btn-row" id="cf-sides">
+        <button class="sub-btn side sel" data-side="heads">👑 앞면</button>
+        <button class="sub-btn side" data-side="tails">⭐ 뒷면</button>
+      </div>
+      <div class="bet-picker" id="bet-coin"></div>
+      <button id="cf-flip" class="action-btn">던지기 🪙</button>
+      <p class="mini-note">적중 ×1.95</p>
+    </section>
+
   </main>
 
   <div id="toast" class="hidden"></div>
@@ -147,5 +281,11 @@
 <script src="js/blackjack.js"></script>
 <script src="js/roulette.js"></script>
 <script src="js/hilo.js"></script>
+<script src="js/baccarat.js"></script>
+<script src="js/wheel.js"></script>
+<script src="js/dice.js"></script>
+<script src="js/mines.js"></script>
+<script src="js/poker.js"></script>
+<script src="js/coinflip.js"></script>
 </body>
 </html>
