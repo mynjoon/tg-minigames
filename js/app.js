@@ -53,10 +53,27 @@ const TEST_MODE = (() => {
 const TEST_FLOOR = 1000000;      // 이 밑으로 떨어지면
 const TEST_REFILL = 100000000;   // 자동으로 이만큼 다시 채움 → 사실상 무제한
 
+/* ── 리더보드(게임) 모드 ──
+   봇이 sendGame → callback 으로 게임을 열 때, 봇 서버가 URL에
+   ?tgScore=<서명토큰>&api=<점수엔드포인트> 를 주입한다.
+   그 두 값이 있으면 "게임 모드"로 보고, 최고 잔액(peak)을 서버로 보내
+   텔레그램 내장 리더보드(setGameScore)에 반영한다.
+   테스트 모드에서는 리더보드에 반영하지 않는다(공정성). */
+const GAME = (() => {
+  try {
+    const q = new URLSearchParams(location.search);
+    const token = q.get('tgScore');
+    const api = q.get('api');
+    if (token && api && !TEST_MODE) return { token, api };
+  } catch (e) {}
+  return null;
+})();
+
 /* ── 지갑/통계 상태 ── */
 const SAVE_KEY = TEST_MODE ? 'casino_test_v1' : 'casino_v1';
 const DEFAULT_STATE = {
   points: TEST_MODE ? TEST_REFILL : 10000,
+  peak: TEST_MODE ? TEST_REFILL : 10000,   // 최고 도달 잔액 → 리더보드 점수
   lastBonus: '', rescueAt: 0, stats: { plays: 0, wins: 0, best: 0 },
 };
 let S = JSON.parse(JSON.stringify(DEFAULT_STATE));
@@ -76,10 +93,32 @@ function setPoints(delta) {
   S.points = Math.max(0, Math.round(S.points + delta));
   // 테스트 서버: 잔액이 바닥나면 자동 충전하여 무제한처럼 유지
   if (TEST_MODE && S.points < TEST_FLOOR) S.points = TEST_REFILL;
+  // 최고 잔액 갱신 → 리더보드 점수(오르기만 하는 하이스코어)
+  if (S.points > (S.peak || 0)) {
+    S.peak = S.points;
+    submitScore();
+  }
   save();
   renderBalance(delta > 0);
   refreshBetPickers();
   renderBonus();
+}
+
+/* 게임 모드일 때만: 최고 잔액을 봇 서버로 보내 리더보드에 반영 (디바운스) */
+let scoreTimer = null;
+function submitScore() {
+  if (!GAME) return;
+  clearTimeout(scoreTimer);
+  scoreTimer = setTimeout(() => {
+    try {
+      fetch(GAME.api, {
+        method: 'POST',
+        headers: { 'content-type': 'application/json' },
+        body: JSON.stringify({ token: GAME.token, score: Math.round(S.peak || S.points) }),
+        keepalive: true,
+      }).catch(() => {});
+    } catch (e) {}
+  }, 1500);
 }
 
 function recordResult(net) {
@@ -249,13 +288,19 @@ function refreshBetPickers() { betPickers.forEach((p) => p.refresh()); }
   }
   // 테스트 서버: 잔액이 부족하면 즉시 무제한치로 채워 시작
   if (TEST_MODE && S.points < TEST_FLOOR) S.points = TEST_REFILL;
+  // peak 보정 (예전 저장본에 peak 없을 수 있음)
+  if (!(S.peak >= S.points)) S.peak = S.points;
   renderBalance(false);
   renderStats();
   renderBonus();
   refreshBetPickers();
 
-  // 테스트 모드 배지 표시
-  if (TEST_MODE) {
+  // 배지 표시: 게임(리더보드) 모드 > 테스트 모드 > 일반 미니앱
+  if (GAME) {
+    const lb = document.getElementById('lb-badge');
+    if (lb) lb.classList.remove('hidden');
+    submitScore(); // 접속 시 현재 최고 잔액을 한 번 반영
+  } else if (TEST_MODE) {
     const tb = document.getElementById('test-badge');
     if (tb) tb.classList.remove('hidden');
   } else {
