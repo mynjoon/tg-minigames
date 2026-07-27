@@ -79,7 +79,6 @@ function Header({ onCTA, base = "" }) {
   { id: "products", label: "판매상품" },
   { id: "plans", label: "요금상담" },
   { id: "bundle", label: "인터넷/TV 결합" },
-  { href: "finder.html", label: "요금제 찾기" },
   { href: "used.html", label: "중고폰" },
   { id: "reward", label: "지인추천" },
   { id: "booking", label: "방문예약" }];

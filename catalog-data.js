@@ -1,9 +1,10 @@
 /* ==========================================================================
-   공일모바일 — 카탈로그 데이터 (기기 · 요금제 · 알뜰폰 · 중고 매입)
-   서브페이지(devices/plans/finder/used) + 홈 알뜰폰 섹션이 공용으로 사용.
+   공일모바일 — 카탈로그 데이터 (기기 · 중고 매입)
+   서브페이지(devices/used)가 공용으로 사용. (알뜰폰·요금제는 2026-07-27 사장님 지시로 제외)
 
-   ⚠️⚠️ CATALOG_STATUS = 'SAMPLE' — 월 납부액·매입가 등 숫자는 전부 예시다.
-   사장님 정책표(단가표) 반영 후 'LIVE'로 바꾼다. 교체 전까지 각 페이지에 예시 안내 노출.
+   ⚠️ CATALOG_STATUS = 'SAMPLE' — '기기(개통·자급제)' 금액은 아직 예시다. 정책표 수령 후 교체.
+   ✅ 중고 매입가(USED_BUYBACK)는 실데이터: 폰'S 단가표(2026-07-27) 전 구간 −10만원 적용.
+      등급 매핑: A급=[A-,A] · B급=[중고,B+] · C급=[수출,중고] (용량별 범위 합산, 1만원 미만 구간은 문의 처리)
    가격 표기 원칙: 항상 "예상 범위 + 최종 조건은 매장 상담에서 확정". 확정가 단정 금지.
    시세 갱신: 사장님이 이 파일의 숫자만 바꾸면 된다 (구조 변경 금지).
    ========================================================================== */
@@ -80,94 +81,160 @@ const CARRIERS = [
   { key: 'LGU', label: 'LG U+',   color: '#E6007E' },
 ];
 
-/* ── 알뜰폰 공통 색 — 배지 등 알뜰폰 표시에 페이지 공통으로 사용 (초록톤) ── */
-const MVNO_COLOR = '#0B7A4B';
+/* ── 중고 매입 — 실데이터 (기준: 폰'S 단가표 2026-07-27, 전 구간 −10만원) ──
+   시세 갱신: 새 단가표가 오면 이 블록만 다시 생성한다 (스크립트 규칙은 파일 헤더 참조). */
+const USED_PRICE_DATE = '2026-07-27';
+const USED_NOTE = '미개봉·부분 파손(액정/카메라/뒷판)·폴더블 접힘부 볼록 등은 매장 확인 후 확정됩니다. 표에 없는 모델도 매입 가능하니 매장으로 문의해 주세요.';
 
-/* ── 알뜰폰 브랜드 — TODO(사장님): 실제 취급 브랜드로 확정 ── */
-const MVNO_BRANDS = [
-  { key: 'seven',   label: 'SK세븐모바일', network: 'SKT망' },
-  { key: 'ktm',     label: 'KT엠모바일',   network: 'KT망' },
-  { key: 'umobile', label: 'U+유모바일',   network: 'LGU+망' },
-  { key: 'liivm',   label: '리브모바일',   network: 'LGU+망' },
-  { key: 'hello',   label: '헬로모바일',   network: 'LGU+망' },
-];
-
-/* ── 요금제 — 유형 예시명(실제 상품명 아님). 정책표 수령 후 실명·실액으로 교체 ── */
-const PLANS = [
-  // 통신사 5G
-  { id: 'skt-5g-unlimited', type: 'carrier', operator: 'SKT', network: '5G', name: '5G 프리미엄 무제한 (예시)',
-    dataGB: -1, speedAfter: null, voice: '무제한', monthly: { min: 79000, max: 125000 }, familyCombo: true, tags: ['unlimited', 'premium'] },
-  { id: 'skt-5g-std', type: 'carrier', operator: 'SKT', network: '5G', name: '5G 스탠다드 (예시)',
-    dataGB: 110, speedAfter: '5Mbps', voice: '무제한', monthly: { min: 59000, max: 75000 }, familyCombo: true, tags: ['heavy'] },
-  { id: 'skt-5g-lite', type: 'carrier', operator: 'SKT', network: '5G', name: '5G 라이트 (예시)',
-    dataGB: 12, speedAfter: '1Mbps', voice: '무제한', monthly: { min: 39000, max: 55000 }, familyCombo: true, tags: ['light'] },
-  { id: 'kt-5g-unlimited', type: 'carrier', operator: 'KT', network: '5G', name: '5G 무제한 (예시)',
-    dataGB: -1, speedAfter: null, voice: '무제한', monthly: { min: 80000, max: 130000 }, familyCombo: true, tags: ['unlimited', 'premium'] },
-  { id: 'kt-5g-std', type: 'carrier', operator: 'KT', network: '5G', name: '5G 베이직 (예시)',
-    dataGB: 110, speedAfter: '5Mbps', voice: '무제한', monthly: { min: 61000, max: 80000 }, familyCombo: true, tags: ['heavy'] },
-  { id: 'kt-5g-lite', type: 'carrier', operator: 'KT', network: '5G', name: '5G 슬림 (예시)',
-    dataGB: 10, speedAfter: '1Mbps', voice: '무제한', monthly: { min: 37000, max: 55000 }, familyCombo: true, tags: ['light'] },
-  { id: 'lgu-5g-unlimited', type: 'carrier', operator: 'LGU', network: '5G', name: '5G 무제한 (예시)',
-    dataGB: -1, speedAfter: null, voice: '무제한', monthly: { min: 78000, max: 125000 }, familyCombo: true, tags: ['unlimited', 'premium'] },
-  { id: 'lgu-5g-std', type: 'carrier', operator: 'LGU', network: '5G', name: '5G 스탠다드 (예시)',
-    dataGB: 100, speedAfter: '5Mbps', voice: '무제한', monthly: { min: 58000, max: 75000 }, familyCombo: true, tags: ['heavy'] },
-  { id: 'lgu-5g-lite', type: 'carrier', operator: 'LGU', network: '5G', name: '5G 라이트 (예시)',
-    dataGB: 14, speedAfter: '1Mbps', voice: '무제한', monthly: { min: 39000, max: 55000 }, familyCombo: true, tags: ['light'] },
-  // 통신사 LTE
-  { id: 'skt-lte-std', type: 'carrier', operator: 'SKT', network: 'LTE', name: 'LTE 표준 (예시)',
-    dataGB: 4, speedAfter: '400Kbps', voice: '무제한', monthly: { min: 33000, max: 50000 }, familyCombo: true, tags: ['light', 'senior'] },
-  { id: 'kt-lte-std', type: 'carrier', operator: 'KT', network: 'LTE', name: 'LTE 베이직 (예시)',
-    dataGB: 4, speedAfter: '400Kbps', voice: '무제한', monthly: { min: 33000, max: 50000 }, familyCombo: true, tags: ['light', 'senior'] },
-  // 알뜰폰
-  { id: 'mvno-unlimited', type: 'mvno', operator: 'MVNO', network: '5G', name: '알뜰 5G 무제한형 (예시)',
-    dataGB: -1, speedAfter: null, voice: '무제한', monthly: { min: 35000, max: 55000 }, familyCombo: false, tags: ['unlimited', 'save'] },
-  { id: 'mvno-100g', type: 'mvno', operator: 'MVNO', network: '5G', name: '알뜰 5G 100GB+ (예시)',
-    dataGB: 100, speedAfter: '5Mbps', voice: '무제한', monthly: { min: 25000, max: 40000 }, familyCombo: false, tags: ['heavy', 'save'] },
-  { id: 'mvno-15g', type: 'mvno', operator: 'MVNO', network: 'LTE', name: '알뜰 15GB+매일 2GB (예시)',
-    dataGB: 15, speedAfter: '3Mbps', voice: '무제한', monthly: { min: 12000, max: 22000 }, familyCombo: false, tags: ['mid', 'save', 'best-value'] },
-  { id: 'mvno-7g', type: 'mvno', operator: 'MVNO', network: 'LTE', name: '알뜰 7GB (예시)',
-    dataGB: 7, speedAfter: '1Mbps', voice: '무제한', monthly: { min: 8000, max: 15000 }, familyCombo: false, tags: ['light', 'save'] },
-  { id: 'mvno-2g', type: 'mvno', operator: 'MVNO', network: 'LTE', name: '알뜰 최소형 2GB (예시)',
-    dataGB: 2, speedAfter: '400Kbps', voice: '무제한', monthly: { min: 3000, max: 9000 }, familyCombo: false, tags: ['minimal', 'save', 'senior'] },
-];
-
-/* ── 중고 매입 — 등급 기준 + 모델별 예상 매입 범위 (⚠️ 전부 예시) ── */
 const USED_GRADES = [
-  { key: 'S', label: 'S급 (미개봉·개봉급)', desc: '미개봉 또는 사용감 없는 풀박스' },
-  { key: 'A', label: 'A급 (상)', desc: '생활기스 거의 없음 · 모든 기능 정상' },
-  { key: 'B', label: 'B급 (중)', desc: '생활기스 있음 · 기능 정상' },
-  { key: 'C', label: 'C급 (하)', desc: '찍힘·파손·잔상 등 감가 요인 있음' },
+  { key: 'A', label: 'A급 (상)', desc: '기스 거의 없음 · 기능 정상 · 배터리 성능 기준 충족(기종별 91~95%↑)' },
+  { key: 'B', label: 'B급 (중)', desc: '생활기스 있음 · 기능 정상 · 배터리 86~90%' },
+  { key: 'C', label: 'C급 (하)', desc: '기스 많음·사용감 큼 — 잔상·찍힘 등은 추가 감가' },
 ];
 
 const USED_BUYBACK = [
   { model: '아이폰 17 프로 맥스', deviceId: 'ip17-pro-max',
-    range: { S: { min: 1350000, max: 1600000 }, A: { min: 1150000, max: 1400000 }, B: { min: 950000, max: 1150000 }, C: { min: 500000, max: 850000 } } },
+    range: { A: { min: 1560000, max: 1900000 }, B: { min: 1470000, max: 1840000 }, C: { min: 1350000, max: 1590000 } } },
+  { model: '아이폰 17 프로', deviceId: null,
+    range: { A: { min: 1340000, max: 1640000 }, B: { min: 1090000, max: 1580000 }, C: { min: 970000, max: 1290000 } } },
+  { model: '아이폰 17 에어', deviceId: null,
+    range: { A: { min: 810000, max: 1020000 }, B: { min: 730000, max: 970000 }, C: { min: 640000, max: 860000 } } },
+  { model: '아이폰 17', deviceId: null,
+    range: { A: { min: 810000, max: 920000 }, B: { min: 740000, max: 870000 }, C: { min: 660000, max: 840000 } } },
   { model: '아이폰 16 프로 맥스', deviceId: null,
-    range: { S: { min: 950000, max: 1150000 }, A: { min: 820000, max: 1000000 }, B: { min: 650000, max: 820000 }, C: { min: 350000, max: 600000 } } },
+    range: { A: { min: 1140000, max: 1450000 }, B: { min: 990000, max: 1360000 }, C: { min: 920000, max: 1080000 } } },
   { model: '아이폰 16 프로', deviceId: null,
-    range: { S: { min: 800000, max: 950000 }, A: { min: 680000, max: 830000 }, B: { min: 540000, max: 680000 }, C: { min: 300000, max: 500000 } } },
+    range: { A: { min: 870000, max: 1090000 }, B: { min: 750000, max: 1000000 }, C: { min: 705000, max: 840000 } } },
+  { model: '아이폰 16 플러스', deviceId: null,
+    range: { A: { min: 750000, max: 980000 }, B: { min: 630000, max: 910000 }, C: { min: 565000, max: 730000 } } },
+  { model: '아이폰 16', deviceId: null,
+    range: { A: { min: 680000, max: 910000 }, B: { min: 560000, max: 840000 }, C: { min: 520000, max: 660000 } } },
+  { model: '아이폰 16E', deviceId: null,
+    range: { A: { min: 390000, max: 640000 }, B: { min: 300000, max: 570000 }, C: { min: 265000, max: 370000 } } },
+  { model: '아이폰 15 프로 맥스', deviceId: null,
+    range: { A: { min: 890000, max: 990000 }, B: { min: 780000, max: 910000 }, C: { min: 735000, max: 860000 } } },
+  { model: '아이폰 15 프로', deviceId: null,
+    range: { A: { min: 700000, max: 860000 }, B: { min: 580000, max: 770000 }, C: { min: 545000, max: 630000 } } },
+  { model: '아이폰 15 플러스', deviceId: null,
+    range: { A: { min: 530000, max: 640000 }, B: { min: 450000, max: 550000 }, C: { min: 420000, max: 500000 } } },
   { model: '아이폰 15', deviceId: null,
-    range: { S: { min: 480000, max: 600000 }, A: { min: 400000, max: 520000 }, B: { min: 300000, max: 420000 }, C: { min: 150000, max: 280000 } } },
+    range: { A: { min: 520000, max: 630000 }, B: { min: 400000, max: 530000 }, C: { min: 370000, max: 450000 } } },
+  { model: '아이폰 14 프로 맥스', deviceId: null,
+    range: { A: { min: 650000, max: 770000 }, B: { min: 560000, max: 700000 }, C: { min: 515000, max: 620000 } } },
+  { model: '아이폰 14 프로', deviceId: null,
+    range: { A: { min: 480000, max: 620000 }, B: { min: 440000, max: 530000 }, C: { min: 415000, max: 490000 } } },
+  { model: '아이폰 14 플러스', deviceId: null,
+    range: { A: { min: 330000, max: 430000 }, B: { min: 290000, max: 390000 }, C: { min: 255000, max: 360000 } } },
   { model: '아이폰 14', deviceId: null,
-    range: { S: { min: 330000, max: 430000 }, A: { min: 270000, max: 360000 }, B: { min: 190000, max: 280000 }, C: { min: 90000, max: 180000 } } },
+    range: { A: { min: 310000, max: 390000 }, B: { min: 250000, max: 350000 }, C: { min: 220000, max: 290000 } } },
+  { model: '아이폰 13 프로 맥스', deviceId: null,
+    range: { A: { min: 470000, max: 550000 }, B: { min: 360000, max: 510000 }, C: { min: 320000, max: 410000 } } },
+  { model: '아이폰 13 프로', deviceId: null,
+    range: { A: { min: 330000, max: 410000 }, B: { min: 290000, max: 370000 }, C: { min: 260000, max: 330000 } } },
+  { model: '아이폰 13', deviceId: null,
+    range: { A: { min: 230000, max: 310000 }, B: { min: 190000, max: 270000 }, C: { min: 170000, max: 220000 } } },
+  { model: '아이폰 13 미니', deviceId: null,
+    range: { A: { min: 150000, max: 240000 }, B: { min: 120000, max: 190000 }, C: { min: 105000, max: 170000 } } },
+  { model: '아이폰 12 프로 맥스', deviceId: null,
+    range: { A: { min: 340000, max: 410000 }, B: { min: 300000, max: 370000 }, C: { min: 265000, max: 330000 } } },
+  { model: '아이폰 12 프로', deviceId: null,
+    range: { A: { min: 240000, max: 290000 }, B: { min: 180000, max: 250000 }, C: { min: 155000, max: 210000 } } },
+  { model: '아이폰 12', deviceId: null,
+    range: { A: { min: 80000, max: 140000 }, B: { min: 30000, max: 100000 }, C: { min: 15000, max: 45000 } } },
+  { model: '아이폰 11 프로 맥스', deviceId: null,
+    range: { A: { min: 180000, max: 240000 }, B: { min: 140000, max: 190000 }, C: { min: 105000, max: 170000 } } },
   { model: '갤럭시 S26 울트라', deviceId: 's26-ultra',
-    range: { S: { min: 1050000, max: 1250000 }, A: { min: 880000, max: 1080000 }, B: { min: 680000, max: 880000 }, C: { min: 350000, max: 640000 } } },
+    range: { A: { min: 1010000, max: 1030000 }, B: { min: 930000, max: 970000 }, C: null } },
+  { model: '갤럭시 S26+', deviceId: null,
+    range: { A: { min: 740000, max: 760000 }, B: { min: 690000, max: 710000 }, C: null } },
+  { model: '갤럭시 S26', deviceId: null,
+    range: { A: { min: 640000, max: 660000 }, B: { min: 590000, max: 610000 }, C: null } },
   { model: '갤럭시 S25 울트라', deviceId: null,
-    range: { S: { min: 700000, max: 850000 }, A: { min: 580000, max: 720000 }, B: { min: 440000, max: 580000 }, C: { min: 230000, max: 420000 } } },
+    range: { A: { min: 790000, max: 810000 }, B: { min: 730000, max: 760000 }, C: { min: 700000, max: 730000 } } },
+  { model: '갤럭시 S25+', deviceId: null,
+    range: { A: { min: 530000, max: 550000 }, B: { min: 460000, max: 490000 }, C: { min: 360000, max: 460000 } } },
+  { model: '갤럭시 S25', deviceId: null,
+    range: { A: { min: 505000, max: 520000 }, B: { min: 430000, max: 465000 }, C: { min: 360000, max: 430000 } } },
+  { model: '갤럭시 S25 엣지', deviceId: null,
+    range: { A: { min: 460000, max: 480000 }, B: { min: 400000, max: 430000 }, C: { min: 290000, max: 400000 } } },
+  { model: '갤럭시 S25 FE', deviceId: null,
+    range: { A: { min: 400000, max: 420000 }, B: { min: 340000, max: 370000 }, C: { min: 240000, max: 340000 } } },
+  { model: '갤럭시 S24 울트라', deviceId: null,
+    range: { A: { min: 610000, max: 630000 }, B: { min: 550000, max: 580000 }, C: { min: 500000, max: 550000 } } },
+  { model: '갤럭시 S24+', deviceId: null,
+    range: { A: { min: 365000, max: 380000 }, B: { min: 260000, max: 295000 }, C: { min: 220000, max: 260000 } } },
   { model: '갤럭시 S24', deviceId: null,
-    range: { S: { min: 320000, max: 420000 }, A: { min: 260000, max: 350000 }, B: { min: 190000, max: 270000 }, C: { min: 90000, max: 180000 } } },
-  { model: '갤럭시 Z 플립7', deviceId: 'zflip7',
-    range: { S: { min: 650000, max: 800000 }, A: { min: 540000, max: 680000 }, B: { min: 410000, max: 550000 }, C: { min: 200000, max: 380000 } } },
+    range: { A: { min: 335000, max: 350000 }, B: { min: 230000, max: 260000 }, C: { min: 220000, max: 230000 } } },
+  { model: '갤럭시 S24 FE', deviceId: null,
+    range: { A: { min: 275000, max: 290000 }, B: { min: 240000, max: 250000 }, C: { min: 225000, max: 240000 } } },
+  { model: '갤럭시 S23 울트라', deviceId: null,
+    range: { A: { min: 460000, max: 470000 }, B: { min: 400000, max: 430000 }, C: { min: 355000, max: 400000 } } },
+  { model: '갤럭시 S23+', deviceId: null,
+    range: { A: { min: 235000, max: 250000 }, B: { min: 180000, max: 205000 }, C: { min: 155000, max: 180000 } } },
+  { model: '갤럭시 S23', deviceId: null,
+    range: { A: { min: 200000, max: 220000 }, B: { min: 165000, max: 180000 }, C: { min: 160000, max: 165000 } } },
+  { model: '갤럭시 S23 FE', deviceId: null,
+    range: { A: { min: 170000, max: 180000 }, B: { min: 130000, max: 150000 }, C: { min: 95000, max: 130000 } } },
+  { model: '갤럭시 S22 울트라', deviceId: null,
+    range: { A: { min: 310000, max: 330000 }, B: { min: 260000, max: 280000 }, C: { min: 250000, max: 260000 } } },
+  { model: '갤럭시 S22+', deviceId: null,
+    range: { A: { min: 140000, max: 150000 }, B: { min: 105000, max: 125000 }, C: { min: 80000, max: 105000 } } },
+  { model: '갤럭시 S22', deviceId: null,
+    range: { A: { min: 140000, max: 150000 }, B: { min: 85000, max: 105000 }, C: { min: 80000, max: 85000 } } },
+  { model: '갤럭시 S21 울트라', deviceId: null,
+    range: { A: { min: 220000, max: 230000 }, B: { min: 200000, max: 205000 }, C: { min: 190000, max: 200000 } } },
+  { model: '갤럭시 S21+', deviceId: null,
+    range: { A: { min: 95000, max: 100000 }, B: { min: 60000, max: 80000 }, C: { min: 50000, max: 60000 } } },
+  { model: '갤럭시 S21', deviceId: null,
+    range: { A: { min: 80000, max: 90000 }, B: { min: 60000, max: 65000 }, C: { min: 45000, max: 60000 } } },
+  { model: '갤럭시 S20 울트라', deviceId: null,
+    range: { A: { min: 115000, max: 120000 }, B: { min: 80000, max: 95000 }, C: { min: 60000, max: 80000 } } },
+  { model: '갤럭시 S20+', deviceId: null,
+    range: { A: { min: 50000, max: 60000 }, B: { min: 30000, max: 40000 }, C: { min: 10000, max: 30000 } } },
   { model: '갤럭시 Z 폴드7', deviceId: 'zfold7',
-    range: { S: { min: 1050000, max: 1280000 }, A: { min: 880000, max: 1100000 }, B: { min: 660000, max: 880000 }, C: { min: 330000, max: 620000 } } },
+    range: { A: { min: 1080000, max: 1120000 }, B: { min: 980000, max: 1030000 }, C: { min: 960000, max: 980000 } } },
+  { model: '갤럭시 Z 폴드 SE', deviceId: null,
+    range: { A: { min: 770000, max: 810000 }, B: { min: 640000, max: 720000 }, C: { min: 570000, max: 640000 } } },
+  { model: '갤럭시 Z 폴드6', deviceId: null,
+    range: { A: { min: 730000, max: 760000 }, B: { min: 610000, max: 660000 }, C: { min: 590000, max: 610000 } } },
+  { model: '갤럭시 Z 폴드5', deviceId: null,
+    range: { A: { min: 440000, max: 480000 }, B: { min: 360000, max: 390000 }, C: { min: 330000, max: 360000 } } },
+  { model: '갤럭시 Z 폴드4', deviceId: null,
+    range: { A: { min: 340000, max: 380000 }, B: { min: 250000, max: 290000 }, C: { min: 210000, max: 250000 } } },
+  { model: '갤럭시 Z 폴드3', deviceId: null,
+    range: { A: { min: 260000, max: 280000 }, B: { min: 190000, max: 230000 }, C: { min: 160000, max: 190000 } } },
+  { model: '갤럭시 Z 플립7', deviceId: 'zflip7',
+    range: { A: { min: 480000, max: 530000 }, B: { min: 400000, max: 440000 }, C: { min: 360000, max: 400000 } } },
+  { model: '갤럭시 Z 플립6', deviceId: null,
+    range: { A: { min: 260000, max: 300000 }, B: { min: 180000, max: 210000 }, C: { min: 150000, max: 180000 } } },
+  { model: '갤럭시 Z 플립5', deviceId: null,
+    range: { A: { min: 210000, max: 230000 }, B: { min: 100000, max: 170000 }, C: { min: 70000, max: 100000 } } },
+  { model: '갤럭시 Z 플립4', deviceId: null,
+    range: { A: { min: 120000, max: 140000 }, B: { min: 60000, max: 100000 }, C: { min: 50000, max: 60000 } } },
+  { model: '갤럭시 Z 플립3', deviceId: null,
+    range: { A: { min: 80000, max: 90000 }, B: { min: 20000, max: 40000 }, C: { min: 10000, max: 20000 } } },
+  { model: '갤럭시 노트20 울트라', deviceId: null,
+    range: { A: { min: 180000, max: 190000 }, B: { min: 140000, max: 160000 }, C: { min: 135000, max: 140000 } } },
+  { model: '갤럭시 노트20', deviceId: null,
+    range: { A: { min: 50000, max: 50000 }, B: { min: 20000, max: 35000 }, C: { min: 10000, max: 20000 } } },
+  { model: '갤럭시 노트10+', deviceId: null,
+    range: { A: { min: 90000, max: 90000 }, B: { min: 75000, max: 75000 }, C: { min: 70000, max: 75000 } } },
+  { model: '갤럭시 A56', deviceId: null,
+    range: { A: { min: 105000, max: 110000 }, B: { min: 80000, max: 100000 }, C: { min: 30000, max: 80000 } } },
+  { model: '갤럭시 A55', deviceId: null,
+    range: { A: { min: 110000, max: 110000 }, B: { min: 70000, max: 95000 }, C: { min: 40000, max: 70000 } } },
+  { model: '갤럭시 A54', deviceId: null,
+    range: { A: { min: 70000, max: 80000 }, B: { min: 45000, max: 65000 }, C: { min: 10000, max: 45000 } } },
+  { model: '갤럭시 A36', deviceId: null,
+    range: { A: { min: 80000, max: 85000 }, B: { min: 55000, max: 75000 }, C: { min: 35000, max: 55000 } } },
+  { model: '갤럭시 A35', deviceId: null,
+    range: { A: { min: 95000, max: 100000 }, B: { min: 60000, max: 90000 }, C: { min: 10000, max: 60000 } } },
 ];
 
 /* ── 헬퍼 ── */
 const won = (n) => n.toLocaleString('ko-KR') + '원';
-const wonRange = (r) => (r ? won(r.min) + ' ~ ' + won(r.max) : '매장 문의');
-const dataLabel = (gb) => (gb === -1 ? '무제한' : gb + 'GB');
+const wonRange = (r) => (r ? (r.min === r.max ? won(r.min) : won(r.min) + ' ~ ' + won(r.max)) : '매장 문의');
 const deviceById = (id) => DEVICES.find((d) => d.id === id) || null;
-const operatorLabel = (p) => (p.type === 'mvno' ? '알뜰폰' : (CARRIERS.find((c) => c.key === p.operator) || {}).label || p.operator);
 const catEsc = (s) => String(s == null ? '' : s).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;');
 
 /* 가격 고지 문구 — 가격이 노출되는 모든 화면 근처에 배치 */
@@ -181,8 +248,7 @@ const SEARCH_SYNONYMS = [
   ['울트라', 'ultra'], ['프로', 'pro'], ['맥스', 'max'], ['플러스', 'plus', '+'], ['에어', 'air'],
   ['플립', 'flip'], ['폴드', 'fold'], ['폴더', 'folder', '효도', '효도폰', 'senior'],
   ['자급제', '자급', 'unlocked'], ['중고', 'used', '중고폰'],
-  ['알뜰', '알뜰폰', 'mvno', '유심', 'usim', 'esim', '이심'],
-  ['무제한', 'unlimited'], ['5g', '5지'], ['lte', '엘티이'],
+  ['5g', '5지'], ['lte', '엘티이'],
 ];
 
 function smartMatch(q, text) {
@@ -196,6 +262,6 @@ function smartMatch(q, text) {
 }
 
 Object.assign(window, {
-  CATALOG_STATUS, STORE, DEVICES, CARRIERS, MVNO_BRANDS, MVNO_COLOR, PLANS, USED_GRADES, USED_BUYBACK,
-  won, wonRange, dataLabel, deviceById, operatorLabel, catEsc, PRICE_NOTE, SAMPLE_NOTE, smartMatch,
+  CATALOG_STATUS, STORE, DEVICES, CARRIERS, USED_GRADES, USED_BUYBACK, USED_PRICE_DATE, USED_NOTE,
+  won, wonRange, deviceById, catEsc, PRICE_NOTE, SAMPLE_NOTE, smartMatch,
 });

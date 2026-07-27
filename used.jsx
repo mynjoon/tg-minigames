@@ -1,5 +1,5 @@
 /* global React, ReactDOM, Icon, Reveal, Header, CTASection, Footer, MobileActionBar */
-/* global CATALOG_STATUS, DEVICES, USED_GRADES, USED_BUYBACK, wonRange, PRICE_NOTE, SAMPLE_NOTE */
+/* global DEVICES, USED_GRADES, USED_BUYBACK, USED_PRICE_DATE, USED_NOTE, wonRange, PRICE_NOTE */
 // ==========================================================
 // USED — 중고폰 판매·매입 (used.html)
 // 매입 예상가 계산기 + 등급 기준 + 모델별 범위표 + 중고 구매 안내.
@@ -119,12 +119,10 @@ function UsedPage() {
               </p>
             </Reveal>
 
-            {CATALOG_STATUS === "SAMPLE" && SAMPLE_NOTE &&
-              <div className="us-sample" role="note">
-                <Icon name="clock" size={15} />
-                <span>{SAMPLE_NOTE}</span>
-              </div>
-            }
+            <div className="us-sample" role="note">
+              <Icon name="clock" size={15} />
+              <span>매입 예상가 기준일 {USED_PRICE_DATE} · 시세에 따라 매일 변동될 수 있습니다. {USED_NOTE}</span>
+            </div>
           </div>
         </section>
 

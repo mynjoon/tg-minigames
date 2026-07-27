@@ -1,6 +1,6 @@
 /* global React, ReactDOM,
    Header, Hero, TrustSection, ProductsSection, LineupShowcase,
-   PlansSection, BundleSection, MvnoSection, RewardSection, BookingSection,
+   PlansSection, BundleSection, RewardSection, BookingSection,
    IntroSection, LocationSection, CTASection, Footer, MobileActionBar */
 
 const { useEffect: useEffectA, useState: useStateA } = React;
@@ -73,7 +73,6 @@ function App() {
         <ProductsSection/>
         <PlansSection/>
         <BundleSection/>
-        <MvnoSection/>
         <RewardSection/>
         <BookingSection/>
         <IntroSection/>

@@ -218,12 +218,12 @@ function DevicesPage() {
             <Reveal>
               <div className="dv-finder">
                 <div className="dv-finder__tx">
-                  <div className="dv-finder__tag">PLAN FINDER</div>
-                  <h3>어떤 기기든, 요금제부터 맞춰보세요</h3>
-                  <p>사용 패턴 몇 가지만 고르면 나에게 맞는 요금 구간부터 안내해 드립니다.</p>
+                  <div className="dv-finder__tag">VISIT</div>
+                  <h3>어떤 기기가 맞을지 고민된다면</h3>
+                  <p>쓰시는 패턴에 맞춰 기기와 월 납부 구간을 매장에서 1:1로 맞춰드립니다.</p>
                 </div>
-                <a href="finder.html" className="btn btn-primary btn-lg">
-                  요금제 찾기 <Icon name="arrow" size={16} />
+                <a href="./#booking" className="btn btn-primary btn-lg">
+                  방문 상담 예약 <Icon name="arrow" size={16} />
                 </a>
               </div>
             </Reveal>
