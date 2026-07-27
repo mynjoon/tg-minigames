@@ -76,22 +76,17 @@ function LoginView({ onKakao, busy }) {
         <div className="partner-ico-lg"><Icon name="users" size={28} /></div>
         <h1>파트너 리워드</h1>
         <p>카카오로 로그인하고 내 추천 현황과 누적 리워드를<br />한눈에 확인하세요.</p>
-        {isInApp() ?
-          <>
-            <div style={{ background: "#FFF8E1", border: "1px solid #F5E3A3", borderRadius: 12, padding: "12px 14px", fontSize: 13.5, lineHeight: 1.6, color: "#7a5d00", margin: "4px 0 12px" }}>
-              인스타그램·카카오톡 등 <b>앱 안의 브라우저에서는 카카오 로그인이 막힐 수 있어요.</b><br />
-              사파리·크롬 같은 외부 브라우저로 열어 주세요.
-            </div>
-            <button className="btn btn-kakao btn-lg partner-kakao" onClick={openExternalBrowser}>
+        <button className="btn btn-kakao btn-lg partner-kakao" onClick={onKakao} disabled={busy}>
+          <Icon name="chat" size={18} /> {busy ? "이동 중…" : "카카오로 로그인"}
+        </button>
+        {isInApp() &&
+          <small style={{ display: "block", marginTop: 10, color: "#8b95a1", fontSize: 12.5, lineHeight: 1.6 }}>
+            로그인이 안 되면{" "}
+            <a href="#" onClick={(e) => { e.preventDefault(); openExternalBrowser(); }} style={{ textDecoration: "underline", color: "#6b7684" }}>
               외부 브라우저로 열기
-            </button>
-            <small style={{ display: "block", marginTop: 10, color: "#8b95a1", fontSize: 12.5 }}>
-              안 열리면: 오른쪽 위 ⋯ 메뉴 → '외부 브라우저로 열기'
-            </small>
-          </> :
-          <button className="btn btn-kakao btn-lg partner-kakao" onClick={onKakao} disabled={busy}>
-            <Icon name="chat" size={18} /> {busy ? "이동 중…" : "카카오로 로그인"}
-          </button>}
+            </a>
+            {" "}또는 오른쪽 위 ⋯ 메뉴를 이용해 주세요.
+          </small>}
         <a href="index.html" className="partner-back">← 매장 홈으로</a>
       </div>
     </div>
@@ -316,7 +311,7 @@ function PartnerApp() {
     setBusy(true);
     const { error } = await sb.auth.signInWithOAuth({
       provider: "kakao",
-      options: { redirectTo: location.href },
+      options: { redirectTo: location.origin + location.pathname },
     });
     if (error) { alert("로그인 오류: " + error.message); setBusy(false); }
   };
