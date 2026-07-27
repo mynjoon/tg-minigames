@@ -11,6 +11,7 @@
 
 ```bash
 # 레포 루트에서 (md/docs/.git 제외한 복사본 권장):
+node tools/stamp-assets.mjs   # ① css/js/jsx에 내용 해시 ?v= 부착 (캐시버스트 — 생략 금지)
 export CLOUDFLARE_API_TOKEN=… CLOUDFLARE_ACCOUNT_ID=…   # 사장님에게 수령, 커밋 금지
 npx wrangler@3 pages deploy . --project-name=01mobile --branch=main --commit-dirty=true
 ```

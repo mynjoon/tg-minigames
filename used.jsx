@@ -94,6 +94,42 @@ function BuybackCalc() {
 }
 
 
+
+// ---------- FAQ — used.html 헤드의 FAQPage JSON-LD와 문안을 동일하게 유지할 것 ----------
+const USED_FAQ = [
+  ["중고폰 매입가는 어떻게 정해지나요?",
+   "모델·등급(A/B/C) 기준 예상 범위를 사이트에 공개하고, 최종 매입가는 매장에서 기기 상태(배터리 성능·기스·파손 여부)를 확인한 뒤 확정합니다. 시세는 매일 달라질 수 있습니다."],
+  ["등급은 어떻게 나뉘나요?",
+   "A급은 기스가 거의 없고 배터리 성능 기준을 충족한 기기, B급은 생활기스가 있고 배터리 86~90%인 기기, C급은 기스가 많거나 사용감이 큰 기기입니다. 파손·잔상은 별도 감가됩니다."],
+  ["팔러 갈 때 뭘 준비하면 되나요?",
+   "본인 확인을 위한 신분증을 지참해 주세요(온라인으로는 받지 않습니다). 기기 초기화·계정 해제는 매장에서 함께 진행할 수 있습니다."],
+  ["중고폰 구매도 가능한가요?",
+   "재고는 입고 상황에 따라 달라집니다. 페이지의 상담 폼에 원하는 모델·용량·색상을 남겨 주시면 재고와 상태를 확인해 연락드립니다."],
+];
+
+function UsedFaqSection() {
+  return (
+    <section className="section" id="faq">
+      <div className="container">
+        <Reveal>
+          <span className="eyebrow"><span className="dot" />FAQ</span>
+          <h2 className="section-title"><span className="h-thin">자주 묻는</span> <span className="h-bold">질문</span></h2>
+        </Reveal>
+        <Reveal delay={60}>
+          <div className="us-faq">
+            {USED_FAQ.map(([q, a]) =>
+              <details className="us-faq__item" key={q}>
+                <summary>{q}</summary>
+                <p>{a}</p>
+              </details>
+            )}
+          </div>
+        </Reveal>
+      </div>
+    </section>
+  );
+}
+
 // ---------- 중고 상담 신청 — 페이지 안에서 바로 접수 (홈 이동 없음) ----------
 function goConsult(type, model) {
   window.dispatchEvent(new CustomEvent("used-consult-prefill", { detail: { type, model } }));
@@ -377,6 +413,7 @@ function UsedPage() {
           </div>
         </section>
 
+        <UsedFaqSection />
         <UsedConsultSection />
       </main>
 
@@ -614,6 +651,12 @@ function UsedPage() {
         @media (max-width: 480px) {
           .us-grade-grid { grid-template-columns: 1fr; }
         }
+        .us-faq { max-width: 720px; display: grid; gap: 10px; }
+        .us-faq__item { background: var(--panel, #fff); border: 1px solid var(--line, #e5e8eb); border-radius: 14px; padding: 0 18px; }
+        .us-faq__item summary { cursor: pointer; font-weight: 700; font-size: 15.5px; padding: 16px 0; list-style: none; }
+        .us-faq__item summary::-webkit-details-marker { display: none; }
+        .us-faq__item summary::before { content: "Q. "; color: var(--accent, #2b5bf0); font-weight: 800; }
+        .us-faq__item p { margin: 0; padding: 0 0 16px; color: var(--ink-600, #4b5563); font-size: 14.5px; line-height: 1.65; }
         .us-consult {
           max-width: 640px; display: grid; gap: 12px;
           background: var(--panel, #fff); border: 1px solid var(--line, #e5e8eb);
