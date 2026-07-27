@@ -4957,3 +4957,11 @@ p b, p strong, .hero-sub b, .section-sub b {
   transition: all .15s ease;
 }
 .footer-admin-link:hover { color: var(--blue, #006CFF); border-color: var(--blue, #006CFF); }
+
+/* 제품 렌더 가독성 — 밝은 색 기기(크림·화이트)가 밝은 배경에서 묻히지 않도록 */
+.spec-table__phone img,
+.spec-mobile__phone img,
+.showcase-phone,
+.showcase-rail__thumb img {
+  filter: drop-shadow(0 10px 24px rgba(17, 24, 39, 0.16)) drop-shadow(0 2px 6px rgba(17, 24, 39, 0.10));
+}

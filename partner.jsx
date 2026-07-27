@@ -48,6 +48,26 @@ function SetupNotice() {
   );
 }
 
+// ---------- 인앱 브라우저 감지 — 인스타·페북·카톡 등 앱 내 브라우저는 OAuth가 차단되는 경우가 많다 ----------
+const IN_APP_RE = /instagram|fbav|fban|fb_iab|kakaotalk|naver\(inapp|line\//i;
+const isInApp = () => IN_APP_RE.test(navigator.userAgent);
+
+function openExternalBrowser() {
+  const url = location.href.split("#")[0];
+  const ua = navigator.userAgent;
+  if (/kakaotalk/i.test(ua)) { location.href = "kakaotalk://web/openExternal?url=" + encodeURIComponent(url); return; }
+  if (/android/i.test(ua)) {
+    location.href = "intent://" + url.replace(/^https?:\/\//, "") + "#Intent;scheme=https;action=android.intent.action.VIEW;end";
+    return;
+  }
+  const fallback = () => alert("오른쪽 위 ⋯ 메뉴에서 '외부 브라우저로 열기'를 눌러주세요.");
+  if (navigator.clipboard && navigator.clipboard.writeText) {
+    navigator.clipboard.writeText(url)
+      .then(() => alert("링크를 복사했어요!\n사파리(또는 크롬)를 열고 주소창에 붙여넣어 주세요."))
+      .catch(fallback);
+  } else fallback();
+}
+
 // ---------- Login ----------
 function LoginView({ onKakao, busy }) {
   return (
@@ -56,9 +76,22 @@ function LoginView({ onKakao, busy }) {
         <div className="partner-ico-lg"><Icon name="users" size={28} /></div>
         <h1>파트너 리워드</h1>
         <p>카카오로 로그인하고 내 추천 현황과 누적 리워드를<br />한눈에 확인하세요.</p>
-        <button className="btn btn-kakao btn-lg partner-kakao" onClick={onKakao} disabled={busy}>
-          <Icon name="chat" size={18} /> {busy ? "이동 중…" : "카카오로 로그인"}
-        </button>
+        {isInApp() ?
+          <>
+            <div style={{ background: "#FFF8E1", border: "1px solid #F5E3A3", borderRadius: 12, padding: "12px 14px", fontSize: 13.5, lineHeight: 1.6, color: "#7a5d00", margin: "4px 0 12px" }}>
+              인스타그램·카카오톡 등 <b>앱 안의 브라우저에서는 카카오 로그인이 막힐 수 있어요.</b><br />
+              사파리·크롬 같은 외부 브라우저로 열어 주세요.
+            </div>
+            <button className="btn btn-kakao btn-lg partner-kakao" onClick={openExternalBrowser}>
+              외부 브라우저로 열기
+            </button>
+            <small style={{ display: "block", marginTop: 10, color: "#8b95a1", fontSize: 12.5 }}>
+              안 열리면: 오른쪽 위 ⋯ 메뉴 → '외부 브라우저로 열기'
+            </small>
+          </> :
+          <button className="btn btn-kakao btn-lg partner-kakao" onClick={onKakao} disabled={busy}>
+            <Icon name="chat" size={18} /> {busy ? "이동 중…" : "카카오로 로그인"}
+          </button>}
         <a href="index.html" className="partner-back">← 매장 홈으로</a>
       </div>
     </div>
