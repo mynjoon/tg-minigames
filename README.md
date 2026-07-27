@@ -1,62 +1,46 @@
-# 🎰 미니 카지노 — 텔레그램 미니앱
+# 공일모바일 — 01mobile.co.kr
 
-텔레그램 안에서 바로 즐기는 **가상 포인트** 카지노 미니게임 모음.
-서버 없이 정적 페이지(GitHub Pages)로 동작하며, 포인트는 텔레그램 CloudStorage(폴백: localStorage)에 저장됩니다.
+마장역 2번 출구 도보 1분, 서울 성동구 휴대폰 매장 **공일모바일** 공식 사이트.
+작업 규칙은 [`CLAUDE.md`](CLAUDE.md), Netlify → Cloudflare 이전은 [`DEPLOY.md`](DEPLOY.md), 프로젝트 이력은 [`docs/KICKOFF.md`](docs/KICKOFF.md).
 
-> ⚠️ 본 게임은 재미를 위한 가상 포인트 게임입니다.
-> 포인트는 **현금 가치가 없으며 충전·환전이 불가능**합니다.
-
-## 게임
-
-| 게임 | 설명 |
-|------|------|
-| 🎰 슬롯머신 | 3릴 슬롯. 같은 그림 3개 잭팟(최대 ×77), 2개는 ×1.5 |
-| 🃏 블랙잭 | 히트/스탠드/더블. 블랙잭 3:2, 딜러 17 스탠드 |
-| 🎡 룰렛 | 유러피언(0–36). 빨강/검정·홀짝·구간·더즌·번호(×36) 복수 베팅 |
-| 🔺 하이로우 | 다음 카드가 높을지 낮을지. 연속 성공 시 배율 누적, 원할 때 획득 |
-| 🎴 바카라 | 플레이어/뱅커/타이(×9). 정식 드로잉 룰 |
-| 🍀 럭키휠 | 16칸 배수 휠. 최대 ×10 |
-| 🎲 다이스 | 주사위 3개. 대소·홀짝(×1.95)·트리플(×33) |
-| 💣 마인즈 | 5×5에서 지뢰(3/5/7개)를 피해 연속 획득, 원할 때 캐시아웃 |
-| ♠️ 비디오 포커 | Jacks or Better. 홀드/교체, 로열플러시 ×250 |
-| 🪙 코인플립 | 앞뒤 맞추기 ×1.95 |
-
-## 포인트 시스템
-
-- 시작 포인트 **10,000P**
-- 매일(KST 기준) **출석 보너스 +5,000P**
-- 포인트가 100P 미만이면 30분마다 **구제 칩 +1,000P**
-- 텔레그램에서 열면 계정별로 클라우드에 저장되어 기기를 바꿔도 유지
+> ⚠️ 서브페이지 카탈로그(기기·요금제·중고 매입)의 숫자는 `catalog-data.js`의
+> `CATALOG_STATUS='SAMPLE'` 동안 **전부 예시**입니다. 정책표 반영 후 `LIVE`로 전환하세요.
 
 ## 구조
 
 ```
-index.html        # 로비 + 10개 게임 화면 (SPA)
-css/style.css     # 다크 카지노 테마
-js/app.js         # 텔레그램 연동 · 지갑 · 화면 전환 · 공용 UI
-js/slots.js       # 슬롯머신        js/baccarat.js  # 바카라
-js/blackjack.js   # 블랙잭          js/wheel.js     # 럭키휠
-js/roulette.js    # 룰렛            js/dice.js      # 다이스
-js/hilo.js        # 하이로우        js/mines.js     # 마인즈
-                                    js/poker.js     # 비디오 포커
-                                    js/coinflip.js  # 코인플립
+├── index.html            홈 (원페이지 — app.jsx가 섹션 조립)
+│   ├── components.jsx    Icon · Reveal · Header(base prop)
+│   ├── sections-top.jsx  Hero · Trust · Products
+│   ├── showcase.jsx      기기 라인업 쇼케이스
+│   ├── sections-mid.jsx  Plans(AI 요금 분석) · Bundle · Reward
+│   ├── sections-mvno.jsx 알뜰폰·유심/eSIM 섹션 (보완 추가)
+│   └── sections-bottom.jsx Booking · Intro · Location · CTA · Footer
+├── devices.html/.jsx     기기 전체보기 (보완 추가)
+├── plans.html/.jsx       요금제 전체보기 (보완 추가)
+├── finder.html/.jsx      1분 요금제 찾기 — 5문답 (보완 추가)
+├── used.html/.jsx        중고폰 매입 계산기·등급표 (보완 추가)
+├── partner.html/.jsx     지인추천 파트너 리워드 (noindex)
+├── admin.html/.jsx       관리자 (noindex)
+├── privacy.html          개인정보처리방침
+├── catalog-data.js       ★ 카탈로그 단일 소스 (사장님이 숫자만 갱신)
+├── booking-config.js     예약 웹훅(Apps Script) · 카카오 채널 URL
+├── supabase-config.js    Supabase 공개 설정 (anon key — RLS 보호)
+└── styles.css            디자인 시스템 (화이트+블루 #006CFF)
 ```
 
-외부 의존성 없음(텔레그램 WebApp SDK 스크립트 1개만 로드). 빌드 불필요.
+스택: 정적 HTML + React 18 UMD + Babel standalone (빌드 과정 없음 — 파일 수정 = 배포 준비 완료).
 
-## 배포
-
-`main`에 푸시하면 GitHub Actions가 자동으로 GitHub Pages에 배포합니다.
-URL: `https://<계정>.github.io/<저장소>/`
-
-## 텔레그램 봇에 연결
-
-봇 채팅의 메뉴 버튼으로 게임을 열도록 설정:
+## 로컬 확인
 
 ```bash
-curl -s "https://api.telegram.org/bot<봇토큰>/setChatMenuButton" \
-  -d menu_button='{"type":"web_app","text":"🎰 게임","web_app":{"url":"https://<계정>.github.io/<저장소>/"}}'
+python3 -m http.server 8000   # 또는 npx serve
+# http://localhost:8000
 ```
 
-그룹/채널에서 열 수 있는 `t.me/<봇아이디>/<앱이름>` 링크가 필요하면
-[@BotFather](https://t.me/BotFather) → `/newapp` 으로 미니앱을 등록하면 됩니다.
+## 남은 일
+- [ ] 사장님: GitHub 레포 생성 → 이 소스 푸시 (완료 시 삭제)
+- [ ] Cloudflare Pages 연결 + 도메인 전환 (DEPLOY.md 체크리스트)
+- [ ] 정책표(단가) 수령 → catalog-data.js 숫자 교체 → `CATALOG_STATUS='LIVE'`
+- [ ] 취급 알뜰폰 브랜드 확정 (`MVNO_BRANDS`)
+- [ ] 중고 매입 기준표 수령 (`USED_BUYBACK`)
