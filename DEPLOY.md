@@ -1,5 +1,26 @@
 # 배포 — Netlify → Cloudflare Pages 이전 런북
 
+## ✅ 이전 완료 기록 (2026-07-27)
+
+**01mobile.co.kr은 Cloudflare Pages에서 라이브 중.** 실제 수행 내역 (아래 런북과 다르게 진행된 부분 포함):
+- 소스 레포: `mynjoon/tg-minigames` (구 미니게임 레포 전환 — `01mobile`로 개명 권장)
+- 가비아 네임서버 → Cloudflare 이전, 존 활성 (SETKORA와 같은 Cloudflare 계정)
+- Pages 프로젝트 `01mobile` 생성 — **Git 연동이 아닌 wrangler 직접 업로드 방식** (SETKORA와 동일 운영)
+- 커스텀 도메인 `01mobile.co.kr`·`www` 연결(active) + DNS CNAME → `01mobile.pages.dev` 교체 완료
+- ⚠️ 따라서 **main에 push해도 자동 배포되지 않는다** — 배포는 아래 명령으로:
+
+```bash
+# 레포 루트에서 (md/docs/.git 제외한 복사본 권장):
+export CLOUDFLARE_API_TOKEN=… CLOUDFLARE_ACCOUNT_ID=…   # 사장님에게 수령, 커밋 금지
+npx wrangler@3 pages deploy . --project-name=01mobile --branch=main --commit-dirty=true
+```
+
+남은 정리: Netlify 사이트 도메인 해제·정지(§4), 레포명 변경(선택), Search Console sitemap 재제출.
+
+---
+
+이하는 이전 당시 계획 런북 (기록용).
+
 현재 라이브: **Netlify** (01mobile.co.kr). 목표: **Cloudflare Pages** + GitHub 자동 배포.
 빌드 과정 없는 순수 정적 사이트이므로 이전은 단순하다. 순서 중요 — **DNS 전환은 마지막**.
 
