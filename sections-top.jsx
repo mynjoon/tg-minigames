@@ -399,18 +399,18 @@ const PRODUCT_SPECS = {
   "Galaxy Z Fold / Flip": {
     note: "삼성 공식 사양 기준 · 출고가는 256GB 기준 참고용이며, 매장 단독 조건은 방문 시 안내드립니다.",
     rows: [
-    ["디스플레이", "메인 8.0\" QXGA+\n커버 6.5\" FHD+", "메인 6.9\" FHD+\n커버 4.1\" Super AMOLED"],
-    ["프로세서", "Snapdragon 8 Elite\nfor Galaxy", "Snapdragon 8 Elite\nfor Galaxy"],
-    ["메모리 · 저장", "12·16GB / 256GB ~ 1TB", "12GB / 256·512GB"],
-    ["후면 카메라", "200MP 트리플\n+ 3× 망원", "50MP 듀얼\n광각 + 초광각"],
-    ["배터리", "4,400mAh", "4,300mAh"],
-    ["특징", "태블릿급 멀티태스킹 ·\n갤럭시 AI 최적화", "콤팩트 폴드 ·\nFlex Window 활용"],
-    ["출고가", "2,379,300원~", "1,485,000원~"],
+    ["디스플레이", "메인 7.6\" 4:3 비율\n커버 5.5\"", "메인 6.9\" FHD+ LTPO\n커버 Flex Window"],
+    ["프로세서", "Snapdragon 8 Elite\nGen 5 for Galaxy", "Snapdragon 8 Elite Gen 5\n/ Exynos 2600 (지역별)"],
+    ["메모리 · 저장", "12GB / 256·512GB", "12GB / 256·512GB"],
+    ["후면 카메라", "50MP 듀얼\n광각 + 초광각", "50MP 듀얼\n광각 + 초광각"],
+    ["배터리", "4,800mAh · 45W 충전", "4,174mAh(정격)"],
+    ["특징", "꽉 찬 4:3 대화면 ·\n역대 최경량 201g", "주름 개선 힌지 ·\nFlex Window 활용"],
+    ["출고가", "2,278,100원~", "1,683,000원~"],
     ["매장 구매가", "방문 시 공개", "방문 시 공개"]],
 
     variants: [
-    { name: "Galaxy Z Fold7", img: "assets/galaxy-zfold7.png" },
-    { name: "Galaxy Z Flip7", img: "assets/galaxy-zflip7.png" }]
+    { name: "Galaxy Z Fold8", img: "assets/galaxy-zfold7.png" },
+    { name: "Galaxy Z Flip8", img: "assets/galaxy-zflip7.png" }]
 
   },
   "효도폰 / 실속폰": {

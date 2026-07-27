@@ -20,8 +20,8 @@ const MODEL_COLORS = {
   "Galaxy S26": ["코발트 바이올렛", "스카이 블루", "블랙", "화이트"],
   "Galaxy S26+": ["코발트 바이올렛", "스카이 블루", "블랙", "화이트"],
   "Galaxy S26 Ultra": ["코발트 바이올렛", "스카이 블루", "블랙", "화이트"],
-  "Galaxy Z Fold7": ["블루 섀도", "실버 섀도", "제트블랙"],
-  "Galaxy Z Flip7": ["블루 섀도", "코랄 레드", "제트블랙"],
+  "Galaxy Z Fold8": ["그라파이트", "크림", "라벤더", "피스타치오"],
+  "Galaxy Z Flip8": ["그라파이트", "크림", "핑크", "민트"],
   "삼성 스타일 폴더2": ["블랙"],
   "Galaxy A17": ["라이트 블루", "블랙", "라이트 그린"],
   "기타 / 추천 부탁": [],
@@ -257,8 +257,8 @@ function BookingSection() {
                       <option>Galaxy S26 Ultra</option>
                     </optgroup>
                     <optgroup label="Galaxy Z">
-                      <option>Galaxy Z Fold7</option>
-                      <option>Galaxy Z Flip7</option>
+                      <option>Galaxy Z Fold8</option>
+                      <option>Galaxy Z Flip8</option>
                     </optgroup>
                     <optgroup label="효도폰·실속폰">
                       <option>삼성 스타일 폴더2</option>

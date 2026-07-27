@@ -7,7 +7,7 @@
 // 매입가·판매가 단정 금지 — 항상 "범위 + 매장에서 확정" 구조.
 // ==========================================================
 
-const { useState: useStateU, useMemo: useMemoU } = React;
+const { useState: useStateU, useMemo: useMemoU, useEffect: useEffectU } = React;
 
 // 가격 고지 — 가격이 노출되는 섹션마다 배치 (중고 시세 보강 문구 포함)
 function UsPriceNote() {
@@ -82,13 +82,122 @@ function BuybackCalc() {
         </div>
 
         <div className="us-result__actions">
-          <a href="./#booking" className="btn btn-primary btn-lg">
-            <Icon name="calendar" size={17} /> 매입 상담 예약하기
-          </a>
+          <button type="button" className="btn btn-primary btn-lg"
+            onClick={() => goConsult("sell", entry.model + " · " + gradeInfo.label + " · 예상 " + wonRange(range))}>
+            <Icon name="calendar" size={17} /> 매입 상담 신청하기
+          </button>
           <a href="#grades" className="us-result__sub">등급 기준 먼저 보기 <Icon name="arrow" size={14} /></a>
         </div>
       </div>
     </div>
+  );
+}
+
+
+// ---------- 중고 상담 신청 — 페이지 안에서 바로 접수 (홈 이동 없음) ----------
+function goConsult(type, model) {
+  window.dispatchEvent(new CustomEvent("used-consult-prefill", { detail: { type, model } }));
+  const el = document.getElementById("consult");
+  if (el) el.scrollIntoView({ behavior: "smooth", block: "start" });
+}
+
+function UsedConsultSection() {
+  const [type, setType] = useStateU("sell");
+  const [form, setForm] = useStateU({ name: "", phone: "", model: "", note: "", consent: false });
+  const [sending, setSending] = useStateU(false);
+  const [submitted, setSubmitted] = useStateU(false);
+  const [error, setError] = useStateU("");
+
+  useEffectU(() => {
+    const onPrefill = (e) => {
+      const d = e.detail || {};
+      if (d.type) setType(d.type);
+      if (d.model) setForm((f) => ({ ...f, model: d.model }));
+    };
+    window.addEventListener("used-consult-prefill", onPrefill);
+    return () => window.removeEventListener("used-consult-prefill", onPrefill);
+  }, []);
+
+  const onSubmit = async (e) => {
+    e.preventDefault();
+    if (sending || submitted) return; // 연타 중복 제출 방지
+    if (!form.name.trim() || !form.phone.trim()) { setError("이름과 연락처를 입력해주세요."); return; }
+    if (!form.consent) { setError("개인정보 수집·이용에 동의해주세요."); return; }
+    setError("");
+
+    // 초대링크 추천코드 (홈 예약 폼과 동일 규칙 — 30일 만료)
+    let refCode = "";
+    try {
+      refCode = localStorage.getItem("referralCode") || "";
+      const refAt = localStorage.getItem("referralAt") || "";
+      if (refCode && refAt && Date.now() - new Date(refAt).getTime() > 30 * 24 * 60 * 60 * 1000) refCode = "";
+    } catch (e2) {}
+
+    const label = type === "sell" ? "중고폰 판매(매입)" : "중고폰 구매";
+    const payload = {
+      name: form.name, phone: form.phone, birth: "", carrier: "",
+      topics: [label], model: form.model, capacity: "", color: "",
+      date: "", time: "", note: form.note, consent: true,
+      referralCode: refCode, source: "used-page", submittedAt: new Date().toISOString()
+    };
+    const url = (typeof window !== "undefined" && window.BOOKING_WEBHOOK_URL) || "";
+    setSending(true);
+    if (url && url.indexOf("YOUR-") === -1) {
+      try {
+        // Apps Script CORS 규칙: Content-Type 헤더 없는 단순 POST (홈 예약 폼과 동일)
+        const res = await fetch(url, { method: "POST", mode: "cors", body: JSON.stringify(payload) });
+        if (!res.ok) throw new Error("HTTP " + res.status);
+      } catch (err) {
+        setSending(false);
+        setError("일시적인 오류로 접수하지 못했어요. 잠시 후 다시 시도하시거나 010-7932-9779로 전화 주세요.");
+        return;
+      }
+    }
+    setSubmitted(true);
+  };
+
+  const f = (k) => (e) => setForm((prev) => ({ ...prev, [k]: e.target.value }));
+
+  return (
+    <section className="section" id="consult">
+      <div className="container">
+        <Reveal>
+          <span className="eyebrow"><span className="dot" />CONSULT</span>
+          <h2 className="section-title">
+            <span className="h-thin">중고폰 상담,</span> <span className="h-bold">여기서 바로 접수하세요</span>
+          </h2>
+          <p className="section-sub">남겨주시면 확인 후 바로 연락드립니다. 방문 전에 예상가·재고를 미리 확인해 드려요.</p>
+        </Reveal>
+        <Reveal delay={80}>
+          <form className="us-consult" onSubmit={onSubmit} noValidate>
+            <div className="us-consult__type">
+              <button type="button" className={"chip" + (type === "sell" ? " on" : "")} onClick={() => setType("sell")}>내 폰 팔기 (매입)</button>
+              <button type="button" className={"chip" + (type === "buy" ? " on" : "")} onClick={() => setType("buy")}>중고폰 구매</button>
+            </div>
+            <div className="us-consult__row">
+              <input className="input" placeholder="이름 *" value={form.name} onChange={f("name")} autoComplete="name" />
+              <input className="input" type="tel" placeholder="연락처 *" value={form.phone} onChange={f("phone")} autoComplete="tel" />
+            </div>
+            <input className="input" placeholder={type === "sell" ? "모델 · 상태 (위 계산기에서 자동 입력돼요)" : "찾는 모델 · 용량 · 색상"}
+              value={form.model} onChange={f("model")} />
+            <textarea className="textarea" rows={3} placeholder="남기실 말씀 (선택)" value={form.note} onChange={f("note")} />
+            <label className="us-consult__consent">
+              <input type="checkbox" checked={form.consent}
+                onChange={(e) => setForm((prev) => ({ ...prev, consent: e.target.checked }))} />
+              <span>개인정보 수집·이용에 동의합니다. 자세한 내용은 <a href="privacy.html" target="_blank" rel="noopener noreferrer">개인정보처리방침</a>을 확인해 주세요.</span>
+            </label>
+            {error && <div className="us-consult__err" role="alert">{error}</div>}
+            {submitted ?
+              <div className="us-consult__ok" role="status">
+                <Icon name="check" size={16} /> 접수됐어요! 확인 후 바로 연락드릴게요.
+              </div> :
+              <button type="submit" className="btn btn-primary btn-lg" disabled={sending} style={{ width: "100%" }}>
+                {sending ? "접수 중…" : "상담 신청하기"}
+              </button>}
+          </form>
+        </Reveal>
+      </div>
+    </section>
   );
 }
 
@@ -260,13 +369,15 @@ function UsedPage() {
                   <h3>찾는 중고폰이 있으신가요?</h3>
                   <p>모델·용량·색상을 남겨 주시면 재고와 상태를 확인해 안내드립니다.</p>
                 </div>
-                <a href="./#booking" className="btn btn-primary btn-lg">
-                  중고 구매 상담 예약 <Icon name="arrow" size={16} />
-                </a>
+                <button type="button" className="btn btn-primary btn-lg" onClick={() => goConsult("buy", "")}>
+                  중고 구매 상담 신청 <Icon name="arrow" size={16} />
+                </button>
               </div>
             </Reveal>
           </div>
         </section>
+
+        <UsedConsultSection />
       </main>
 
       <CTASection />
@@ -503,6 +614,19 @@ function UsedPage() {
         @media (max-width: 480px) {
           .us-grade-grid { grid-template-columns: 1fr; }
         }
+        .us-consult {
+          max-width: 640px; display: grid; gap: 12px;
+          background: var(--panel, #fff); border: 1px solid var(--line, #e5e8eb);
+          border-radius: 20px; padding: 26px 24px; box-shadow: 0 8px 28px rgba(17,24,39,.06);
+        }
+        .us-consult__type { display: flex; gap: 8px; margin-bottom: 4px; }
+        .us-consult__row { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+        .us-consult__consent { display: flex; gap: 9px; align-items: flex-start; font-size: 13.5px; color: var(--ink-600, #4b5563); }
+        .us-consult__consent input { width: 17px; height: 17px; margin-top: 2px; }
+        .us-consult__consent a { text-decoration: underline; }
+        .us-consult__err { border-radius: 12px; padding: 12px 14px; background: #FDEDEE; color: #d6455f; font-size: 14px; font-weight: 600; }
+        .us-consult__ok { border-radius: 12px; padding: 14px 16px; background: #E6F6EF; color: #067a52; font-size: 15px; font-weight: 700; display: flex; gap: 8px; align-items: center; }
+        @media (max-width: 640px) { .us-consult__row { grid-template-columns: 1fr; } }
       `}</style>
     </>
   );

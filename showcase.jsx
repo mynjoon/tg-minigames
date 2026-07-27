@@ -89,17 +89,17 @@ const SHOWCASE = {
         productKey: "Galaxy S 시리즈"
       },
       {
-        id: "galaxy-zfold7", name: "Galaxy Z Fold7", tagline: "펼치면 태블릿, 접으면 폰.",
-        img: "assets/galaxy-zfold7.png", priceFrom: "2,379,300",
-        spec: [["디스플레이", "메인 8.0″ QXGA+"], ["프로세서", "Snapdragon 8 Elite"], ["카메라", "200MP 트리플"], ["배터리", "4,400mAh"]],
-        colors: ["블루 섀도", "실버 섀도", "제트블랙"],
+        id: "galaxy-zfold8", name: "Galaxy Z Fold8", tagline: "꽉 찬 4:3 화면, 역대 가장 가벼운 폴드.",
+        img: "assets/galaxy-zfold7.png", priceFrom: "2,278,100",
+        spec: [["디스플레이", "메인 7.6″ 4:3 비율"], ["프로세서", "Snapdragon 8 Elite Gen 5"], ["카메라", "50MP 듀얼"], ["배터리", "4,800mAh · 201g"]],
+        colors: ["그라파이트", "크림", "라벤더", "피스타치오"],
         productKey: "Galaxy Z Fold / Flip"
       },
       {
-        id: "galaxy-zflip7", name: "Galaxy Z Flip7", tagline: "컴팩트 폴드, Flex Window.",
-        img: "assets/galaxy-zflip7.png", priceFrom: "1,485,000",
-        spec: [["디스플레이", "메인 6.9″ FHD+"], ["프로세서", "Snapdragon 8 Elite"], ["카메라", "50MP 듀얼"], ["배터리", "4,300mAh"]],
-        colors: ["블루 섀도", "코랄 레드", "제트블랙"],
+        id: "galaxy-zflip8", name: "Galaxy Z Flip8", tagline: "주름을 지운 컴팩트 폴드.",
+        img: "assets/galaxy-zflip7.png", priceFrom: "1,683,000",
+        spec: [["디스플레이", "메인 6.9″ FHD+ LTPO"], ["프로세서", "Snapdragon 8 Elite Gen 5"], ["카메라", "50MP 듀얼"], ["배터리", "4,174mAh(정격)"]],
+        colors: ["그라파이트", "크림", "핑크", "민트"],
         productKey: "Galaxy Z Fold / Flip"
       }
     ]
