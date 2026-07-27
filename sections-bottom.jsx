@@ -482,6 +482,11 @@ function LocationSection() {
                 전화하기
                 <span className="arrow"><Icon name="arrow" size={16} /></span>
               </a>
+              <a className="info-action" href="https://m.place.naver.com/place/2051361364/review/visitor" target="_blank" rel="noopener noreferrer">
+                <Icon name="naver" size={18} className="ic" />
+                네이버 리뷰 남기기
+                <span className="arrow"><Icon name="arrow" size={16} /></span>
+              </a>
               <a className="info-action" href="https://naver.me/FHOAX0ay" target="_blank" rel="noopener noreferrer">
                 <Icon name="map" size={18} className="ic" />
                 네이버 지도에서 보기
