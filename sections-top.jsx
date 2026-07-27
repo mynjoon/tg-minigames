@@ -399,18 +399,19 @@ const PRODUCT_SPECS = {
   "Galaxy Z Fold / Flip": {
     note: "삼성 공식 사양 기준 · 출고가는 256GB 기준 참고용이며, 매장 단독 조건은 방문 시 안내드립니다.",
     rows: [
-    ["디스플레이", "메인 7.6\" 4:3 비율\n커버 5.5\"", "메인 6.9\" FHD+ LTPO\n커버 Flex Window"],
-    ["프로세서", "Snapdragon 8 Elite\nGen 5 for Galaxy", "Snapdragon 8 Elite Gen 5\n/ Exynos 2600 (지역별)"],
-    ["메모리 · 저장", "12GB / 256·512GB", "12GB / 256·512GB"],
-    ["후면 카메라", "50MP 듀얼\n광각 + 초광각", "50MP 듀얼\n광각 + 초광각"],
-    ["배터리", "4,800mAh · 45W 충전", "4,174mAh(정격)"],
-    ["특징", "꽉 찬 4:3 대화면 ·\n역대 최경량 201g", "주름 개선 힌지 ·\nFlex Window 활용"],
-    ["출고가", "2,278,100원~", "1,683,000원~"],
+    ["디스플레이", "메인 8.0\" (2504×2256)\n커버 6.5\" (2520×1080)", "메인 7.6\" 4:3 (2448×1848)\n커버 5.5\" (1972×1248)", "메인 6.9\" FHD+ LTPO\n커버 Flex Window"],
+    ["프로세서", "Snapdragon 8 Elite\nGen 5 for Galaxy", "Snapdragon 8 Elite\nGen 5 for Galaxy", "Snapdragon 8 Elite Gen 5\n/ Exynos 2600 (지역별)"],
+    ["저장 용량", "256 · 512GB", "256 · 512GB", "256 · 512GB"],
+    ["후면 카메라", "200MP 광각 + 50MP 초광각\n+ 10MP 망원", "50MP 광각(F1.8)\n+ 50MP 초광각(F1.9)", "50MP 광각\n+ 12MP 초광각"],
+    ["배터리 · 무게", "5,000mAh · 215g", "4,800mAh · 201g", "4,174mAh(정격)"],
+    ["특징", "폴드의 정점 —\n8형 대화면 · 200MP", "꽉 찬 4:3 화면 ·\n역대 최경량 폴드", "주름 개선 힌지 ·\nFlex Window 활용"],
+    ["출고가", "2,577,300원~", "2,278,100원~", "1,683,000원~"],
     ["매장 구매가", "방문 시 공개", "방문 시 공개"]],
 
     variants: [
-    { name: "Galaxy Z Fold8", img: "assets/galaxy-zfold7.png" },
-    { name: "Galaxy Z Flip8", img: "assets/galaxy-zflip7.png" }]
+    { name: "Galaxy Z Fold8 Ultra", img: "assets/galaxy-zfold8-ultra.png" },
+    { name: "Galaxy Z Fold8", img: "assets/galaxy-zfold8.png" },
+    { name: "Galaxy Z Flip8", img: "assets/galaxy-zflip8.png" }]
 
   },
   "효도폰 / 실속폰": {
@@ -827,8 +828,8 @@ function FoldArt() {
   return (
     <div className="phone-art phone-art--photo">
       <div className="iphone-stack fold-stack">
-        <img src="assets/galaxy-zfold7.png" alt="Galaxy Z Fold" className="iphone-stack__back iphone-stack__left" />
-        <img src="assets/galaxy-zflip7.png" alt="Galaxy Z Flip" className="iphone-stack__front" />
+        <img src="assets/galaxy-zfold8-ultra.png" alt="Galaxy Z Fold8 Ultra" className="iphone-stack__back iphone-stack__left" />
+        <img src="assets/galaxy-zflip8.png" alt="Galaxy Z Flip8" className="iphone-stack__front" />
       </div>
     </div>);
 }
