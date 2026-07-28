@@ -98,7 +98,7 @@ const SHOWCASE = {
       },
       {
         id: "galaxy-zfold8", name: "Galaxy Z Fold8", tagline: "꽉 찬 4:3 화면, 역대 가장 가벼운 폴드.",
-        img: "assets/galaxy-zfold8.png", priceFrom: "2,278,100",
+        img: "assets/galaxy-zfold8-graphite.png", priceFrom: "2,278,100",
         spec: [["디스플레이", "메인 7.6″ 4:3 비율"], ["프로세서", "Snapdragon 8 Elite Gen 5"], ["카메라", "50MP 듀얼"], ["배터리", "4,800mAh · 201g"]],
         colors: ["그라파이트", "크림", "라벤더", "피스타치오"],
         productKey: "Galaxy Z Fold / Flip"

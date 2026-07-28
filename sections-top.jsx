@@ -410,7 +410,7 @@ const PRODUCT_SPECS = {
 
     variants: [
     { name: "Galaxy Z Fold8 Ultra", img: "assets/galaxy-zfold8-ultra.png" },
-    { name: "Galaxy Z Fold8", img: "assets/galaxy-zfold8.png" },
+    { name: "Galaxy Z Fold8", img: "assets/galaxy-zfold8-graphite.png" },
     { name: "Galaxy Z Flip8", img: "assets/galaxy-zflip8.png" }]
 
   },

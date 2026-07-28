@@ -61,7 +61,7 @@ const DEVICES = [
     monthly: { min: 95000, max: 158000 }, unlocked: { min: 2577300, max: 2830300 }, img: 'assets/galaxy-zfold8-ultra.png' },
   { id: 'zfold8', brand: 'samsung', name: '갤럭시 Z 폴드8', series: '갤럭시 Z', year: 2026, network: '5G',
     storages: ['256GB', '512GB', '1TB'], channels: ['carrier', 'unlocked', 'used'], tags: ['folder', 'big-screen'],
-    monthly: { min: 90000, max: 148000 }, unlocked: { min: 2278100, max: 2531100 }, img: 'assets/galaxy-zfold8.png' },
+    monthly: { min: 90000, max: 148000 }, unlocked: { min: 2278100, max: 2531100 }, img: 'assets/galaxy-zfold8-graphite.png' },
   { id: 'zflip8', brand: 'samsung', name: '갤럭시 Z 플립8', series: '갤럭시 Z', year: 2026, network: '5G',
     storages: ['256GB', '512GB'], channels: ['carrier', 'unlocked', 'used'], tags: ['folder', 'popular', 'design'],
     monthly: { min: 65000, max: 112000 }, unlocked: { min: 1683000, max: 1936000 }, img: 'assets/galaxy-zflip8.png' },
