@@ -31,5 +31,6 @@ export const PAGES = [
   { path: "/used", must: ["#root"], minLinks: 3 },
   { path: "/guides", must: [".g-cards"], minLinks: 6 },
   { path: "/guides/majang-phone-store", must: [".g-faq"], minLinks: 6 },
+  { path: "/used/iphone-17-pro", must: [".g-faq"], minLinks: 8 },
   { path: "/privacy", must: [], minLinks: 1 },
 ];

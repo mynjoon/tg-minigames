@@ -28,11 +28,15 @@ function htmlFiles(dir) {
 let changed = 0;
 for (const file of htmlFiles(ROOT)) {
   const src = readFileSync(file, 'utf8');
+  /* 루트 절대경로 강제 + 내용해시 부착.
+     상대경로는 depth 1에서는 잘 돌지만 depth 2 URL(/guides/x, /used/x)에서 조용히 전멸한다
+     (growth-engine 실패 2번). 누가 상대경로로 다시 써도 이 단계에서 자동 교정된다. */
   const next = src.replace(
-    /(?<=(?:href|src)=")([\w\-/.]+\.(?:css|js|jsx))(?:\?v=[\w]+)?(?=")/g,
+    /(?<=(?:href|src)=")(\/?[\w\-/.]+\.(?:css|js|jsx))(?:\?v=[\w]+)?(?=")/g,
     (m, path) => {
-      if (path.startsWith('http')) return m;
-      try { return `${path}?v=${hash8(join(ROOT, path))}`; } catch (_) { return m; }
+      if (path.startsWith('http') || path.startsWith('//')) return m;
+      const rooted = path.startsWith('/') ? path : '/' + path;
+      try { return `${rooted}?v=${hash8(join(ROOT, rooted.slice(1)))}`; } catch (_) { return m; }
     }
   );
   if (next !== src) { writeFileSync(file, next); changed++; console.log('stamped:', file.replace(ROOT + '/', '')); }

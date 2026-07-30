@@ -5,6 +5,8 @@ import { join, dirname } from "node:path";
 import { fileURLToPath } from "node:url";
 import { SITE } from "./site.mjs";
 import { GUIDES } from "./guides-data.mjs";
+/* 기종별 시세 페이지 목록은 빌더가 export 한다 (빌더를 먼저 돌릴 것) */
+const { USED_PAGES } = await import("./build-used-pages.mjs");
 
 const ROOT = join(dirname(fileURLToPath(import.meta.url)), "..");
 const TODAY = process.env.SITEMAP_DATE || new Date().toISOString().slice(0, 10);
@@ -16,6 +18,7 @@ const urls = [
   { loc: "/devices", pri: "0.9", freq: "weekly" },
   { loc: "/guides", pri: "0.7", freq: "weekly" },
   ...GUIDES.map((g) => ({ loc: `/guides/${g.slug}`, pri: "0.8", freq: "monthly", lastmod: g.updated })),
+  ...USED_PAGES.map((u) => ({ loc: `/used/${u.slug}`, pri: "0.8", freq: "weekly" })),
   { loc: "/privacy", pri: "0.3", freq: "yearly" },
 ];
 

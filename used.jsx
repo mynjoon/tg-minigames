@@ -95,6 +95,51 @@ function BuybackCalc() {
 
 
 
+
+// ---------- 기종별 시세 페이지 링크 (검색 유입용 상세 페이지로 연결) ----------
+const MODEL_PAGES = [
+  ["아이폰 17 프로 맥스", "iphone-17-pro-max"],
+  ["아이폰 17 프로", "iphone-17-pro"],
+  ["아이폰 17", "iphone-17"],
+  ["아이폰 16 프로 맥스", "iphone-16-pro-max"],
+  ["아이폰 16 프로", "iphone-16-pro"],
+  ["아이폰 16", "iphone-16"],
+  ["아이폰 15", "iphone-15"],
+  ["아이폰 14", "iphone-14"],
+  ["아이폰 13", "iphone-13"],
+  ["갤럭시 S26 울트라", "galaxy-s26-ultra"],
+  ["갤럭시 S25 울트라", "galaxy-s25-ultra"],
+  ["갤럭시 S24 울트라", "galaxy-s24-ultra"],
+  ["갤럭시 S24", "galaxy-s24"],
+  ["갤럭시 S23", "galaxy-s23"],
+  ["갤럭시 Z 폴드7", "galaxy-z-fold7"],
+  ["갤럭시 Z 플립7", "galaxy-z-flip7"]
+];
+
+function UsedModelLinks() {
+  return (
+    <section className="section" style={{ paddingTop: 0 }}>
+      <div className="container">
+        <Reveal>
+          <h2 className="section-title" style={{ fontSize: 22, marginBottom: 6 }}>
+            <span className="h-bold">기종별 상세 시세</span>
+          </h2>
+          <p className="section-sub" style={{ marginBottom: 18 }}>
+            자주 찾는 기종은 등급별 시세와 점검 포인트를 따로 정리해 두었습니다.
+          </p>
+        </Reveal>
+        <Reveal delay={60}>
+          <div className="us-modellinks">
+            {MODEL_PAGES.map(([name, slug]) =>
+              <a key={slug} href={"/used/" + slug}>{name} 매입 시세</a>
+            )}
+          </div>
+        </Reveal>
+      </div>
+    </section>
+  );
+}
+
 // ---------- FAQ — used.html 헤드의 FAQPage JSON-LD와 문안을 동일하게 유지할 것 ----------
 const USED_FAQ = [
   ["중고폰 매입가는 어떻게 정해지나요?",
@@ -414,6 +459,7 @@ function UsedPage() {
           </div>
         </section>
 
+        <UsedModelLinks />
         <UsedFaqSection />
         <section className="section" style={{ paddingTop: 0 }}>
           <div className="container">
@@ -666,6 +712,13 @@ function UsedPage() {
         @media (max-width: 480px) {
           .us-grade-grid { grid-template-columns: 1fr; }
         }
+        .us-modellinks { display: grid; grid-template-columns: repeat(auto-fill, minmax(230px, 1fr)); gap: 8px; }
+        .us-modellinks a {
+          display: block; padding: 13px 16px; border: 1px solid var(--line, #e5e8eb);
+          border-radius: 12px; background: #fff; font-size: 14.5px; font-weight: 600;
+          color: var(--ink-700, #333d4b); transition: border-color .15s, transform .15s;
+        }
+        .us-modellinks a:hover { border-color: var(--accent, #006CFF); color: var(--accent, #006CFF); transform: translateY(-1px); }
         .us-faq { max-width: 720px; display: grid; gap: 10px; }
         .us-faq__item { background: var(--panel, #fff); border: 1px solid var(--line, #e5e8eb); border-radius: 14px; padding: 0 18px; }
         .us-faq__item summary { cursor: pointer; font-weight: 700; font-size: 15.5px; padding: 16px 0; list-style: none; }
