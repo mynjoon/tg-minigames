@@ -139,6 +139,23 @@ for (const page of PAGES) {
       .map((a) => a.getAttribute("href"))
       .filter((h) => h && !/^(https?:|tel:|mailto:|#|javascript:)/.test(h)).length);
 
+  /* 내부 링크가 실제로 200인지 확인 — 페이지를 옮기고 링크를 안 고치면 방문자가 404를 본다.
+     실제로 /used.html → /used/ 이동 후 헤더 내비가 깨진 채 배포된 적이 있다(사장님 제보로 발견).
+     그 뒤로 이 검사를 넣었다. */
+  const hrefs = await tab.evaluate(() =>
+    [...new Set([...document.querySelectorAll("a[href]")].map((a) => a.getAttribute("href")))]
+      .filter((h) => h && !/^(https?:|tel:|mailto:|javascript:|#)/.test(h)));
+  const deadLinks = [];
+  for (const h of hrefs) {
+    const target = new URL(h, url).toString();
+    if (!target.startsWith(base)) continue;
+    try {
+      const r = await tab.request.get(target.split("#")[0], { maxRedirects: 5 });
+      if (r.status() >= 400) deadLinks.push(`${h} → ${r.status()}`);
+    } catch (e) { deadLinks.push(`${h} → 요청 실패`); }
+  }
+  if (deadLinks.length) violations.push(`${page.path}: 죽은 내부 링크 ${deadLinks.length}건 — ${deadLinks.slice(0, 5).join(" | ")}`);
+
   if (failed.length) violations.push(`${page.path}: 실패 요청 ${failed.length}건 — ${failed.slice(0, 4).join(" | ")}`);
   if (brokenImgs.length) violations.push(`${page.path}: 깨진 이미지 ${brokenImgs.length}건 — ${brokenImgs.slice(0, 3).join(" | ")}`);
   if (jsErrors.length) violations.push(`${page.path}: JS 에러 ${jsErrors.length}건 — ${jsErrors.slice(0, 2).join(" | ")}`);

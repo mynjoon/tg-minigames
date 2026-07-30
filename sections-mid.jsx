@@ -184,7 +184,7 @@ function RewardSection() {
               파트너 페이지에서 확인하세요. <span className="reward-income-note">*수입은 추천·개통 건수에 따라 달라집니다.</span></p>
             </div>
             <div className="reward-cta-actions">
-              <a href="partner.html" className="btn btn-kakao btn-lg reward-kakao-btn">
+              <a href="/partner" className="btn btn-kakao btn-lg reward-kakao-btn">
                 <Icon name="chat" size={18} /> 카카오로 파트너 시작
               </a>
               <a href="#booking" className="reward-cta-sub">먼저 상담받기 <Icon name="arrow" size={14} /></a>

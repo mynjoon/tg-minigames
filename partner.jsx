@@ -19,7 +19,7 @@ function PartnerHeader({ session, onLogout }) {
   return (
     <header className="partner-header">
       <div className="container partner-header__inner">
-        <a href="index.html" className="brand" aria-label="공일모바일 홈">
+        <a href="/" className="brand" aria-label="공일모바일 홈">
           <span className="brand-logo"><img src="assets/logo.png" alt="공일모바일" /></span>
           <span className="brand-text"><strong>공일모바일</strong><small>PARTNER</small></span>
         </a>
@@ -42,7 +42,7 @@ function SetupNotice() {
           프로젝트 URL과 anon 키를 입력하고, 카카오 로그인 연동을 마쳐야 합니다.
           자세한 절차는 <b>PARTNER_SETUP.md</b>를 참고하세요.
         </p>
-        <a href="index.html" className="btn btn-primary">홈으로 돌아가기</a>
+        <a href="/" className="btn btn-primary">홈으로 돌아가기</a>
       </div>
     </div>
   );
@@ -87,7 +87,7 @@ function LoginView({ onKakao, busy }) {
             </a>
             {" "}또는 오른쪽 위 ⋯ 메뉴를 이용해 주세요.
           </small>}
-        <a href="index.html" className="partner-back">← 매장 홈으로</a>
+        <a href="/" className="partner-back">← 매장 홈으로</a>
       </div>
     </div>
   );
@@ -131,7 +131,7 @@ function RegisterView({ initialName, onSave, busy }) {
           <span>
             <b>개인정보 수집·이용에 동의합니다. (필수)</b><br />
             수집 항목: 이름, 연락처 · 목적: 파트너 리워드 정산 · 보유: 정산 완료 후 관련 법령 기간.
-            자세한 내용은 <a href="privacy.html" target="_blank" rel="noopener noreferrer">개인정보처리방침</a>을 참고하세요.
+            자세한 내용은 <a href="/privacy" target="_blank" rel="noopener noreferrer">개인정보처리방침</a>을 참고하세요.
           </span>
         </label>
 

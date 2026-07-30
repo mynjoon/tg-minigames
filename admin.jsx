@@ -23,7 +23,7 @@ function AdminHeader({ onLogout, email }) {
   return (
     <header className="partner-header">
       <div className="container partner-header__inner">
-        <a href="index.html" className="brand" aria-label="공일모바일 홈">
+        <a href="/" className="brand" aria-label="공일모바일 홈">
           <span className="brand-logo" style={{ width: 34, height: 34, display: "grid", placeItems: "center" }}>
             <img src="assets/logo.png" alt="공일모바일" style={{ width: "100%", height: "100%", objectFit: "contain" }} />
           </span>
@@ -164,7 +164,7 @@ function AdminApp() {
           <button type="submit" className="btn btn-primary btn-lg" style={{ width: "100%" }} disabled={busy}>
             {busy ? "로그인 중…" : "로그인"}
           </button>
-          <a href="index.html" className="partner-back">← 매장 홈으로</a>
+          <a href="/" className="partner-back">← 매장 홈으로</a>
         </form>
       </div>
     </>
@@ -182,7 +182,7 @@ function AdminApp() {
           <p style={{ fontSize: 13, marginTop: 14 }}>
             Supabase → Table Editor → <b>partners</b> → 위 ID 행 → <b>is_admin</b> 체크 (true)
           </p>
-          <a href="index.html" className="btn btn-primary">홈으로</a>
+          <a href="/" className="btn btn-primary">홈으로</a>
         </div>
       </div>
     </>

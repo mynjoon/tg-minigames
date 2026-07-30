@@ -266,7 +266,7 @@ function UsedConsultSection() {
             <label className="us-consult__consent">
               <input type="checkbox" checked={form.consent}
                 onChange={(e) => setForm((prev) => ({ ...prev, consent: e.target.checked }))} />
-              <span>개인정보 수집·이용에 동의합니다. 자세한 내용은 <a href="privacy.html" target="_blank" rel="noopener noreferrer">개인정보처리방침</a>을 확인해 주세요.</span>
+              <span>개인정보 수집·이용에 동의합니다. 자세한 내용은 <a href="/privacy" target="_blank" rel="noopener noreferrer">개인정보처리방침</a>을 확인해 주세요.</span>
             </label>
             {error && <div className="us-consult__err" role="alert">{error}</div>}
             {submitted ?

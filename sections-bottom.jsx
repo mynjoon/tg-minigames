@@ -356,7 +356,7 @@ function BookingSection() {
                   <b>개인정보 수집·이용에 동의합니다. (필수)</b><br />
                   수집 항목: 이름·연락처·생년월일 등 입력하신 정보 · 이용 목적: 상담 예약 접수 및 회신 · 보유 기간: 상담 완료 후 3개월.
                   동의를 거부하실 수 있으나, 이 경우 상담 예약 접수가 제한됩니다. 자세한 내용은
-                  <a href="privacy.html" target="_blank" rel="noopener noreferrer">개인정보처리방침</a>에서 확인하실 수 있습니다.
+                  <a href="/privacy" target="_blank" rel="noopener noreferrer">개인정보처리방침</a>에서 확인하실 수 있습니다.
                 </span>
               </label>
 
@@ -609,11 +609,11 @@ function Footer() {
             <ul className="footer-list">
               <li><a href={PAGE_BASE + "#booking"}>방문 상담 예약</a></li>
               <li><a href={PAGE_BASE + "#products"}>판매 상품</a></li>
-              <li><a href="devices.html">기기 전체보기</a></li>
-              <li><a href="used.html">중고폰 판매·매입</a></li>
+              <li><a href="/devices">기기 전체보기</a></li>
+              <li><a href="/used">중고폰 판매·매입</a></li>
               <li><a href="/guides">개통·중고폰 가이드</a></li>
               <li><a href={PAGE_BASE + "#location"}>오시는 길</a></li>
-              <li><a href="privacy.html">개인정보처리방침</a></li>
+              <li><a href="/privacy">개인정보처리방침</a></li>
             </ul>
           </div>
         </div>
@@ -621,7 +621,7 @@ function Footer() {
         <div className="footer-bottom">
           <span>© 2026 공일모바일. All rights reserved.</span>
           <span>본 사이트는 합법적 통신 상담을 위한 안내 페이지이며, 모든 가격·할인 조건은 상담 후 안내됩니다.</span>
-          <a href="admin.html" className="footer-admin-link">관리자</a>
+          <a href="/admin" className="footer-admin-link">관리자</a>
         </div>
       </div>
     </footer>);
