@@ -189,6 +189,7 @@ function UsedConsultSection() {
         return;
       }
     }
+    if (window.gmTrack) window.gmTrack("used_consult_submit", { kind: type, model: form.model || "" });
     setSubmitted(true);
   };
 

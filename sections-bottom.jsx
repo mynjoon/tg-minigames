@@ -105,10 +105,13 @@ function BookingSection() {
       } catch (err) {
         // 실패 시 접수 완료로 처리하지 않고 재시도 안내
         setSending(false);
+        if (window.gmTrack) window.gmTrack("booking_error", { where: "webhook" });
         setErrors({ submit: "일시적인 오류로 접수하지 못했어요. 잠시 후 다시 시도하시거나 010-7932-9779로 전화 주세요." });
         return;
       }
     }
+
+    if (window.gmTrack) window.gmTrack("booking_submit", { topics: (form.topics || []).join("|"), model: form.model || "" });
 
     // 2) 초대링크 추천코드가 있으면 → Supabase에 추천 자동 등록 (관리자 페이지에 집계)
     if (refCode && typeof window !== "undefined" && window.supabase &&
