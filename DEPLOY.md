@@ -10,11 +10,22 @@
 - ⚠️ 따라서 **main에 push해도 자동 배포되지 않는다** — 배포는 아래 명령으로:
 
 ```bash
-# 레포 루트에서 (md/docs/.git 제외한 복사본 권장):
-node tools/stamp-assets.mjs   # ① css/js/jsx에 내용 해시 ?v= 부착 (캐시버스트 — 생략 금지)
+# 레포 루트에서 (md/docs/tools/.git 제외한 복사본을 배포한다):
+node tools/build-guides.mjs      # ① 가이드 데이터 → 정적 HTML (가이드 수정 시)
+node tools/build-used-pages.mjs  # ② 기종별 중고 시세 페이지 (시세 갱신 시)
+node tools/build-sitemap.mjs     # ③ 사이트맵 재생성 (페이지가 늘거나 줄면)
+node tools/build-app.mjs         # ④ ★ JSX 사전 컴파일 → /dist (.jsx를 고쳤으면 필수)
+node tools/stamp-assets.mjs      # ⑤ 내용 해시 ?v= 부착 + 루트 절대경로 강제
+node tools/deploy-gate.mjs       # ⑥ ★ 배포 게이트 — 실패하면 배포하지 않는다
 export CLOUDFLARE_API_TOKEN=… CLOUDFLARE_ACCOUNT_ID=…   # 사장님에게 수령, 커밋 금지
 npx wrangler@3 pages deploy . --project-name=01mobile --branch=main --commit-dirty=true
+node tools/seo-check.mjs https://01mobile.co.kr   # ⑦ 배포 후 회귀 확인
 ```
+
+⚠️ **`.jsx`를 고쳤으면 반드시 ④를 돌려야 한다.** 브라우저는 이제 `.jsx`가 아니라
+`/dist/*.js`(사전 컴파일 번들)를 읽는다. 빌드를 빼먹으면 옛 번들이 그대로 배포되고,
+소스와 화면이 어긋난 채 조용히 넘어간다. 어떤 .jsx가 어느 페이지에 들어가는지는
+`dist/manifest.json`에 기록돼 있다.
 
 남은 정리: Netlify 사이트 도메인 해제·정지(§4), 레포명 변경(선택), Search Console sitemap 재제출.
 
