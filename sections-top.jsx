@@ -396,7 +396,7 @@ const PRODUCT_SPECS = {
     { name: "Galaxy S26 Ultra", img: "assets/galaxy-s26-ultra.png" }]
 
   },
-  "Galaxy Z Fold / Flip": {
+  "Galaxy Fold / Flip": {
     note: "삼성 공식 사양 기준 · 출고가는 256GB 기준 참고용이며, 매장 단독 조건은 방문 시 안내드립니다.",
     rows: [
     ["디스플레이", "메인 8.0\" (2504×2256)\n커버 6.5\" (2520×1080)", "메인 7.6\" 4:3 (2448×1848)\n커버 5.5\" (1972×1248)", "메인 6.9\" FHD+ LTPO\n커버 Flex Window"],
@@ -409,9 +409,9 @@ const PRODUCT_SPECS = {
     ["매장 구매가", "방문 시 공개", "방문 시 공개"]],
 
     variants: [
-    { name: "Galaxy Z Fold8 Ultra", img: "assets/galaxy-zfold8-ultra.png" },
-    { name: "Galaxy Z Fold8", img: "assets/galaxy-zfold8-graphite.png" },
-    { name: "Galaxy Z Flip8", img: "assets/galaxy-zflip8.png" }]
+    { name: "Galaxy Fold8 Ultra", img: "assets/galaxy-fold8-ultra-violet.png" },
+    { name: "Galaxy Fold8", img: "assets/galaxy-fold8-lavender.png" },
+    { name: "Galaxy Flip8", img: "assets/galaxy-flip8-graphite.png" }]
 
   },
   "효도폰 / 실속폰": {
@@ -447,7 +447,7 @@ function ProductsSection() {
     feat: "고성능 카메라·퍼포먼스",
     desc: "고성능 카메라와 빠른 성능을 원하는 고객에게 추천드립니다.",
     target: "사진·게임·업무 모두 활용하는 분", icon: "spark" },
-  { cat: "Galaxy", name: "Galaxy Z Fold / Flip",
+  { cat: "Galaxy", name: "Galaxy Fold / Flip",
     feat: "폴더블 프리미엄",
     desc: "프리미엄 디자인과 차별화된 사용성을 원하는 고객에게 추천드립니다.",
     target: "남다른 기기 경험을 원하는 분", icon: "fold" },
@@ -828,8 +828,8 @@ function FoldArt() {
   return (
     <div className="phone-art phone-art--photo">
       <div className="iphone-stack fold-stack">
-        <img src="assets/galaxy-zfold8-ultra.png" alt="Galaxy Z Fold8 Ultra" className="iphone-stack__back iphone-stack__left" />
-        <img src="assets/galaxy-zflip8.png" alt="Galaxy Z Flip8" className="iphone-stack__front" />
+        <img src="assets/galaxy-fold8-ultra-violet.png" alt="Galaxy Fold8 Ultra" className="iphone-stack__back iphone-stack__left" />
+        <img src="assets/galaxy-flip8-graphite.png" alt="Galaxy Flip8" className="iphone-stack__front" />
       </div>
     </div>);
 }

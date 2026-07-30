@@ -4976,3 +4976,40 @@ p b, p strong, .hero-sub b, .section-sub b {
 
 .product-card { display: flex; flex-direction: column; }
 .product-card .product-info { flex: 1; display: flex; flex-direction: column; }
+
+/* ---------- 프로모션: 폴더블 8 사전예약 ---------- */
+.promo-bar{position:relative;z-index:60;display:flex;align-items:center;
+  background:linear-gradient(90deg,#0F1014 0%,#1D2333 60%,#243052 100%);color:#fff}
+.promo-bar__link{flex:1;display:flex;align-items:center;justify-content:center;gap:9px;
+  padding:11px 44px 11px 20px;font-size:14px;color:#fff;text-decoration:none;letter-spacing:-.01em}
+.promo-bar__link b{font-weight:700}
+.promo-bar__dot{width:7px;height:7px;border-radius:50%;background:#4ADE80;flex:none;
+  box-shadow:0 0 0 0 rgba(74,222,128,.7);animation:promoPulse 2.4s ease-out infinite}
+@keyframes promoPulse{0%{box-shadow:0 0 0 0 rgba(74,222,128,.55)}70%{box-shadow:0 0 0 7px rgba(74,222,128,0)}100%{box-shadow:0 0 0 0 rgba(74,222,128,0)}}
+.promo-bar__go{display:inline-flex;align-items:center;gap:3px;opacity:.72;font-size:13px;white-space:nowrap}
+.promo-bar__link:hover .promo-bar__go{opacity:1}
+.promo-bar__x{position:absolute;right:8px;top:50%;transform:translateY(-50%);
+  color:rgba(255,255,255,.6);padding:8px;line-height:0;border-radius:8px}
+.promo-bar__x:hover{color:#fff;background:rgba(255,255,255,.12)}
+@media (prefers-reduced-motion:reduce){.promo-bar__dot{animation:none}}
+
+.preorder{background:linear-gradient(180deg,#FFFFFF 0%,#F5F8FF 100%)}
+.preorder__grid{display:grid;grid-template-columns:1fr 1fr;gap:48px;align-items:center}
+.preorder__list{list-style:none;padding:0;margin:22px 0 28px;display:grid;gap:11px}
+.preorder__list li{display:flex;gap:10px;align-items:flex-start;font-size:15.5px;color:var(--ink-700,#333d4b)}
+.preorder__list svg{flex:none;margin-top:4px;color:var(--blue,#006CFF)}
+.preorder__cta{display:flex;gap:10px;flex-wrap:wrap}
+.preorder__note{margin:18px 0 0;font-size:12.5px;line-height:1.65;color:var(--ink-400,#6b7684)}
+.preorder__video{position:relative;border-radius:22px;overflow:hidden;background:#0F1014;
+  box-shadow:0 18px 50px rgba(17,24,39,.16);aspect-ratio:4/3}
+.preorder__video video{width:100%;height:100%;object-fit:cover;display:block}
+.preorder__play{position:absolute;inset:0;margin:auto;width:66px;height:66px;border-radius:50%;
+  background:rgba(255,255,255,.94);color:#111;font-size:20px;line-height:66px;text-align:center;
+  box-shadow:0 8px 24px rgba(0,0,0,.28)}
+.preorder__play:hover{transform:scale(1.06)}
+@media (max-width:900px){
+  .preorder__grid{grid-template-columns:1fr;gap:30px}
+  .preorder__media{order:-1}
+  .promo-bar__link{font-size:13px;padding:10px 40px 10px 14px;gap:7px}
+  .promo-bar__go{display:none}
+}

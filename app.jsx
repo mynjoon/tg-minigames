@@ -1,5 +1,5 @@
 /* global React, ReactDOM,
-   Header, Hero, TrustSection, ProductsSection, LineupShowcase,
+   Header, Hero, TrustSection, ProductsSection, LineupShowcase, PromoBar, PreorderSection,
    PlansSection, BundleSection, RewardSection, BookingSection,
    IntroSection, LocationSection, CTASection, Footer, MobileActionBar */
 
@@ -65,9 +65,11 @@ function App() {
   return (
     <>
       <ScrollProgress/>
+      <PromoBar/>
       <Header/>
       <main>
         <Hero/>
+        <PreorderSection/>
         <TrustSection/>
         <LineupShowcase/>
         <ProductsSection/>

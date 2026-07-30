@@ -20,9 +20,9 @@ const MODEL_COLORS = {
   "Galaxy S26": ["코발트 바이올렛", "스카이 블루", "블랙", "화이트"],
   "Galaxy S26+": ["코발트 바이올렛", "스카이 블루", "블랙", "화이트"],
   "Galaxy S26 Ultra": ["코발트 바이올렛", "스카이 블루", "블랙", "화이트"],
-  "Galaxy Z Fold8 Ultra": ["그라파이트", "크림", "바이올렛 쉐도우", "그린 쉐도우"],
-  "Galaxy Z Fold8": ["그라파이트", "크림", "라벤더", "피스타치오"],
-  "Galaxy Z Flip8": ["그라파이트", "크림", "핑크", "민트"],
+  "Galaxy Fold8 Ultra": ["그라파이트", "크림", "바이올렛 쉐도우", "그린 쉐도우"],
+  "Galaxy Fold8": ["그라파이트", "크림", "라벤더", "피스타치오"],
+  "Galaxy Flip8": ["그라파이트", "크림", "핑크", "민트"],
   "삼성 스타일 폴더2": ["블랙"],
   "Galaxy A17": ["라이트 블루", "블랙", "라이트 그린"],
   "기타 / 추천 부탁": [],
@@ -31,7 +31,7 @@ const MODEL_COLORS = {
 
 // ---------- Booking ----------
 function BookingSection() {
-  const topics = ["기기변경", "번호이동", "신규가입", "인터넷/TV 결합", "요금제 상담", "부모님/가족폰"];
+  const topics = ["폴더블8 사전예약", "기기변경", "번호이동", "신규가입", "인터넷/TV 결합", "요금제 상담", "부모님/가족폰"];
   const [form, setForm] = useStateB({
     name: "", phone: "", birth: "", carrier: "", topics: [],
     model: "", capacity: "", color: "",
@@ -261,9 +261,9 @@ function BookingSection() {
                       <option>Galaxy S26 Ultra</option>
                     </optgroup>
                     <optgroup label="Galaxy Z">
-                      <option>Galaxy Z Fold8 Ultra</option>
-                      <option>Galaxy Z Fold8</option>
-                      <option>Galaxy Z Flip8</option>
+                      <option>Galaxy Fold8 Ultra</option>
+                      <option>Galaxy Fold8</option>
+                      <option>Galaxy Flip8</option>
                     </optgroup>
                     <optgroup label="효도폰·실속폰">
                       <option>삼성 스타일 폴더2</option>

@@ -90,25 +90,25 @@ const SHOWCASE = {
         productKey: "Galaxy S 시리즈"
       },
       {
-        id: "galaxy-zfold8-ultra", name: "Galaxy Z Fold8 Ultra", tagline: "8형 대화면과 200MP — 폴드의 정점.",
-        img: "assets/galaxy-zfold8-ultra.png", priceFrom: "2,577,300",
+        id: "galaxy-zfold8-ultra", name: "Galaxy Fold8 Ultra", tagline: "8형 대화면과 200MP — 폴드의 정점.",
+        img: "assets/galaxy-fold8-ultra-violet.png", priceFrom: "2,577,300",
         spec: [["디스플레이", "메인 8.0″ (2504×2256)"], ["프로세서", "Snapdragon 8 Elite Gen 5"], ["카메라", "200MP 트리플 + 10MP 망원"], ["배터리", "5,000mAh · 215g"]],
         colors: ["그라파이트", "크림", "바이올렛 쉐도우", "그린 쉐도우"],
-        productKey: "Galaxy Z Fold / Flip"
+        productKey: "Galaxy Fold / Flip"
       },
       {
-        id: "galaxy-zfold8", name: "Galaxy Z Fold8", tagline: "꽉 찬 4:3 화면, 역대 가장 가벼운 폴드.",
-        img: "assets/galaxy-zfold8-graphite.png", priceFrom: "2,278,100",
+        id: "galaxy-zfold8", name: "Galaxy Fold8", tagline: "꽉 찬 4:3 화면, 역대 가장 가벼운 폴드.",
+        img: "assets/galaxy-fold8-lavender.png", priceFrom: "2,278,100",
         spec: [["디스플레이", "메인 7.6″ 4:3 비율"], ["프로세서", "Snapdragon 8 Elite Gen 5"], ["카메라", "50MP 듀얼"], ["배터리", "4,800mAh · 201g"]],
         colors: ["그라파이트", "크림", "라벤더", "피스타치오"],
-        productKey: "Galaxy Z Fold / Flip"
+        productKey: "Galaxy Fold / Flip"
       },
       {
-        id: "galaxy-zflip8", name: "Galaxy Z Flip8", tagline: "주름을 지운 컴팩트 폴드.",
-        img: "assets/galaxy-zflip8.png", priceFrom: "1,683,000",
+        id: "galaxy-zflip8", name: "Galaxy Flip8", tagline: "주름을 지운 컴팩트 폴드.",
+        img: "assets/galaxy-flip8-graphite.png", priceFrom: "1,683,000",
         spec: [["디스플레이", "메인 6.9″ FHD+ LTPO"], ["프로세서", "Snapdragon 8 Elite Gen 5"], ["카메라", "50MP 듀얼"], ["배터리", "4,174mAh(정격)"]],
         colors: ["그라파이트", "크림", "핑크", "민트"],
-        productKey: "Galaxy Z Fold / Flip"
+        productKey: "Galaxy Fold / Flip"
       }
     ]
   }
