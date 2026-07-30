@@ -24,7 +24,6 @@ const PROMO = {
   ],
   note: "지원금·할인 조건은 통신사 정책과 가입 유형에 따라 달라집니다. 최종 조건은 매장 상담에서 확정됩니다.",
   video: "/assets/foldable8-preorder.webm",
-  poster: "/assets/galaxy-fold8-lavender.png",
 };
 
 /* ---------- 상단 알림바 ---------- */
@@ -107,11 +106,10 @@ function PreorderSection() {
             <video
               ref={vRef}
               src={PROMO.video}
-              poster={PROMO.poster}
               muted
               loop
               playsInline
-              preload="metadata"
+              preload="auto"
               aria-label="갤럭시 폴더블 8 시리즈 사전예약 안내 영상"
             />
             {!playing &&
