@@ -455,7 +455,7 @@ function LocationSection() {
         <div className="location-grid">
           <Reveal>
             <a href="https://naver.me/FHOAX0ay" target="_blank" rel="noopener noreferrer" className="map-card map-card--link map-card--photo" aria-label="네이버 지도에서 공일모바일 마장역점 보기">
-              <img src="assets/store-map.png" alt="공일모바일 마장역점 위치 약도" className="map-photo"
+              <img src="assets/store-map.webp" alt="공일모바일 마장역점 위치 약도" className="map-photo"
               width="1149" height="829" loading="lazy" decoding="async" />
               <div className="map-cta">
                 <Icon name="map" size={14} />

@@ -14,12 +14,14 @@
 node tools/build-guides.mjs      # ① 가이드 데이터 → 정적 HTML (가이드 수정 시)
 node tools/build-used-pages.mjs  # ② 기종별 중고 시세 페이지 (시세 갱신 시)
 node tools/build-sitemap.mjs     # ③ 사이트맵 재생성 (페이지가 늘거나 줄면)
-node tools/build-app.mjs         # ④ ★ JSX 사전 컴파일 → /dist (.jsx를 고쳤으면 필수)
-node tools/stamp-assets.mjs      # ⑤ 내용 해시 ?v= 부착 + 루트 절대경로 강제
-node tools/deploy-gate.mjs       # ⑥ ★ 배포 게이트 — 실패하면 배포하지 않는다
+node tools/build-images.mjs      # ④ 새 이미지를 assets/에 넣었으면 WebP 변환 + 참조 갱신
+node tools/build-app.mjs         # ⑤ ★ JSX 사전 컴파일 → /dist (.jsx를 고쳤으면 필수)
+node tools/stamp-assets.mjs      # ⑥ 내용 해시 ?v= 부착 + 루트 절대경로 강제
+node tools/deploy-gate.mjs       # ⑦ ★ 배포 게이트 — 실패하면 배포하지 않는다
 export CLOUDFLARE_API_TOKEN=… CLOUDFLARE_ACCOUNT_ID=…   # 사장님에게 수령, 커밋 금지
 npx wrangler@3 pages deploy . --project-name=01mobile --branch=main --commit-dirty=true
-node tools/seo-check.mjs https://01mobile.co.kr   # ⑦ 배포 후 회귀 확인
+node tools/seo-check.mjs https://01mobile.co.kr   # ⑧ 배포 후 회귀 확인
+node tools/indexnow-ping.mjs                      # ⑨ 새 URL을 네이버·Bing에 통보
 ```
 
 ⚠️ **`.jsx`를 고쳤으면 반드시 ④를 돌려야 한다.** 브라우저는 이제 `.jsx`가 아니라

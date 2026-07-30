@@ -420,10 +420,10 @@ const PRODUCT_SPECS = {
       ["\uB9E4\uC7A5 \uAD6C\uB9E4\uAC00", "\uBC29\uBB38 \uC2DC \uACF5\uAC1C", "\uBC29\uBB38 \uC2DC \uACF5\uAC1C", "\uBC29\uBB38 \uC2DC \uACF5\uAC1C", "\uBC29\uBB38 \uC2DC \uACF5\uAC1C"]
     ],
     variants: [
-      { name: "iPhone 17", img: "assets/iphone-17.png" },
-      { name: "iPhone 17 Pro", img: "assets/iphone-17-pro.png" },
-      { name: "iPhone 17 Pro Max", img: "assets/iphone-17-pro-max.png" },
-      { name: "iPhone Air", img: "assets/iphone-air.png" }
+      { name: "iPhone 17", img: "assets/iphone-17.webp" },
+      { name: "iPhone 17 Pro", img: "assets/iphone-17-pro.webp" },
+      { name: "iPhone 17 Pro Max", img: "assets/iphone-17-pro-max.webp" },
+      { name: "iPhone Air", img: "assets/iphone-air.webp" }
     ]
   },
   "Galaxy S \uC2DC\uB9AC\uC988": {
@@ -439,9 +439,9 @@ const PRODUCT_SPECS = {
       ["\uB9E4\uC7A5 \uAD6C\uB9E4\uAC00", "\uBC29\uBB38 \uC2DC \uACF5\uAC1C", "\uBC29\uBB38 \uC2DC \uACF5\uAC1C", "\uBC29\uBB38 \uC2DC \uACF5\uAC1C"]
     ],
     variants: [
-      { name: "Galaxy S26", img: "assets/galaxy-s26.png" },
-      { name: "Galaxy S26+", img: "assets/galaxy-s26-plus.png" },
-      { name: "Galaxy S26 Ultra", img: "assets/galaxy-s26-ultra.png" }
+      { name: "Galaxy S26", img: "assets/galaxy-s26.webp" },
+      { name: "Galaxy S26+", img: "assets/galaxy-s26-plus.webp" },
+      { name: "Galaxy S26 Ultra", img: "assets/galaxy-s26-ultra.webp" }
     ]
   },
   "Galaxy Fold / Flip": {
@@ -457,9 +457,9 @@ const PRODUCT_SPECS = {
       ["\uB9E4\uC7A5 \uAD6C\uB9E4\uAC00", "\uBC29\uBB38 \uC2DC \uACF5\uAC1C", "\uBC29\uBB38 \uC2DC \uACF5\uAC1C"]
     ],
     variants: [
-      { name: "Galaxy Fold8 Ultra", img: "assets/galaxy-fold8-ultra-violet.png" },
-      { name: "Galaxy Fold8", img: "assets/galaxy-fold8-lavender.png" },
-      { name: "Galaxy Flip8", img: "assets/galaxy-flip8-graphite.png" }
+      { name: "Galaxy Fold8 Ultra", img: "assets/galaxy-fold8-ultra-violet.webp" },
+      { name: "Galaxy Fold8", img: "assets/galaxy-fold8-lavender.webp" },
+      { name: "Galaxy Flip8", img: "assets/galaxy-flip8-graphite.webp" }
     ]
   },
   "\uD6A8\uB3C4\uD3F0 / \uC2E4\uC18D\uD3F0": {
@@ -475,8 +475,8 @@ const PRODUCT_SPECS = {
       ["\uB9E4\uC7A5 \uAD6C\uB9E4\uAC00", "\uBC29\uBB38 \uC2DC \uACF5\uAC1C", "\uBC29\uBB38 \uC2DC \uACF5\uAC1C"]
     ],
     variants: [
-      { name: "\uC0BC\uC131 \uC2A4\uD0C0\uC77C \uD3F4\uB3542", img: "assets/galaxy-style-folder2.png" },
-      { name: "Galaxy A17", img: "assets/galaxy-a17.png" }
+      { name: "\uC0BC\uC131 \uC2A4\uD0C0\uC77C \uD3F4\uB3542", img: "assets/galaxy-style-folder2.webp" },
+      { name: "Galaxy A17", img: "assets/galaxy-a17.webp" }
     ]
   }
 };
@@ -638,25 +638,25 @@ function PhoneArt({ model }) {
   return /* @__PURE__ */ React.createElement(IPhoneArt, null);
 }
 function IPhoneArt() {
-  return /* @__PURE__ */ React.createElement("div", { className: "phone-art phone-art--photo" }, /* @__PURE__ */ React.createElement("div", { className: "iphone-stack" }, /* @__PURE__ */ React.createElement("img", { src: "assets/iphone-17.png", alt: "iPhone 17", className: "iphone-stack__back iphone-stack__left" }), /* @__PURE__ */ React.createElement("img", { src: "assets/iphone-17-pro.png", alt: "iPhone 17 Pro", className: "iphone-stack__back iphone-stack__right" }), /* @__PURE__ */ React.createElement("img", { src: "assets/iphone-air.png", alt: "iPhone Air", className: "iphone-stack__front" })));
+  return /* @__PURE__ */ React.createElement("div", { className: "phone-art phone-art--photo" }, /* @__PURE__ */ React.createElement("div", { className: "iphone-stack" }, /* @__PURE__ */ React.createElement("img", { src: "assets/iphone-17.webp", alt: "iPhone 17", className: "iphone-stack__back iphone-stack__left" }), /* @__PURE__ */ React.createElement("img", { src: "assets/iphone-17-pro.webp", alt: "iPhone 17 Pro", className: "iphone-stack__back iphone-stack__right" }), /* @__PURE__ */ React.createElement("img", { src: "assets/iphone-air.webp", alt: "iPhone Air", className: "iphone-stack__front" })));
 }
 function IPhoneArtSvg_unused() {
   return /* @__PURE__ */ React.createElement("div", { className: "phone-art" }, /* @__PURE__ */ React.createElement("svg", { viewBox: "0 0 140 220", xmlns: "http://www.w3.org/2000/svg", "aria-label": "iPhone" }, /* @__PURE__ */ React.createElement("defs", null, /* @__PURE__ */ React.createElement("linearGradient", { id: "ip-frame", x1: "0", x2: "0", y1: "0", y2: "1" }, /* @__PURE__ */ React.createElement("stop", { offset: "0", stopColor: "#6E7785" }), /* @__PURE__ */ React.createElement("stop", { offset: "0.45", stopColor: "#2E343F" }), /* @__PURE__ */ React.createElement("stop", { offset: "1", stopColor: "#454C58" })), /* @__PURE__ */ React.createElement("linearGradient", { id: "ip-screen", x1: "0.1", x2: "0.9", y1: "0", y2: "1" }, /* @__PURE__ */ React.createElement("stop", { offset: "0", stopColor: "#0B1640" }), /* @__PURE__ */ React.createElement("stop", { offset: "0.55", stopColor: "#1A2F66" }), /* @__PURE__ */ React.createElement("stop", { offset: "1", stopColor: "#3B1B60" })), /* @__PURE__ */ React.createElement("radialGradient", { id: "ip-glow", cx: "0.3", cy: "0.25", r: "0.8" }, /* @__PURE__ */ React.createElement("stop", { offset: "0", stopColor: "#FFB59E", stopOpacity: "0.55" }), /* @__PURE__ */ React.createElement("stop", { offset: "0.4", stopColor: "#7B6BFF", stopOpacity: "0.35" }), /* @__PURE__ */ React.createElement("stop", { offset: "1", stopColor: "#0B1640", stopOpacity: "0" })), /* @__PURE__ */ React.createElement("linearGradient", { id: "ip-glare", x1: "0", x2: "1", y1: "0", y2: "1" }, /* @__PURE__ */ React.createElement("stop", { offset: "0", stopColor: "#fff", stopOpacity: "0.18" }), /* @__PURE__ */ React.createElement("stop", { offset: "0.5", stopColor: "#fff", stopOpacity: "0" })), /* @__PURE__ */ React.createElement("filter", { id: "ip-shadow", x: "-30%", y: "-10%", width: "160%", height: "130%" }, /* @__PURE__ */ React.createElement("feDropShadow", { dx: "0", dy: "10", stdDeviation: "10", floodColor: "#0E2A6B", floodOpacity: "0.18" }))), /* @__PURE__ */ React.createElement("ellipse", { cx: "70", cy: "212", rx: "44", ry: "4", fill: "#0E2A6B", opacity: "0.10" }), /* @__PURE__ */ React.createElement("rect", { x: "14", y: "6", width: "112", height: "200", rx: "22", fill: "url(#ip-frame)", filter: "url(#ip-shadow)" }), /* @__PURE__ */ React.createElement("rect", { x: "14.5", y: "6.5", width: "111", height: "199", rx: "21.5", fill: "none", stroke: "rgba(255,255,255,0.22)", strokeWidth: "0.6" }), /* @__PURE__ */ React.createElement("rect", { x: "15.5", y: "7.5", width: "109", height: "197", rx: "20.5", fill: "none", stroke: "rgba(0,0,0,0.35)", strokeWidth: "0.5" }), /* @__PURE__ */ React.createElement("rect", { x: "19", y: "11", width: "102", height: "190", rx: "17", fill: "url(#ip-screen)" }), /* @__PURE__ */ React.createElement("rect", { x: "19", y: "11", width: "102", height: "190", rx: "17", fill: "url(#ip-glow)" }), /* @__PURE__ */ React.createElement("rect", { x: "19", y: "11", width: "102", height: "190", rx: "17", fill: "url(#ip-glare)", opacity: "0.6" }), /* @__PURE__ */ React.createElement("rect", { x: "56", y: "17", width: "28", height: "8.5", rx: "4.25", fill: "#000" }), /* @__PURE__ */ React.createElement("circle", { cx: "79.5", cy: "21.25", r: "1.6", fill: "#0A1428" }), /* @__PURE__ */ React.createElement("circle", { cx: "79.5", cy: "21.25", r: "0.6", fill: "#1F3A8A", opacity: "0.7" }), /* @__PURE__ */ React.createElement("text", { x: "70", y: "48", textAnchor: "middle", fontFamily: "-apple-system, SF Pro Display, system-ui", fontSize: "22", fontWeight: "600", fill: "#fff", opacity: "0.95" }, "9:41"), /* @__PURE__ */ React.createElement("rect", { x: "13", y: "36", width: "1.5", height: "9", rx: "0.5", fill: "rgba(0,0,0,0.5)" }), /* @__PURE__ */ React.createElement("rect", { x: "13", y: "54", width: "1.5", height: "22", rx: "0.5", fill: "rgba(0,0,0,0.5)" }), /* @__PURE__ */ React.createElement("rect", { x: "13", y: "80", width: "1.5", height: "22", rx: "0.5", fill: "rgba(0,0,0,0.5)" }), /* @__PURE__ */ React.createElement("rect", { x: "125.5", y: "60", width: "1.5", height: "30", rx: "0.5", fill: "rgba(0,0,0,0.5)" })));
 }
 function GalaxyArt() {
-  return /* @__PURE__ */ React.createElement("div", { className: "phone-art phone-art--photo" }, /* @__PURE__ */ React.createElement("div", { className: "iphone-stack galaxy-stack" }, /* @__PURE__ */ React.createElement("img", { src: "assets/galaxy-s26-ultra.png", alt: "Galaxy S26 Ultra", className: "iphone-stack__back iphone-stack__left" }), /* @__PURE__ */ React.createElement("img", { src: "assets/galaxy-s26-plus.png", alt: "Galaxy S26+", className: "iphone-stack__back iphone-stack__right" }), /* @__PURE__ */ React.createElement("img", { src: "assets/galaxy-s26.png", alt: "Galaxy S26", className: "iphone-stack__front" })));
+  return /* @__PURE__ */ React.createElement("div", { className: "phone-art phone-art--photo" }, /* @__PURE__ */ React.createElement("div", { className: "iphone-stack galaxy-stack" }, /* @__PURE__ */ React.createElement("img", { src: "assets/galaxy-s26-ultra.webp", alt: "Galaxy S26 Ultra", className: "iphone-stack__back iphone-stack__left" }), /* @__PURE__ */ React.createElement("img", { src: "assets/galaxy-s26-plus.webp", alt: "Galaxy S26+", className: "iphone-stack__back iphone-stack__right" }), /* @__PURE__ */ React.createElement("img", { src: "assets/galaxy-s26.webp", alt: "Galaxy S26", className: "iphone-stack__front" })));
 }
 function GalaxyArtSvg_unused() {
   return /* @__PURE__ */ React.createElement("div", { className: "phone-art" }, /* @__PURE__ */ React.createElement("svg", { viewBox: "0 0 140 220", xmlns: "http://www.w3.org/2000/svg", "aria-label": "Galaxy" }, /* @__PURE__ */ React.createElement("defs", null, /* @__PURE__ */ React.createElement("linearGradient", { id: "gx-frame", x1: "0", x2: "0", y1: "0", y2: "1" }, /* @__PURE__ */ React.createElement("stop", { offset: "0", stopColor: "#3D3550" }), /* @__PURE__ */ React.createElement("stop", { offset: "0.5", stopColor: "#1B1530" }), /* @__PURE__ */ React.createElement("stop", { offset: "1", stopColor: "#2A2240" })), /* @__PURE__ */ React.createElement("linearGradient", { id: "gx-screen", x1: "0", x2: "1", y1: "0", y2: "1" }, /* @__PURE__ */ React.createElement("stop", { offset: "0", stopColor: "#0F0826" }), /* @__PURE__ */ React.createElement("stop", { offset: "0.6", stopColor: "#1F1448" }), /* @__PURE__ */ React.createElement("stop", { offset: "1", stopColor: "#3B1F70" })), /* @__PURE__ */ React.createElement("radialGradient", { id: "gx-glow", cx: "0.7", cy: "0.8", r: "0.7" }, /* @__PURE__ */ React.createElement("stop", { offset: "0", stopColor: "#7C5BFF", stopOpacity: "0.6" }), /* @__PURE__ */ React.createElement("stop", { offset: "0.5", stopColor: "#4361EE", stopOpacity: "0.3" }), /* @__PURE__ */ React.createElement("stop", { offset: "1", stopColor: "#0F0826", stopOpacity: "0" })), /* @__PURE__ */ React.createElement("linearGradient", { id: "gx-glare", x1: "0", x2: "1", y1: "0", y2: "1" }, /* @__PURE__ */ React.createElement("stop", { offset: "0", stopColor: "#fff", stopOpacity: "0.16" }), /* @__PURE__ */ React.createElement("stop", { offset: "0.4", stopColor: "#fff", stopOpacity: "0" })), /* @__PURE__ */ React.createElement("filter", { id: "gx-shadow", x: "-30%", y: "-10%", width: "160%", height: "130%" }, /* @__PURE__ */ React.createElement("feDropShadow", { dx: "0", dy: "10", stdDeviation: "10", floodColor: "#1A0E4D", floodOpacity: "0.18" }))), /* @__PURE__ */ React.createElement("ellipse", { cx: "70", cy: "212", rx: "44", ry: "4", fill: "#1A0E4D", opacity: "0.12" }), /* @__PURE__ */ React.createElement("rect", { x: "14", y: "6", width: "112", height: "200", rx: "18", fill: "url(#gx-frame)", filter: "url(#gx-shadow)" }), /* @__PURE__ */ React.createElement("rect", { x: "14.5", y: "6.5", width: "111", height: "199", rx: "17.5", fill: "none", stroke: "rgba(255,255,255,0.18)", strokeWidth: "0.6" }), /* @__PURE__ */ React.createElement("rect", { x: "17", y: "9", width: "106", height: "194", rx: "15", fill: "url(#gx-screen)" }), /* @__PURE__ */ React.createElement("rect", { x: "17", y: "9", width: "106", height: "194", rx: "15", fill: "url(#gx-glow)" }), /* @__PURE__ */ React.createElement("rect", { x: "17", y: "9", width: "106", height: "194", rx: "15", fill: "url(#gx-glare)", opacity: "0.55" }), /* @__PURE__ */ React.createElement("circle", { cx: "70", cy: "18", r: "2.6", fill: "#000" }), /* @__PURE__ */ React.createElement("circle", { cx: "70", cy: "18", r: "1.3", fill: "#0E1430" }), /* @__PURE__ */ React.createElement("circle", { cx: "69.4", cy: "17.4", r: "0.5", fill: "#3D5BFF", opacity: "0.7" }), /* @__PURE__ */ React.createElement("text", { x: "70", y: "55", textAnchor: "middle", fontFamily: "Samsung Sharp Sans, -apple-system, system-ui", fontSize: "22", fontWeight: "600", fill: "#fff", opacity: "0.95" }, "9:41"), /* @__PURE__ */ React.createElement("rect", { x: "125.5", y: "50", width: "1.5", height: "14", rx: "0.5", fill: "rgba(0,0,0,0.5)" }), /* @__PURE__ */ React.createElement("rect", { x: "125.5", y: "70", width: "1.5", height: "26", rx: "0.5", fill: "rgba(0,0,0,0.5)" })));
 }
 function FoldArt() {
-  return /* @__PURE__ */ React.createElement("div", { className: "phone-art phone-art--photo" }, /* @__PURE__ */ React.createElement("div", { className: "iphone-stack fold-stack" }, /* @__PURE__ */ React.createElement("img", { src: "assets/galaxy-fold8-ultra-violet.png", alt: "Galaxy Fold8 Ultra", className: "iphone-stack__back iphone-stack__left" }), /* @__PURE__ */ React.createElement("img", { src: "assets/galaxy-flip8-graphite.png", alt: "Galaxy Flip8", className: "iphone-stack__front" })));
+  return /* @__PURE__ */ React.createElement("div", { className: "phone-art phone-art--photo" }, /* @__PURE__ */ React.createElement("div", { className: "iphone-stack fold-stack" }, /* @__PURE__ */ React.createElement("img", { src: "assets/galaxy-fold8-ultra-violet.webp", alt: "Galaxy Fold8 Ultra", className: "iphone-stack__back iphone-stack__left" }), /* @__PURE__ */ React.createElement("img", { src: "assets/galaxy-flip8-graphite.webp", alt: "Galaxy Flip8", className: "iphone-stack__front" })));
 }
 function FoldArtSvg_unused() {
   return /* @__PURE__ */ React.createElement("div", { className: "phone-art" }, /* @__PURE__ */ React.createElement("svg", { viewBox: "0 0 220 200", xmlns: "http://www.w3.org/2000/svg", "aria-label": "Galaxy Fold" }, /* @__PURE__ */ React.createElement("defs", null, /* @__PURE__ */ React.createElement("linearGradient", { id: "fd-frame", x1: "0", x2: "0", y1: "0", y2: "1" }, /* @__PURE__ */ React.createElement("stop", { offset: "0", stopColor: "#4A5165" }), /* @__PURE__ */ React.createElement("stop", { offset: "0.5", stopColor: "#1F2535" }), /* @__PURE__ */ React.createElement("stop", { offset: "1", stopColor: "#2D3447" })), /* @__PURE__ */ React.createElement("linearGradient", { id: "fd-screen-l", x1: "0", x2: "1", y1: "0", y2: "1" }, /* @__PURE__ */ React.createElement("stop", { offset: "0", stopColor: "#0B1640" }), /* @__PURE__ */ React.createElement("stop", { offset: "1", stopColor: "#1F2F66" })), /* @__PURE__ */ React.createElement("linearGradient", { id: "fd-screen-r", x1: "0", x2: "1", y1: "0", y2: "1" }, /* @__PURE__ */ React.createElement("stop", { offset: "0", stopColor: "#1A2658" }), /* @__PURE__ */ React.createElement("stop", { offset: "1", stopColor: "#3D1F70" })), /* @__PURE__ */ React.createElement("radialGradient", { id: "fd-glow", cx: "0.5", cy: "0.6", r: "0.7" }, /* @__PURE__ */ React.createElement("stop", { offset: "0", stopColor: "#7B6BFF", stopOpacity: "0.45" }), /* @__PURE__ */ React.createElement("stop", { offset: "1", stopColor: "#0B1640", stopOpacity: "0" })), /* @__PURE__ */ React.createElement("linearGradient", { id: "fd-crease", x1: "0", x2: "0", y1: "0", y2: "1" }, /* @__PURE__ */ React.createElement("stop", { offset: "0", stopColor: "rgba(255,255,255,0.06)" }), /* @__PURE__ */ React.createElement("stop", { offset: "0.5", stopColor: "rgba(0,0,0,0.45)" }), /* @__PURE__ */ React.createElement("stop", { offset: "1", stopColor: "rgba(255,255,255,0.06)" })), /* @__PURE__ */ React.createElement("filter", { id: "fd-shadow", x: "-20%", y: "-10%", width: "140%", height: "130%" }, /* @__PURE__ */ React.createElement("feDropShadow", { dx: "0", dy: "10", stdDeviation: "10", floodColor: "#0E2A6B", floodOpacity: "0.2" }))), /* @__PURE__ */ React.createElement("ellipse", { cx: "110", cy: "190", rx: "80", ry: "4", fill: "#0E2A6B", opacity: "0.10" }), /* @__PURE__ */ React.createElement("rect", { x: "12", y: "14", width: "196", height: "172", rx: "12", fill: "url(#fd-frame)", filter: "url(#fd-shadow)" }), /* @__PURE__ */ React.createElement("rect", { x: "12.5", y: "14.5", width: "195", height: "171", rx: "11.5", fill: "none", stroke: "rgba(255,255,255,0.18)", strokeWidth: "0.6" }), /* @__PURE__ */ React.createElement("rect", { x: "17", y: "19", width: "91", height: "162", rx: "8", fill: "url(#fd-screen-l)" }), /* @__PURE__ */ React.createElement("rect", { x: "17", y: "19", width: "91", height: "162", rx: "8", fill: "url(#fd-glow)", opacity: "0.7" }), /* @__PURE__ */ React.createElement("rect", { x: "112", y: "19", width: "91", height: "162", rx: "8", fill: "url(#fd-screen-r)" }), /* @__PURE__ */ React.createElement("rect", { x: "112", y: "19", width: "91", height: "162", rx: "8", fill: "url(#fd-glow)", opacity: "0.7" }), /* @__PURE__ */ React.createElement("rect", { x: "108", y: "19", width: "4", height: "162", fill: "url(#fd-crease)" }), /* @__PURE__ */ React.createElement("circle", { cx: "158", cy: "28", r: "2.2", fill: "#000" }), /* @__PURE__ */ React.createElement("g", { opacity: "0.85" }, /* @__PURE__ */ React.createElement("rect", { x: "32", y: "40", width: "14", height: "14", rx: "3.5", fill: "#FF7A59" }), /* @__PURE__ */ React.createElement("rect", { x: "52", y: "40", width: "14", height: "14", rx: "3.5", fill: "#5BD08A" }), /* @__PURE__ */ React.createElement("rect", { x: "72", y: "40", width: "14", height: "14", rx: "3.5", fill: "#FFD15B" }), /* @__PURE__ */ React.createElement("rect", { x: "32", y: "60", width: "14", height: "14", rx: "3.5", fill: "#5B9BFF" }), /* @__PURE__ */ React.createElement("rect", { x: "52", y: "60", width: "14", height: "14", rx: "3.5", fill: "#C56BFF" }), /* @__PURE__ */ React.createElement("rect", { x: "72", y: "60", width: "14", height: "14", rx: "3.5", fill: "#FF6B9D" })), /* @__PURE__ */ React.createElement("rect", { x: "125", y: "100", width: "65", height: "40", rx: "6", fill: "rgba(255,255,255,0.10)" }), /* @__PURE__ */ React.createElement("rect", { x: "131", y: "108", width: "22", height: "3", rx: "1.5", fill: "rgba(255,255,255,0.55)" }), /* @__PURE__ */ React.createElement("rect", { x: "131", y: "116", width: "40", height: "2.5", rx: "1.25", fill: "rgba(255,255,255,0.30)" }), /* @__PURE__ */ React.createElement("rect", { x: "131", y: "123", width: "34", height: "2.5", rx: "1.25", fill: "rgba(255,255,255,0.30)" }), /* @__PURE__ */ React.createElement("rect", { x: "131", y: "130", width: "28", height: "2.5", rx: "1.25", fill: "rgba(255,255,255,0.30)" })));
 }
 function SeniorArt() {
-  return /* @__PURE__ */ React.createElement("div", { className: "phone-art phone-art--photo" }, /* @__PURE__ */ React.createElement("div", { className: "iphone-stack senior-stack" }, /* @__PURE__ */ React.createElement("img", { src: "assets/senior-phone.png", alt: "\uC2E4\uC18D\uD3F0", className: "iphone-stack__front" })));
+  return /* @__PURE__ */ React.createElement("div", { className: "phone-art phone-art--photo" }, /* @__PURE__ */ React.createElement("div", { className: "iphone-stack senior-stack" }, /* @__PURE__ */ React.createElement("img", { src: "assets/senior-phone.webp", alt: "\uC2E4\uC18D\uD3F0", className: "iphone-stack__front" })));
 }
 function SeniorArtSvg_unused() {
   return /* @__PURE__ */ React.createElement("div", { className: "phone-art" }, /* @__PURE__ */ React.createElement("svg", { viewBox: "0 0 140 220", xmlns: "http://www.w3.org/2000/svg", "aria-label": "\uD6A8\uB3C4\uD3F0" }, /* @__PURE__ */ React.createElement("defs", null, /* @__PURE__ */ React.createElement("linearGradient", { id: "sr-frame", x1: "0", x2: "0", y1: "0", y2: "1" }, /* @__PURE__ */ React.createElement("stop", { offset: "0", stopColor: "#F6F8FC" }), /* @__PURE__ */ React.createElement("stop", { offset: "0.5", stopColor: "#D8DEEA" }), /* @__PURE__ */ React.createElement("stop", { offset: "1", stopColor: "#E4E9F2" })), /* @__PURE__ */ React.createElement("linearGradient", { id: "sr-screen", x1: "0", x2: "0", y1: "0", y2: "1" }, /* @__PURE__ */ React.createElement("stop", { offset: "0", stopColor: "#FCFDFF" }), /* @__PURE__ */ React.createElement("stop", { offset: "1", stopColor: "#EAF1FB" })), /* @__PURE__ */ React.createElement("filter", { id: "sr-shadow", x: "-30%", y: "-10%", width: "160%", height: "130%" }, /* @__PURE__ */ React.createElement("feDropShadow", { dx: "0", dy: "10", stdDeviation: "10", floodColor: "#1A3A8A", floodOpacity: "0.14" }))), /* @__PURE__ */ React.createElement("ellipse", { cx: "70", cy: "212", rx: "44", ry: "4", fill: "#1A3A8A", opacity: "0.10" }), /* @__PURE__ */ React.createElement("rect", { x: "14", y: "6", width: "112", height: "200", rx: "22", fill: "url(#sr-frame)", filter: "url(#sr-shadow)" }), /* @__PURE__ */ React.createElement("rect", { x: "14.5", y: "6.5", width: "111", height: "199", rx: "21.5", fill: "none", stroke: "rgba(0,0,0,0.08)", strokeWidth: "0.6" }), /* @__PURE__ */ React.createElement("rect", { x: "20", y: "22", width: "100", height: "140", rx: "10", fill: "url(#sr-screen)" }), /* @__PURE__ */ React.createElement("rect", { x: "20", y: "22", width: "100", height: "140", rx: "10", fill: "none", stroke: "rgba(0,108,255,0.10)", strokeWidth: "0.6" }), /* @__PURE__ */ React.createElement("text", { x: "70", y: "55", textAnchor: "middle", fontFamily: "-apple-system, system-ui", fontSize: "20", fontWeight: "700", fill: "#0E2A6B" }, "10:24"), /* @__PURE__ */ React.createElement("text", { x: "70", y: "70", textAnchor: "middle", fontFamily: "-apple-system, system-ui", fontSize: "9", fontWeight: "500", fill: "#5C6B85" }, "\uD654\uC694\uC77C"), /* @__PURE__ */ React.createElement("g", null, /* @__PURE__ */ React.createElement("rect", { x: "28", y: "82", width: "36", height: "32", rx: "8", fill: "#006CFF" }), /* @__PURE__ */ React.createElement("path", { d: "M 38 92 L 46 92 L 48 96 L 46 100 L 50 104 L 54 102 L 56 110 L 50 110 Q 38 110 38 92 Z", fill: "#fff", opacity: "0.95", transform: "translate(-1, 0)" }), /* @__PURE__ */ React.createElement("text", { x: "46", y: "124", textAnchor: "middle", fontFamily: "-apple-system", fontSize: "7", fontWeight: "600", fill: "#0E2A6B" }, "\uC804\uD654"), /* @__PURE__ */ React.createElement("rect", { x: "76", y: "82", width: "36", height: "32", rx: "8", fill: "#5BD08A" }), /* @__PURE__ */ React.createElement("rect", { x: "84", y: "91", width: "20", height: "14", rx: "2", fill: "#fff" }), /* @__PURE__ */ React.createElement("path", { d: "M 88 105 L 88 110 L 93 105 Z", fill: "#fff" }), /* @__PURE__ */ React.createElement("text", { x: "94", y: "124", textAnchor: "middle", fontFamily: "-apple-system", fontSize: "7", fontWeight: "600", fill: "#0E2A6B" }, "\uBA54\uC2DC\uC9C0")), /* @__PURE__ */ React.createElement("g", null, /* @__PURE__ */ React.createElement("rect", { x: "28", y: "135", width: "36", height: "20", rx: "6", fill: "#EAF2FF", stroke: "#B7CFFF", strokeWidth: "0.6" }), /* @__PURE__ */ React.createElement("text", { x: "46", y: "148", textAnchor: "middle", fontFamily: "-apple-system", fontSize: "8", fontWeight: "700", fill: "#006CFF" }, "\uCE74\uCE74\uC624"), /* @__PURE__ */ React.createElement("rect", { x: "76", y: "135", width: "36", height: "20", rx: "6", fill: "#EAF2FF", stroke: "#B7CFFF", strokeWidth: "0.6" }), /* @__PURE__ */ React.createElement("text", { x: "94", y: "148", textAnchor: "middle", fontFamily: "-apple-system", fontSize: "8", fontWeight: "700", fill: "#006CFF" }, "\uC0AC\uC9C4")), /* @__PURE__ */ React.createElement("circle", { cx: "70", cy: "183", r: "11", fill: "#fff", stroke: "rgba(0,0,0,0.12)", strokeWidth: "0.8" }), /* @__PURE__ */ React.createElement("rect", { x: "65", y: "181", width: "10", height: "4", rx: "2", fill: "none", stroke: "rgba(0,0,0,0.25)", strokeWidth: "0.8" })));
@@ -728,18 +728,18 @@ const SHOWCASE = {
         id: "iphone-17",
         name: "iPhone 17",
         tagline: "\uAE30\uBCF8\uAE30\uC5D0 \uCDA9\uC2E4\uD55C \uBA54\uC778 \uBAA8\uB378.",
-        img: "assets/iphone-17-lavender.png",
+        img: "assets/iphone-17-lavender.webp",
         priceFrom: "1,287,000",
         spec: [["\uB514\uC2A4\uD50C\uB808\uC774", "6.3\u2033 Super Retina XDR"], ["\uD504\uB85C\uC138\uC11C", "A19"], ["\uCE74\uBA54\uB77C", "48MP \uB4C0\uC5BC"], ["\uBC30\uD130\uB9AC", "\uC601\uC0C1 27\uC2DC\uAC04"]],
         colors: ["\uB77C\uBCA4\uB354", "\uC138\uC774\uC9C0", "\uBBF8\uC2A4\uD2B8 \uBE14\uB8E8", "\uD654\uC774\uD2B8", "\uBE14\uB799"],
-        colorImages: { "\uB77C\uBCA4\uB354": "assets/iphone-17-lavender.png" },
+        colorImages: { "\uB77C\uBCA4\uB354": "assets/iphone-17-lavender.webp" },
         productKey: "iPhone \uC2DC\uB9AC\uC988"
       },
       {
         id: "iphone-17-pro",
         name: "iPhone 17 Pro",
         tagline: "\uD504\uB85C \uB4F1\uAE09 \uCE74\uBA54\uB77C, \uD2F0\uD0C0\uB284 \uD504\uB808\uC784.",
-        img: "assets/iphone-17-pro.png",
+        img: "assets/iphone-17-pro.webp",
         priceFrom: "1,782,000",
         spec: [["\uB514\uC2A4\uD50C\uB808\uC774", "6.3\u2033 ProMotion 120Hz"], ["\uD504\uB85C\uC138\uC11C", "A19 Pro"], ["\uCE74\uBA54\uB77C", "48MP \uD2B8\uB9AC\uD50C + 5\xD7 \uB9DD\uC6D0"], ["\uBC30\uD130\uB9AC", "\uC601\uC0C1 33\uC2DC\uAC04"]],
         colors: ["\uC2E4\uBC84", "\uB525 \uBE14\uB8E8", "\uCF54\uC2A4\uBBF9 \uC624\uB80C\uC9C0"],
@@ -749,7 +749,7 @@ const SHOWCASE = {
         id: "iphone-17-pro-max",
         name: "iPhone 17 Pro Max",
         tagline: "\uAC00\uC7A5 \uD070 \uD654\uBA74, \uAC00\uC7A5 \uAE34 \uBC30\uD130\uB9AC.",
-        img: "assets/iphone-17-pro-max.png",
+        img: "assets/iphone-17-pro-max.webp",
         priceFrom: "1,980,000",
         spec: [["\uB514\uC2A4\uD50C\uB808\uC774", "6.9\u2033 ProMotion 120Hz"], ["\uD504\uB85C\uC138\uC11C", "A19 Pro"], ["\uCE74\uBA54\uB77C", "48MP \uD2B8\uB9AC\uD50C + 5\xD7 \uB9DD\uC6D0"], ["\uBC30\uD130\uB9AC", "\uC601\uC0C1 39\uC2DC\uAC04"]],
         colors: ["\uC2E4\uBC84", "\uB525 \uBE14\uB8E8", "\uCF54\uC2A4\uBBF9 \uC624\uB80C\uC9C0"],
@@ -759,7 +759,7 @@ const SHOWCASE = {
         id: "iphone-air",
         name: "iPhone Air",
         tagline: "\uB450\uAED8 5.6mm, 165g. \uCD08\uACBD\uB7C9.",
-        img: "assets/iphone-air.png",
+        img: "assets/iphone-air.webp",
         priceFrom: "1,584,000",
         spec: [["\uB514\uC2A4\uD50C\uB808\uC774", "6.5\u2033 Super Retina XDR"], ["\uD504\uB85C\uC138\uC11C", "A19 Pro"], ["\uCE74\uBA54\uB77C", "48MP \uB4C0\uC5BC"], ["\uBC30\uD130\uB9AC", "\uC601\uC0C1 27\uC2DC\uAC04"]],
         colors: ["\uC2A4\uCE74\uC774 \uBE14\uB8E8", "\uB77C\uC774\uD2B8 \uACE8\uB4DC", "\uD074\uB77C\uC6B0\uB4DC \uD654\uC774\uD2B8", "\uC2A4\uD398\uC774\uC2A4 \uBE14\uB799"],
@@ -769,7 +769,7 @@ const SHOWCASE = {
         id: "iphone-17e",
         name: "iPhone 17e",
         tagline: "\uD569\uB9AC\uC801 \uAC00\uACA9, \uD575\uC2EC\uB9CC \uB2F4\uC740 \uBAA8\uB378.",
-        img: "assets/iphone-17e.png",
+        img: "assets/iphone-17e.webp",
         priceFrom: "850,000",
         spec: [["\uB514\uC2A4\uD50C\uB808\uC774", "6.1\u2033 Liquid Retina"], ["\uD504\uB85C\uC138\uC11C", "A19"], ["\uCE74\uBA54\uB77C", "48MP \uC2F1\uAE00"], ["\uBC30\uD130\uB9AC", "\uC601\uC0C1 22\uC2DC\uAC04"]],
         colors: ["\uD654\uC774\uD2B8", "\uBE14\uB799", "\uD551\uD06C"],
@@ -785,7 +785,7 @@ const SHOWCASE = {
         id: "galaxy-s26-ultra",
         name: "Galaxy S26 Ultra",
         tagline: "200MP \uCE74\uBA54\uB77C, S\uD39C \uB0B4\uC7A5.",
-        img: "assets/galaxy-s26-ultra.png",
+        img: "assets/galaxy-s26-ultra.webp",
         priceFrom: "1,797,400",
         spec: [["\uB514\uC2A4\uD50C\uB808\uC774", "6.9\u2033 QHD+ 120Hz"], ["\uD504\uB85C\uC138\uC11C", "Snapdragon 8 Elite"], ["\uCE74\uBA54\uB77C", "200MP \uCFFC\uB4DC"], ["\uBC30\uD130\uB9AC", "5,000mAh"]],
         colors: ["\uCF54\uBC1C\uD2B8 \uBC14\uC774\uC62C\uB81B", "\uC2A4\uCE74\uC774 \uBE14\uB8E8", "\uBE14\uB799", "\uD654\uC774\uD2B8"],
@@ -795,7 +795,7 @@ const SHOWCASE = {
         id: "galaxy-s26-plus",
         name: "Galaxy S26+",
         tagline: "\uD55C \uC190\uC5D0 \uC7A1\uD788\uB294 \uD504\uB9AC\uBBF8\uC5C4.",
-        img: "assets/galaxy-s26-plus.png",
+        img: "assets/galaxy-s26-plus.webp",
         priceFrom: "1,452,000",
         spec: [["\uB514\uC2A4\uD50C\uB808\uC774", "6.7\u2033 QHD+ 120Hz"], ["\uD504\uB85C\uC138\uC11C", "Snapdragon 8 Elite"], ["\uCE74\uBA54\uB77C", "50MP \uD2B8\uB9AC\uD50C"], ["\uBC30\uD130\uB9AC", "4,900mAh"]],
         colors: ["\uCF54\uBC1C\uD2B8 \uBC14\uC774\uC62C\uB81B", "\uC2A4\uCE74\uC774 \uBE14\uB8E8", "\uBE14\uB799", "\uD654\uC774\uD2B8"],
@@ -805,7 +805,7 @@ const SHOWCASE = {
         id: "galaxy-s26",
         name: "Galaxy S26",
         tagline: "\uCF64\uD329\uD2B8 \uD50C\uB798\uADF8\uC2ED.",
-        img: "assets/galaxy-s26.png",
+        img: "assets/galaxy-s26.webp",
         priceFrom: "1,254,000",
         spec: [["\uB514\uC2A4\uD50C\uB808\uC774", "6.2\u2033 FHD+ 120Hz"], ["\uD504\uB85C\uC138\uC11C", "Snapdragon 8 Elite"], ["\uCE74\uBA54\uB77C", "50MP \uD2B8\uB9AC\uD50C"], ["\uBC30\uD130\uB9AC", "4,000mAh"]],
         colors: ["\uCF54\uBC1C\uD2B8 \uBC14\uC774\uC62C\uB81B", "\uC2A4\uCE74\uC774 \uBE14\uB8E8", "\uBE14\uB799", "\uD654\uC774\uD2B8"],
@@ -815,7 +815,7 @@ const SHOWCASE = {
         id: "galaxy-zfold8-ultra",
         name: "Galaxy Fold8 Ultra",
         tagline: "8\uD615 \uB300\uD654\uBA74\uACFC 200MP \u2014 \uD3F4\uB4DC\uC758 \uC815\uC810.",
-        img: "assets/galaxy-fold8-ultra-violet.png",
+        img: "assets/galaxy-fold8-ultra-violet.webp",
         priceFrom: "2,577,300",
         spec: [["\uB514\uC2A4\uD50C\uB808\uC774", "\uBA54\uC778 8.0\u2033 (2504\xD72256)"], ["\uD504\uB85C\uC138\uC11C", "Snapdragon 8 Elite Gen 5"], ["\uCE74\uBA54\uB77C", "200MP \uD2B8\uB9AC\uD50C + 10MP \uB9DD\uC6D0"], ["\uBC30\uD130\uB9AC", "5,000mAh \xB7 215g"]],
         colors: ["\uADF8\uB77C\uD30C\uC774\uD2B8", "\uD06C\uB9BC", "\uBC14\uC774\uC62C\uB81B \uC250\uB3C4\uC6B0", "\uADF8\uB9B0 \uC250\uB3C4\uC6B0"],
@@ -825,7 +825,7 @@ const SHOWCASE = {
         id: "galaxy-zfold8",
         name: "Galaxy Fold8",
         tagline: "\uAF49 \uCC2C 4:3 \uD654\uBA74, \uC5ED\uB300 \uAC00\uC7A5 \uAC00\uBCBC\uC6B4 \uD3F4\uB4DC.",
-        img: "assets/galaxy-fold8-lavender.png",
+        img: "assets/galaxy-fold8-lavender.webp",
         priceFrom: "2,278,100",
         spec: [["\uB514\uC2A4\uD50C\uB808\uC774", "\uBA54\uC778 7.6\u2033 4:3 \uBE44\uC728"], ["\uD504\uB85C\uC138\uC11C", "Snapdragon 8 Elite Gen 5"], ["\uCE74\uBA54\uB77C", "50MP \uB4C0\uC5BC"], ["\uBC30\uD130\uB9AC", "4,800mAh \xB7 201g"]],
         colors: ["\uADF8\uB77C\uD30C\uC774\uD2B8", "\uD06C\uB9BC", "\uB77C\uBCA4\uB354", "\uD53C\uC2A4\uD0C0\uCE58\uC624"],
@@ -835,7 +835,7 @@ const SHOWCASE = {
         id: "galaxy-zflip8",
         name: "Galaxy Flip8",
         tagline: "\uC8FC\uB984\uC744 \uC9C0\uC6B4 \uCEF4\uD329\uD2B8 \uD3F4\uB4DC.",
-        img: "assets/galaxy-flip8-graphite.png",
+        img: "assets/galaxy-flip8-graphite.webp",
         priceFrom: "1,683,000",
         spec: [["\uB514\uC2A4\uD50C\uB808\uC774", "\uBA54\uC778 6.9\u2033 FHD+ LTPO"], ["\uD504\uB85C\uC138\uC11C", "Snapdragon 8 Elite Gen 5"], ["\uCE74\uBA54\uB77C", "50MP \uB4C0\uC5BC"], ["\uBC30\uD130\uB9AC", "4,174mAh(\uC815\uACA9)"]],
         colors: ["\uADF8\uB77C\uD30C\uC774\uD2B8", "\uD06C\uB9BC", "\uD551\uD06C", "\uBBFC\uD2B8"],
@@ -1410,7 +1410,7 @@ function LocationSection() {
   return /* @__PURE__ */ React.createElement("section", { className: "section", id: "location" }, /* @__PURE__ */ React.createElement("div", { className: "container" }, /* @__PURE__ */ React.createElement(Reveal, null, /* @__PURE__ */ React.createElement("span", { className: "eyebrow" }, /* @__PURE__ */ React.createElement("span", { className: "dot" }), "LOCATION"), /* @__PURE__ */ React.createElement("h2", { className: "section-title" }, "\uC624\uC2DC\uB294 \uAE38"), /* @__PURE__ */ React.createElement("p", { className: "section-sub" }, "\uB9C8\uC7A5\uC5ED 2\uBC88 \uCD9C\uAD6C \uB3C4\uBCF4 \uC57D 1\uBD84 \uAC70\uB9AC. \uCC98\uC74C \uC624\uC154\uB3C4 \uC27D\uAC8C \uCC3E\uC73C\uC2E4 \uC218 \uC788\uC2B5\uB2C8\uB2E4.")), /* @__PURE__ */ React.createElement("div", { className: "location-grid" }, /* @__PURE__ */ React.createElement(Reveal, null, /* @__PURE__ */ React.createElement("a", { href: "https://naver.me/FHOAX0ay", target: "_blank", rel: "noopener noreferrer", className: "map-card map-card--link map-card--photo", "aria-label": "\uB124\uC774\uBC84 \uC9C0\uB3C4\uC5D0\uC11C \uACF5\uC77C\uBAA8\uBC14\uC77C \uB9C8\uC7A5\uC5ED\uC810 \uBCF4\uAE30" }, /* @__PURE__ */ React.createElement(
     "img",
     {
-      src: "assets/store-map.png",
+      src: "assets/store-map.webp",
       alt: "\uACF5\uC77C\uBAA8\uBC14\uC77C \uB9C8\uC7A5\uC5ED\uC810 \uC704\uCE58 \uC57D\uB3C4",
       className: "map-photo",
       width: "1149",

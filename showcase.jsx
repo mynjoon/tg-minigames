@@ -28,36 +28,36 @@ const SHOWCASE = {
     models: [
       {
         id: "iphone-17", name: "iPhone 17", tagline: "기본기에 충실한 메인 모델.",
-        img: "assets/iphone-17-lavender.png", priceFrom: "1,287,000",
+        img: "assets/iphone-17-lavender.webp", priceFrom: "1,287,000",
         spec: [["디스플레이", "6.3″ Super Retina XDR"], ["프로세서", "A19"], ["카메라", "48MP 듀얼"], ["배터리", "영상 27시간"]],
         colors: ["라벤더", "세이지", "미스트 블루", "화이트", "블랙"],
-        colorImages: { "라벤더": "assets/iphone-17-lavender.png" },
+        colorImages: { "라벤더": "assets/iphone-17-lavender.webp" },
         productKey: "iPhone 시리즈"
       },
       {
         id: "iphone-17-pro", name: "iPhone 17 Pro", tagline: "프로 등급 카메라, 티타늄 프레임.",
-        img: "assets/iphone-17-pro.png", priceFrom: "1,782,000",
+        img: "assets/iphone-17-pro.webp", priceFrom: "1,782,000",
         spec: [["디스플레이", "6.3″ ProMotion 120Hz"], ["프로세서", "A19 Pro"], ["카메라", "48MP 트리플 + 5× 망원"], ["배터리", "영상 33시간"]],
         colors: ["실버", "딥 블루", "코스믹 오렌지"],
         productKey: "iPhone 시리즈"
       },
       {
         id: "iphone-17-pro-max", name: "iPhone 17 Pro Max", tagline: "가장 큰 화면, 가장 긴 배터리.",
-        img: "assets/iphone-17-pro-max.png", priceFrom: "1,980,000",
+        img: "assets/iphone-17-pro-max.webp", priceFrom: "1,980,000",
         spec: [["디스플레이", "6.9″ ProMotion 120Hz"], ["프로세서", "A19 Pro"], ["카메라", "48MP 트리플 + 5× 망원"], ["배터리", "영상 39시간"]],
         colors: ["실버", "딥 블루", "코스믹 오렌지"],
         productKey: "iPhone 시리즈"
       },
       {
         id: "iphone-air", name: "iPhone Air", tagline: "두께 5.6mm, 165g. 초경량.",
-        img: "assets/iphone-air.png", priceFrom: "1,584,000",
+        img: "assets/iphone-air.webp", priceFrom: "1,584,000",
         spec: [["디스플레이", "6.5″ Super Retina XDR"], ["프로세서", "A19 Pro"], ["카메라", "48MP 듀얼"], ["배터리", "영상 27시간"]],
         colors: ["스카이 블루", "라이트 골드", "클라우드 화이트", "스페이스 블랙"],
         productKey: "iPhone 시리즈"
       },
       {
         id: "iphone-17e", name: "iPhone 17e", tagline: "합리적 가격, 핵심만 담은 모델.",
-        img: "assets/iphone-17e.png", priceFrom: "850,000",
+        img: "assets/iphone-17e.webp", priceFrom: "850,000",
         spec: [["디스플레이", "6.1″ Liquid Retina"], ["프로세서", "A19"], ["카메라", "48MP 싱글"], ["배터리", "영상 22시간"]],
         colors: ["화이트", "블랙", "핑크"],
         productKey: "iPhone 시리즈"
@@ -70,42 +70,42 @@ const SHOWCASE = {
     models: [
       {
         id: "galaxy-s26-ultra", name: "Galaxy S26 Ultra", tagline: "200MP 카메라, S펜 내장.",
-        img: "assets/galaxy-s26-ultra.png", priceFrom: "1,797,400",
+        img: "assets/galaxy-s26-ultra.webp", priceFrom: "1,797,400",
         spec: [["디스플레이", "6.9″ QHD+ 120Hz"], ["프로세서", "Snapdragon 8 Elite"], ["카메라", "200MP 쿼드"], ["배터리", "5,000mAh"]],
         colors: ["코발트 바이올렛", "스카이 블루", "블랙", "화이트"],
         productKey: "Galaxy S 시리즈"
       },
       {
         id: "galaxy-s26-plus", name: "Galaxy S26+", tagline: "한 손에 잡히는 프리미엄.",
-        img: "assets/galaxy-s26-plus.png", priceFrom: "1,452,000",
+        img: "assets/galaxy-s26-plus.webp", priceFrom: "1,452,000",
         spec: [["디스플레이", "6.7″ QHD+ 120Hz"], ["프로세서", "Snapdragon 8 Elite"], ["카메라", "50MP 트리플"], ["배터리", "4,900mAh"]],
         colors: ["코발트 바이올렛", "스카이 블루", "블랙", "화이트"],
         productKey: "Galaxy S 시리즈"
       },
       {
         id: "galaxy-s26", name: "Galaxy S26", tagline: "콤팩트 플래그십.",
-        img: "assets/galaxy-s26.png", priceFrom: "1,254,000",
+        img: "assets/galaxy-s26.webp", priceFrom: "1,254,000",
         spec: [["디스플레이", "6.2″ FHD+ 120Hz"], ["프로세서", "Snapdragon 8 Elite"], ["카메라", "50MP 트리플"], ["배터리", "4,000mAh"]],
         colors: ["코발트 바이올렛", "스카이 블루", "블랙", "화이트"],
         productKey: "Galaxy S 시리즈"
       },
       {
         id: "galaxy-zfold8-ultra", name: "Galaxy Fold8 Ultra", tagline: "8형 대화면과 200MP — 폴드의 정점.",
-        img: "assets/galaxy-fold8-ultra-violet.png", priceFrom: "2,577,300",
+        img: "assets/galaxy-fold8-ultra-violet.webp", priceFrom: "2,577,300",
         spec: [["디스플레이", "메인 8.0″ (2504×2256)"], ["프로세서", "Snapdragon 8 Elite Gen 5"], ["카메라", "200MP 트리플 + 10MP 망원"], ["배터리", "5,000mAh · 215g"]],
         colors: ["그라파이트", "크림", "바이올렛 쉐도우", "그린 쉐도우"],
         productKey: "Galaxy Fold / Flip"
       },
       {
         id: "galaxy-zfold8", name: "Galaxy Fold8", tagline: "꽉 찬 4:3 화면, 역대 가장 가벼운 폴드.",
-        img: "assets/galaxy-fold8-lavender.png", priceFrom: "2,278,100",
+        img: "assets/galaxy-fold8-lavender.webp", priceFrom: "2,278,100",
         spec: [["디스플레이", "메인 7.6″ 4:3 비율"], ["프로세서", "Snapdragon 8 Elite Gen 5"], ["카메라", "50MP 듀얼"], ["배터리", "4,800mAh · 201g"]],
         colors: ["그라파이트", "크림", "라벤더", "피스타치오"],
         productKey: "Galaxy Fold / Flip"
       },
       {
         id: "galaxy-zflip8", name: "Galaxy Flip8", tagline: "주름을 지운 컴팩트 폴드.",
-        img: "assets/galaxy-flip8-graphite.png", priceFrom: "1,683,000",
+        img: "assets/galaxy-flip8-graphite.webp", priceFrom: "1,683,000",
         spec: [["디스플레이", "메인 6.9″ FHD+ LTPO"], ["프로세서", "Snapdragon 8 Elite Gen 5"], ["카메라", "50MP 듀얼"], ["배터리", "4,174mAh(정격)"]],
         colors: ["그라파이트", "크림", "핑크", "민트"],
         productKey: "Galaxy Fold / Flip"

@@ -434,7 +434,7 @@ function LocationSection() {
   return /* @__PURE__ */ React.createElement("section", { className: "section", id: "location" }, /* @__PURE__ */ React.createElement("div", { className: "container" }, /* @__PURE__ */ React.createElement(Reveal, null, /* @__PURE__ */ React.createElement("span", { className: "eyebrow" }, /* @__PURE__ */ React.createElement("span", { className: "dot" }), "LOCATION"), /* @__PURE__ */ React.createElement("h2", { className: "section-title" }, "\uC624\uC2DC\uB294 \uAE38"), /* @__PURE__ */ React.createElement("p", { className: "section-sub" }, "\uB9C8\uC7A5\uC5ED 2\uBC88 \uCD9C\uAD6C \uB3C4\uBCF4 \uC57D 1\uBD84 \uAC70\uB9AC. \uCC98\uC74C \uC624\uC154\uB3C4 \uC27D\uAC8C \uCC3E\uC73C\uC2E4 \uC218 \uC788\uC2B5\uB2C8\uB2E4.")), /* @__PURE__ */ React.createElement("div", { className: "location-grid" }, /* @__PURE__ */ React.createElement(Reveal, null, /* @__PURE__ */ React.createElement("a", { href: "https://naver.me/FHOAX0ay", target: "_blank", rel: "noopener noreferrer", className: "map-card map-card--link map-card--photo", "aria-label": "\uB124\uC774\uBC84 \uC9C0\uB3C4\uC5D0\uC11C \uACF5\uC77C\uBAA8\uBC14\uC77C \uB9C8\uC7A5\uC5ED\uC810 \uBCF4\uAE30" }, /* @__PURE__ */ React.createElement(
     "img",
     {
-      src: "assets/store-map.png",
+      src: "assets/store-map.webp",
       alt: "\uACF5\uC77C\uBAA8\uBC14\uC77C \uB9C8\uC7A5\uC5ED\uC810 \uC704\uCE58 \uC57D\uB3C4",
       className: "map-photo",
       width: "1149",

@@ -372,10 +372,10 @@ const PRODUCT_SPECS = {
     ["매장 구매가", "방문 시 공개", "방문 시 공개", "방문 시 공개", "방문 시 공개"]],
 
     variants: [
-    { name: "iPhone 17", img: "assets/iphone-17.png" },
-    { name: "iPhone 17 Pro", img: "assets/iphone-17-pro.png" },
-    { name: "iPhone 17 Pro Max", img: "assets/iphone-17-pro-max.png" },
-    { name: "iPhone Air", img: "assets/iphone-air.png" }]
+    { name: "iPhone 17", img: "assets/iphone-17.webp" },
+    { name: "iPhone 17 Pro", img: "assets/iphone-17-pro.webp" },
+    { name: "iPhone 17 Pro Max", img: "assets/iphone-17-pro-max.webp" },
+    { name: "iPhone Air", img: "assets/iphone-air.webp" }]
 
   },
   "Galaxy S 시리즈": {
@@ -391,9 +391,9 @@ const PRODUCT_SPECS = {
     ["매장 구매가", "방문 시 공개", "방문 시 공개", "방문 시 공개"]],
 
     variants: [
-    { name: "Galaxy S26", img: "assets/galaxy-s26.png" },
-    { name: "Galaxy S26+", img: "assets/galaxy-s26-plus.png" },
-    { name: "Galaxy S26 Ultra", img: "assets/galaxy-s26-ultra.png" }]
+    { name: "Galaxy S26", img: "assets/galaxy-s26.webp" },
+    { name: "Galaxy S26+", img: "assets/galaxy-s26-plus.webp" },
+    { name: "Galaxy S26 Ultra", img: "assets/galaxy-s26-ultra.webp" }]
 
   },
   "Galaxy Fold / Flip": {
@@ -409,9 +409,9 @@ const PRODUCT_SPECS = {
     ["매장 구매가", "방문 시 공개", "방문 시 공개"]],
 
     variants: [
-    { name: "Galaxy Fold8 Ultra", img: "assets/galaxy-fold8-ultra-violet.png" },
-    { name: "Galaxy Fold8", img: "assets/galaxy-fold8-lavender.png" },
-    { name: "Galaxy Flip8", img: "assets/galaxy-flip8-graphite.png" }]
+    { name: "Galaxy Fold8 Ultra", img: "assets/galaxy-fold8-ultra-violet.webp" },
+    { name: "Galaxy Fold8", img: "assets/galaxy-fold8-lavender.webp" },
+    { name: "Galaxy Flip8", img: "assets/galaxy-flip8-graphite.webp" }]
 
   },
   "효도폰 / 실속폰": {
@@ -427,8 +427,8 @@ const PRODUCT_SPECS = {
     ["매장 구매가", "방문 시 공개", "방문 시 공개"]],
 
     variants: [
-    { name: "삼성 스타일 폴더2", img: "assets/galaxy-style-folder2.png" },
-    { name: "Galaxy A17", img: "assets/galaxy-a17.png" }]
+    { name: "삼성 스타일 폴더2", img: "assets/galaxy-style-folder2.webp" },
+    { name: "Galaxy A17", img: "assets/galaxy-a17.webp" }]
 
   }
 };
@@ -701,9 +701,9 @@ function IPhoneArt() {
   return (
     <div className="phone-art phone-art--photo">
       <div className="iphone-stack">
-        <img src="assets/iphone-17.png" alt="iPhone 17" className="iphone-stack__back iphone-stack__left" />
-        <img src="assets/iphone-17-pro.png" alt="iPhone 17 Pro" className="iphone-stack__back iphone-stack__right" />
-        <img src="assets/iphone-air.png" alt="iPhone Air" className="iphone-stack__front" />
+        <img src="assets/iphone-17.webp" alt="iPhone 17" className="iphone-stack__back iphone-stack__left" />
+        <img src="assets/iphone-17-pro.webp" alt="iPhone 17 Pro" className="iphone-stack__back iphone-stack__right" />
+        <img src="assets/iphone-air.webp" alt="iPhone Air" className="iphone-stack__front" />
       </div>
     </div>);
 }
@@ -767,9 +767,9 @@ function GalaxyArt() {
   return (
     <div className="phone-art phone-art--photo">
       <div className="iphone-stack galaxy-stack">
-        <img src="assets/galaxy-s26-ultra.png" alt="Galaxy S26 Ultra" className="iphone-stack__back iphone-stack__left" />
-        <img src="assets/galaxy-s26-plus.png" alt="Galaxy S26+" className="iphone-stack__back iphone-stack__right" />
-        <img src="assets/galaxy-s26.png" alt="Galaxy S26" className="iphone-stack__front" />
+        <img src="assets/galaxy-s26-ultra.webp" alt="Galaxy S26 Ultra" className="iphone-stack__back iphone-stack__left" />
+        <img src="assets/galaxy-s26-plus.webp" alt="Galaxy S26+" className="iphone-stack__back iphone-stack__right" />
+        <img src="assets/galaxy-s26.webp" alt="Galaxy S26" className="iphone-stack__front" />
       </div>
     </div>);
 }
@@ -828,8 +828,8 @@ function FoldArt() {
   return (
     <div className="phone-art phone-art--photo">
       <div className="iphone-stack fold-stack">
-        <img src="assets/galaxy-fold8-ultra-violet.png" alt="Galaxy Fold8 Ultra" className="iphone-stack__back iphone-stack__left" />
-        <img src="assets/galaxy-flip8-graphite.png" alt="Galaxy Flip8" className="iphone-stack__front" />
+        <img src="assets/galaxy-fold8-ultra-violet.webp" alt="Galaxy Fold8 Ultra" className="iphone-stack__back iphone-stack__left" />
+        <img src="assets/galaxy-flip8-graphite.webp" alt="Galaxy Flip8" className="iphone-stack__front" />
       </div>
     </div>);
 }
@@ -903,7 +903,7 @@ function SeniorArt() {
   return (
     <div className="phone-art phone-art--photo">
       <div className="iphone-stack senior-stack">
-        <img src="assets/senior-phone.png" alt="실속폰" className="iphone-stack__front" />
+        <img src="assets/senior-phone.webp" alt="실속폰" className="iphone-stack__front" />
       </div>
     </div>);
 }
