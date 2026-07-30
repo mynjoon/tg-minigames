@@ -63,3 +63,16 @@ Pages 프로젝트 → Custom domains → `01mobile.co.kr` + `www.01mobile.co.kr
 
 ## 평시 배포 (이전 완료 후)
 `main`에 push → Cloudflare Pages 자동 배포 (1분 내). 라이브 확인은 캐시버스터(`?cb=랜덤`)로.
+
+## 디자인 스킬 (2026-07-30 도입)
+
+`.claude/skills/`에 두 개의 프론트엔드 디자인 스킬이 설치돼 있다. 새 세션도 자동 인식한다.
+- **taste-skill** (Leonxlnx/taste-skill) — 랜딩·포트폴리오용 안티슬롭 규칙(레이아웃·타이포·모션 다이얼).
+- **impeccable** (pbakaus/impeccable) — 60개 결정론적 감지 규칙 + 디자인 커맨드.
+
+UI를 만지면 배포 전에 감지기를 돌린다:
+```bash
+node .claude/skills/impeccable/scripts/detector/detect-antipatterns.mjs styles.css *.jsx
+```
+알려진 잔여 2건(의도된 설계라 유지): 히어로 제목의 미세 그라디언트 텍스트(브랜드 요소),
+헤더 스크롤 시 height 트랜지션(1회성 상태 전환).

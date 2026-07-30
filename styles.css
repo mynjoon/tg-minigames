@@ -382,12 +382,7 @@ img, svg { display: block; max-width: 100%; }
   color: var(--ink-900);
   text-wrap: balance;
 }
-.hero h1 .accent {
-  background: linear-gradient(120deg, var(--blue) 0%, var(--blue-deep) 100%);
-  -webkit-background-clip: text;
-  background-clip: text;
-  color: transparent;
-}
+
 .hero-sub {
   margin-top: 22px;
   font-size: clamp(16px, 1.4vw, 19px);
@@ -4011,7 +4006,8 @@ body::after {
 
 /* Trust card — editorial numerals */
 .trust-num {
-  font-family: "Inter", -apple-system, system-ui, sans-serif !important;
+  font-family: var(--font-kr) !important;
+  font-variant-numeric: tabular-nums !important;
   font-size: 11px !important;
   letter-spacing: 0.16em !important;
   color: var(--couture-mist) !important;
@@ -4940,9 +4936,7 @@ p b, p strong, .hero-sub b, .section-sub b {
 
 /* Reward — income highlight in CTA card */
 .reward-income {
-  background: linear-gradient(120deg, #FFD66B 0%, #FFEDA8 100%);
-  -webkit-background-clip: text; background-clip: text;
-  -webkit-text-fill-color: transparent;
+  color: #FFD66B;
   font-weight: 800;
 }
 .reward-income-note { display: block; margin-top: 8px; font-size: 11.5px; color: rgba(255,255,255,0.6); }
@@ -4965,3 +4959,20 @@ p b, p strong, .hero-sub b, .section-sub b {
 .showcase-rail__thumb img {
   filter: drop-shadow(0 10px 24px rgba(17, 24, 39, 0.16)) drop-shadow(0 2px 6px rgba(17, 24, 39, 0.10));
 }
+
+/* ---------- 카드 그리드 높이 통일 ----------
+   Reveal 래퍼가 그리드 자식이라 내부 카드가 콘텐츠 높이에 머물렀다(행마다 들쭉날쭉).
+   래퍼를 flex로 두면 카드가 행 높이를 꽉 채운다. 카드 내부는 컬럼 정렬로 본문이 자란다. */
+.trust-grid > *,
+.products-grid > * { display: flex; }
+
+.trust-grid > * > .trust-card,
+.products-grid > * > .product-card { width: 100%; }
+
+.trust-card { display: flex; flex-direction: column; }
+/* 제목이 1줄/2줄로 갈려 본문 시작선이 어긋나던 문제 — 제목 영역을 2줄로 고정 */
+.trust-card h3 { line-height: 1.4; min-height: calc(2 * 1.4em); display: flex; align-items: flex-start; }
+.trust-card p { margin-top: 0; }
+
+.product-card { display: flex; flex-direction: column; }
+.product-card .product-info { flex: 1; display: flex; flex-direction: column; }
