@@ -5013,3 +5013,9 @@ p b, p strong, .hero-sub b, .section-sub b {
   .promo-bar__link{font-size:13px;padding:10px 40px 10px 14px;gap:7px}
   .promo-bar__go{display:none}
 }
+
+/* 스펙표 헤더 정렬 — 이미지·모델명이 가운데 정렬이라 좌측 정렬된 본문 대비
+   오른쪽으로 밀려 보이던 문제. 열 안에서 같은 왼쪽 기준선을 공유하게 맞춘다. */
+.spec-table__phone { justify-content: flex-start; }
+.spec-table__phone img { object-position: left bottom; }
+.spec-table__name { text-align: left; }
