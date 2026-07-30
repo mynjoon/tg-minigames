@@ -611,6 +611,7 @@ function Footer() {
               <li><a href={PAGE_BASE + "#products"}>판매 상품</a></li>
               <li><a href="devices.html">기기 전체보기</a></li>
               <li><a href="used.html">중고폰 판매·매입</a></li>
+              <li><a href="/guides">개통·중고폰 가이드</a></li>
               <li><a href={PAGE_BASE + "#location"}>오시는 길</a></li>
               <li><a href="privacy.html">개인정보처리방침</a></li>
             </ul>

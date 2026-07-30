@@ -29,5 +29,7 @@ export const PAGES = [
   { path: "/", must: ["#root", "#booking"], minLinks: 5 },
   { path: "/devices", must: ["#root"], minLinks: 3 },
   { path: "/used", must: ["#root"], minLinks: 3 },
+  { path: "/guides", must: [".g-cards"], minLinks: 6 },
+  { path: "/guides/majang-phone-store", must: [".g-faq"], minLinks: 6 },
   { path: "/privacy", must: [], minLinks: 1 },
 ];

@@ -415,6 +415,20 @@ function UsedPage() {
         </section>
 
         <UsedFaqSection />
+        <section className="section" style={{ paddingTop: 0 }}>
+          <div className="container">
+            <div className="us-note">
+              <Icon name="doc" size={18} />
+              <span>
+                팔기 전에 준비할 것이 궁금하다면{" "}
+                <a href="/guides/used-phone-trade-in" style={{ textDecoration: "underline" }}>중고폰 매입 등급·시세 가이드</a>
+                를, 기기 교체를 고민 중이라면{" "}
+                <a href="/guides/number-transfer-vs-upgrade" style={{ textDecoration: "underline" }}>번호이동 vs 기기변경 비교</a>
+                를 참고하세요.
+              </span>
+            </div>
+          </div>
+        </section>
         <UsedConsultSection />
       </main>
 

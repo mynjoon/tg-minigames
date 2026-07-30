@@ -214,6 +214,16 @@ function DevicesPage() {
               <span>{PRICE_NOTE}</span>
             </div>
 
+            <Reveal>
+              <p style={{ textAlign: "center", fontSize: 14.5, color: "var(--ink-600)", margin: "0 0 26px" }}>
+                어떤 방식이 유리한지 고민되신다면{" "}
+                <a href="/guides/number-transfer-vs-upgrade" style={{ textDecoration: "underline" }}>번호이동 vs 기기변경 비교</a>
+                {" · "}
+                <a href="/guides/unlocked-phone-plan" style={{ textDecoration: "underline" }}>자급제 + 요금제 조합</a>
+                {" 가이드를 먼저 읽어보세요."}
+              </p>
+            </Reveal>
+
             {/* finder 유도 배너 */}
             <Reveal>
               <div className="dv-finder">

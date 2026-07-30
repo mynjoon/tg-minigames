@@ -20,29 +20,77 @@
 <script type="application/ld+json">
 {
   "@context": "https://schema.org",
-  "@type": "MobilePhoneStore",
-  "name": "공일모바일",
-  "telephone": "+82-10-7932-9779",
-  "priceRange": "₩₩",
-  "hasMap": "https://naver.me/FHOAX0ay",
-  "sameAs": ["https://map.naver.com/p/entry/place/2051361364"],
-  "geo": { "@type": "GeoCoordinates", "latitude": 37.5666671, "longitude": 127.0433283 },
-  "areaServed": ["성동구", "마장동", "왕십리", "행당동", "사근동"],
-  "url": "https://01mobile.co.kr/",
-  "image": "https://01mobile.co.kr/assets/store-exterior.jpg",
-  "address": {
-    "@type": "PostalAddress",
-    "streetAddress": "마장로 305 1층",
-    "addressLocality": "성동구",
-    "addressRegion": "서울특별시",
-    "addressCountry": "KR"
-  },
-  "openingHoursSpecification": [
+  "@graph": [
     {
-      "@type": "OpeningHoursSpecification",
-      "dayOfWeek": ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"],
-      "opens": "10:00",
-      "closes": "20:00"
+      "@type": "Organization",
+      "@id": "https://01mobile.co.kr/#org",
+      "name": "공일모바일",
+      "url": "https://01mobile.co.kr/",
+      "telephone": "+82-10-7932-9779",
+      "logo": {
+        "@type": "ImageObject",
+        "url": "https://01mobile.co.kr/assets/logo.png"
+      },
+      "sameAs": [
+        "https://map.naver.com/p/entry/place/2051361364"
+      ]
+    },
+    {
+      "@type": "WebSite",
+      "@id": "https://01mobile.co.kr/#website",
+      "name": "공일모바일",
+      "url": "https://01mobile.co.kr/",
+      "inLanguage": "ko",
+      "publisher": {
+        "@id": "https://01mobile.co.kr/#org"
+      }
+    },
+    {
+      "@type": "MobilePhoneStore",
+      "name": "공일모바일",
+      "telephone": "+82-10-7932-9779",
+      "priceRange": "₩₩",
+      "hasMap": "https://naver.me/FHOAX0ay",
+      "sameAs": [
+        "https://map.naver.com/p/entry/place/2051361364"
+      ],
+      "geo": {
+        "@type": "GeoCoordinates",
+        "latitude": 37.5666671,
+        "longitude": 127.0433283
+      },
+      "areaServed": [
+        "성동구",
+        "마장동",
+        "왕십리",
+        "행당동",
+        "사근동"
+      ],
+      "url": "https://01mobile.co.kr/",
+      "image": "https://01mobile.co.kr/assets/store-exterior.jpg",
+      "address": {
+        "@type": "PostalAddress",
+        "streetAddress": "마장로 305 1층",
+        "addressLocality": "성동구",
+        "addressRegion": "서울특별시",
+        "addressCountry": "KR"
+      },
+      "openingHoursSpecification": [
+        {
+          "@type": "OpeningHoursSpecification",
+          "dayOfWeek": [
+            "Monday",
+            "Tuesday",
+            "Wednesday",
+            "Thursday",
+            "Friday",
+            "Saturday"
+          ],
+          "opens": "10:00",
+          "closes": "20:00"
+        }
+      ],
+      "@id": "https://01mobile.co.kr/#store"
     }
   ]
 }
@@ -85,11 +133,11 @@
   </div>
 </noscript>
 
-<script type="text/babel" src="components.jsx?v=6fbdfd50"></script>
+<script type="text/babel" src="components.jsx?v=8b7843ca"></script>
 <script type="text/babel" src="sections-top.jsx?v=dcbedc40"></script>
 <script type="text/babel" src="showcase.jsx?v=a6d45133"></script>
 <script type="text/babel" src="sections-mid.jsx?v=b7833e94"></script>
-<script type="text/babel" src="sections-bottom.jsx?v=59bab457"></script>
+<script type="text/babel" src="sections-bottom.jsx?v=fc3ac609"></script>
 <script type="text/babel" src="app.jsx?v=e95f7203"></script>
 </body>
 </html>

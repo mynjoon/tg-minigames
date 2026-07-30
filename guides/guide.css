@@ -1,0 +1,77 @@
+/* 가이드 전용 스타일 — 본문 가독성 우선. 메인 사이트(styles.css)와 독립.
+   가이드는 JS 없이 읽히는 게 목적이라 의존성을 최소로 둔다. */
+:root{--ink:#111418;--ink-6:#4b5563;--ink-4:#6b7684;--line:#e5e8eb;--blue:#006CFF;--bg:#fff;--panel:#f8fafc}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);
+  font-family:"Pretendard",-apple-system,BlinkMacSystemFont,system-ui,sans-serif;
+  line-height:1.75;-webkit-text-size-adjust:100%;word-break:keep-all}
+a{color:var(--blue);text-decoration:none}
+a:hover{text-decoration:underline}
+img{max-width:100%;height:auto}
+
+.g-header{display:flex;align-items:center;justify-content:space-between;gap:16px;
+  padding:14px 20px;border-bottom:1px solid var(--line);position:sticky;top:0;background:rgba(255,255,255,.92);
+  backdrop-filter:saturate(180%) blur(12px);z-index:10}
+.g-brand{display:flex;align-items:center;gap:9px;color:var(--ink);font-weight:800;font-size:16px;letter-spacing:-.02em}
+.g-call{font-weight:700;font-size:14.5px;white-space:nowrap}
+
+.g-main{max-width:760px;margin:0 auto;padding:28px 20px 8px}
+.g-crumbs{font-size:13px;color:var(--ink-4);margin-bottom:18px}
+.g-crumbs a{color:var(--ink-4)}
+h1{font-size:31px;line-height:1.35;letter-spacing:-.035em;margin:0 0 10px;font-weight:800}
+h2{font-size:20px;line-height:1.45;letter-spacing:-.025em;margin:40px 0 12px;font-weight:800}
+.g-updated{font-size:13px;color:var(--ink-4);margin:0 0 22px}
+.g-intro{font-size:17.5px;color:var(--ink-6);margin:0 0 8px}
+p{margin:0 0 14px}
+ul{margin:0 0 14px;padding-left:20px}
+li{margin:0 0 9px}
+b,strong{font-weight:700;color:var(--ink)}
+
+.g-tablewrap{overflow-x:auto;margin:0 0 18px;border:1px solid var(--line);border-radius:12px}
+table{border-collapse:collapse;width:100%;font-size:15px;min-width:420px}
+th,td{text-align:left;padding:12px 14px;border-bottom:1px solid var(--line);vertical-align:top}
+th{background:var(--panel);font-weight:700;font-size:13.5px;color:var(--ink-6);white-space:nowrap}
+tr:last-child td{border-bottom:0}
+
+.g-faq details{border:1px solid var(--line);border-radius:12px;padding:0 16px;margin:0 0 9px;background:#fff}
+.g-faq summary{cursor:pointer;font-weight:700;font-size:15.5px;padding:14px 0;list-style:none}
+.g-faq summary::-webkit-details-marker{display:none}
+.g-faq summary::before{content:"Q. ";color:var(--blue);font-weight:800}
+.g-faq details p{margin:0;padding:0 0 15px;color:var(--ink-6);font-size:15px}
+
+.g-cta{max-width:760px;margin:48px auto 0;padding:30px 24px;background:var(--panel);
+  border:1px solid var(--line);border-radius:18px;text-align:center}
+.g-cta h2{margin:0 0 6px;font-size:20px}
+.g-cta p{color:var(--ink-4);font-size:14.5px;margin:0 0 18px}
+.g-cta__row{display:flex;gap:10px;justify-content:center;flex-wrap:wrap}
+.g-btn{display:inline-block;padding:13px 22px;border-radius:12px;border:1px solid var(--line);
+  background:#fff;color:var(--ink);font-weight:700;font-size:15px}
+.g-btn:hover{text-decoration:none;border-color:var(--ink-4)}
+.g-btn--primary{background:var(--ink);color:#fff;border-color:var(--ink)}
+
+.g-related{max-width:760px;margin:44px auto 0;padding:0 20px}
+.g-related h2{font-size:17px;margin:0 0 12px}
+.g-related ul{list-style:none;padding:0;margin:0}
+.g-related li{margin:0 0 8px}
+.g-related a{font-weight:600;font-size:15.5px}
+
+.g-cards{list-style:none;padding:0;margin:26px 0 0;display:grid;gap:14px}
+.g-cards a{display:block;padding:22px;border:1px solid var(--line);border-radius:16px;color:var(--ink);
+  transition:border-color .18s,transform .18s}
+.g-cards a:hover{text-decoration:none;border-color:var(--blue);transform:translateY(-2px)}
+.g-cards h2{margin:0 0 7px;font-size:18px}
+.g-cards p{margin:0 0 10px;color:var(--ink-6);font-size:15px}
+.g-more{color:var(--blue);font-weight:700;font-size:14px}
+
+.g-footer{max-width:760px;margin:52px auto 0;padding:26px 20px 44px;border-top:1px solid var(--line);
+  font-size:13.5px;color:var(--ink-4)}
+.g-footer p{margin:0 0 8px}
+.g-footer a{color:var(--ink-6)}
+.g-note{font-size:12.5px;line-height:1.65}
+
+@media (max-width:640px){
+  h1{font-size:25px}
+  h2{font-size:18.5px;margin-top:34px}
+  .g-intro{font-size:16.5px}
+  .g-main{padding-top:22px}
+}

@@ -29,7 +29,10 @@ function serve(port) {
       let p = decodeURIComponent(req.url.split("?")[0]);
       if (p.endsWith("/")) p += "index.html";
       let file = join(ROOT, p);
-      try { await stat(file); } catch { file = join(ROOT, p + ".html"); }
+      try {
+        const st = await stat(file);
+        if (st.isDirectory()) file = join(file, "index.html");
+      } catch { file = join(ROOT, p + ".html"); }
       try {
         const buf = await readFile(file);
         res.writeHead(200, { "content-type": MIME[extname(file)] || "application/octet-stream" });
